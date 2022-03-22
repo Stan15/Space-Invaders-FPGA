@@ -1,0 +1,27 @@
+module top(
+	input logic clk_100m,
+);
+	logic square;
+	always_comb begin
+		square = (sx > 220 && sx < 420) && (sy > 140 && sy < 340);
+	end
+	
+	logic [3:0] paint_r, paint_g, paint_b;
+	always_comb begin
+		paint_r = (square) ? 4'hF : 4'h1;
+		paint_g = (square) ? 4'hF : 4'h3;
+		paint_b = (square) ? 4'hF : 4'h7;
+	end
+	
+	always_ff @(posedge clk_pix) begin
+		vga_hsync <= hsync;
+		vga_vsync <= vsync;
+		if (de) begin
+			vga_r <= paint_r;
+			vga_g <= paint_g;
+			vga_b <= paint_b;
+		end else begin
+		
+		end
+	end
+endmodule
