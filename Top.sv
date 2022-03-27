@@ -77,16 +77,17 @@ module Top(
 	//-----------spaceship sprite------------------
 	
 	// setup rom for retrieving pixel data for spaceship from the spaceship.mem 
-	localparam SHIP_WIDTH = 32;
-	localparam SHIP_HEIGHT = 20;
+	localparam SHIP_WIDTH = 17;
+	localparam SHIP_HEIGHT = 18;
 	localparam SHIP_SCALE_X = 4;
 	localparam SHIP_SCALE_Y = 4;
 	localparam COLR_BITS = 4;						// bits per pixel (2^4=16 colours)
 	localparam SHIP_PIX_COUNT = SHIP_WIDTH * SHIP_HEIGHT;			// number of pixels making up spaceship
+	localparam SHIP_ADDRW = $clog2(SHIP_PIX_COUNT);
 	localparam SHIP_FILE = "spaceship.mem";
 	
 	logic [COLR_BITS-1:0] ship_rom_data;
-	logic [$clog2(SHIP_PIX_COUNT)-1:0] ship_rom_addr;
+	logic [SHIP_ADDRW-1:0] ship_rom_addr;
 	rom_sync #(
 		.WIDTH(COLR_BITS), 	// each pixel in sprite is 4 bits wide, describing its color
 		.DEPTH(SHIP_PIX_COUNT),				// there are 306 pixels in the spaceship file
@@ -103,15 +104,10 @@ module Top(
 	logic [15:0] ship_y = 300;
 	logic [3:0]  ship_pix;		// the ship's pixel data ()
 	
-	always @(negedge KEY[0], negedge KEY[1], negedge SW[0]) begin
-		if (~SW[0]) begin
-			ship_x <= 0; 
-		end else if (~KEY[0]) begin
-			if (ship_x < 15'd630) ship_x <= ship_x + 1;
-		end else if (~KEY[1]) begin
-			if (ship_x > 0) ship_x <= ship_x - 1;
-		end
+	always_ff @(posedge KEY[0]) begin
+		ship_x <= ship_x + (SW[0] ? 1 : -1);
 	end
+	
 	sprite #(
 		.WIDTH(SHIP_WIDTH),
 		.HEIGHT(SHIP_HEIGHT),
@@ -128,17 +124,20 @@ module Top(
 		.drawing(),
 		.done()
 	);
+	DoubleDigitDisplay (ship_rom_data, HEX0, HEX1, HEX2);
 	
-	DoubleDigitDisplay (ship_x, HEX0, HEX1, HEX2);
+	logic [3:0] bg_pix;
+	assign bg_pix = 15;
+	logic [3:0] screen_pix;
+	assign screen_pix = ship_pix ? ship_pix : bg_pix; // hierarchy of sprites to display. pix=0 means transparent
 	
-	
-//	wire color_r, color_g, color_b;
-//	color_map(.color_code(pix), .);
-	logic [3:0] paint_r, paint_g, paint_b;
+	// map pixel color code to actual color value
+	logic [11:0] color;
+	color_mapper (.clk(clk_pix), .color_code(screen_pix), .color);
+	logic [3:0] red, green, blue;
+	assign LEDR[0] = color==11'hFFF;
 	always_comb begin
-		paint_r = (ship_pix==0) ? 4'hF : 4'h1;
-		paint_g = (ship_pix==0) ? 4'hF : 4'h3;
-		paint_b = (ship_pix==0) ? 4'hF : 4'h7;
+		{red, green, blue} = color;
 	end
 
 	// passes the generated VGA signals to VGA output
@@ -146,9 +145,9 @@ module Top(
 		VGA_HS <= hsync;
 		VGA_VS <= vsync;
 		if (de) begin	// only when we are in visible part of screen should we render color. otherwise, black.
-			VGA_R <= paint_r;
-			VGA_G <= paint_g;
-			VGA_B <= paint_b;
+			VGA_R <= red;
+			VGA_G <= green;
+			VGA_B <= blue;
 		end else begin
 			VGA_R <= 0;
 			VGA_G <= 0;

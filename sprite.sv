@@ -5,7 +5,7 @@ module sprite #(
     parameter SCALE_Y=1,       // sprite height scale-factor
     parameter COLR_BITS=4,     // bits per pixel (2^4=16 colours)
     parameter CORDW=16,        // screen coordinate width in bits
-    parameter ADDRW=6          // width of graphic memory address bus
+    parameter ADDRW=WIDTH*HEIGHT          // width of graphic memory address bus
     ) (
     input  wire logic clk,                      // clock
     input  wire logic rst,                      // reset

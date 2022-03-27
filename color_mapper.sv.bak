@@ -1,0 +1,4 @@
+module color_mapper(input [3:0] color_code, output [15:0] color);
+	localparam INIT_F = "color_map.mem";
+	
+endmodule
