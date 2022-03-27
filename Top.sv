@@ -76,11 +76,13 @@ module Top(
 
 	//-----------spaceship sprite------------------
 	
-	// setup rom for retrieving pixel data for spaceship from the spaceship.mem file
+	// setup rom for retrieving pixel data for spaceship from the spaceship.mem 
+	localparam SHIP_WIDTH = 32;
+	localparam SHIP_HEIGHT = 20;
+	localparam SHIP_SCALE_X = 4;
+	localparam SHIP_SCALE_Y = 4;
 	localparam COLR_BITS = 4;						// bits per pixel (2^4=16 colours)
-	localparam SHIP_WIDTH = 17;
-	localparam SHIP_HEIGHT = 18;
-	localparam SHIP_PIX_COUNT = SHIP_WIDTH*SHIP_HEIGHT;			// number of pixels making up spaceship
+	localparam SHIP_PIX_COUNT = SHIP_WIDTH * SHIP_HEIGHT;			// number of pixels making up spaceship
 	localparam SHIP_FILE = "spaceship.mem";
 	
 	logic [COLR_BITS-1:0] ship_rom_data;
@@ -96,12 +98,25 @@ module Top(
 	);
 	
 	
-	logic [15:0] ship_x = 220;	// the ship's coordinate on screen. This is the part that should be controlled by the accelerometer
-	logic [15:0] ship_y = 140;
+	
+	logic [15:0] ship_x;	// the ship's coordinate on screen. This is the part that should be controlled by the accelerometer
+	logic [15:0] ship_y = 300;
 	logic [3:0]  ship_pix;		// the ship's pixel data ()
+	
+	always @(negedge KEY[0], negedge KEY[1], negedge SW[0]) begin
+		if (~SW[0]) begin
+			ship_x <= 0; 
+		end else if (~KEY[0]) begin
+			if (ship_x < 15'd630) ship_x <= ship_x + 1;
+		end else if (~KEY[1]) begin
+			if (ship_x > 0) ship_x <= ship_x - 1;
+		end
+	end
 	sprite #(
 		.WIDTH(SHIP_WIDTH),
-		.HEIGHT(SHIP_HEIGHT)
+		.HEIGHT(SHIP_HEIGHT),
+		.SCALE_X(SHIP_SCALE_X),
+		.SCALE_Y(SHIP_SCALE_Y)
 	) ship(
 		.clk(clk_pix), .rst(0),
 		.line,
@@ -121,9 +136,9 @@ module Top(
 //	color_map(.color_code(pix), .);
 	logic [3:0] paint_r, paint_g, paint_b;
 	always_comb begin
-		paint_r = (ship_pix) ? 4'hF : 4'h1;
-		paint_g = (ship_pix) ? 4'hF : 4'h3;
-		paint_b = (ship_pix) ? 4'hF : 4'h7;
+		paint_r = (ship_pix==0) ? 4'hF : 4'h1;
+		paint_g = (ship_pix==0) ? 4'hF : 4'h3;
+		paint_b = (ship_pix==0) ? 4'hF : 4'h7;
 	end
 
 	// passes the generated VGA signals to VGA output
@@ -146,7 +161,7 @@ endmodule
 module DoubleDigitDisplay (input[9:0] number, output[6:0] dispUnit, dispTens, dispHundreds);
 	wire [6:0]unit, tens;
 	SevenSegDecoder (number%10, dispUnit);
-	SevenSegDecoder (number/10, dispTens);
+	SevenSegDecoder ((number%100)/10, dispTens);
 	SevenSegDecoder (number/100, dispHundreds);
 endmodule
 

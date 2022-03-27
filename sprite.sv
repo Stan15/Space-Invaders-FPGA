@@ -1,25 +1,28 @@
 module sprite #(
-	parameter WIDTH=8,		// width of sprite in pixels
-	parameter HEIGHT=8, 		// height of sprite in pixels
+    parameter WIDTH=8,         // graphic width in pixels
+    parameter HEIGHT=8,        // graphic height in pixels
     parameter SCALE_X=1,       // sprite width scale-factor
     parameter SCALE_Y=1,       // sprite height scale-factor
-	parameter COLR_BITS=4,	// bits per pixel (2^4=16 colors)
-	parameter CORDW=16,		// screen coordinate width in bits
-	parameter ADDRW=6			// width of graphic memory address bus
-) (
-	input  wire logic clk,                      // clock
-	input  wire logic rst,                      // reset
-	input  wire logic line,            	        // start of new line in frame
-	input  wire logic signed [CORDW-1:0] sx,    // horizontal screen position
-	input  wire logic signed [CORDW-1:0] sy,    // horizontal screen position
-	input  wire logic signed [CORDW-1:0] sprx,  // horizontal sprite position
-	input  wire logic signed [CORDW-1:0] spry,  // vertical sprite position
-	input  wire logic [COLR_BITS-1:0] data_in,  // data from external memory
-	output      logic [ADDRW-1:0] pos,          // sprite pixel position
-	output      logic [COLR_BITS-1:0] pix,      // pixel colour to draw
-	output      logic drawing,                  // sprite is drawing
-	output      logic done                      // sprite drawing is complete
- );
+    parameter COLR_BITS=4,     // bits per pixel (2^4=16 colours)
+    parameter CORDW=16,        // screen coordinate width in bits
+    parameter ADDRW=6          // width of graphic memory address bus
+    ) (
+    input  wire logic clk,                      // clock
+    input  wire logic rst,                      // reset
+    input  wire logic line,                     // flag asserted when we start rendering new line in frame
+    input  wire logic signed [CORDW-1:0] sx,    // horizontal screen position
+	 input  wire logic signed [CORDW-1:0] sy,    // vertical screen position
+    input  wire logic signed [CORDW-1:0] sprx,  // horizontal sprite position
+	 input  wire logic signed [CORDW-1:0] spry,  // horizontal sprite position
+    input  wire logic [COLR_BITS-1:0] data_in,  // data from external memory
+    output      logic [ADDRW-1:0] pos,          // sprite pixel position
+    output      logic [COLR_BITS-1:0] pix,      // pixel colour to draw
+    output      logic drawing,                  // sprite is drawing
+    output      logic done                      // sprite drawing is complete
+    );
+	 
+	logic start;
+	assign start = (line && sy==spry);
 
 	// position within sprite
 	logic [$clog2(WIDTH)-1:0]  ox;
@@ -28,9 +31,6 @@ module sprite #(
 	// scale counters
 	logic [$clog2(SCALE_X)-1:0] cnt_x;
 	logic [$clog2(SCALE_Y)-1:0] cnt_y;
-	
-	logic start;
-	always_comb start	= (line && sy == spry); // signal to start drawing when you reach the line where sprite is on.
 
 	enum {
 		IDLE,       // awaiting start signal

@@ -1,5 +1,5 @@
 Analysis & Synthesis report for 3216proj
-Fri Mar 25 23:26:15 2022
+Sat Mar 26 01:25:37 2022
 Quartus Prime Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
 
 
@@ -14,25 +14,28 @@ Quartus Prime Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
   8. Registers Removed During Synthesis
-  9. Removed Registers Triggering Further Register Optimizations
- 10. General Register Statistics
- 11. Parameter Settings for User Entity Instance: ip:ip1|altpll:altpll_component
- 12. Parameter Settings for User Entity Instance: display_480p:comb_28
- 13. Parameter Settings for User Entity Instance: rom_sync:spaceship_mem
- 14. Parameter Settings for User Entity Instance: sprite:ship
- 15. altpll Parameter Settings by Entity Instance
- 16. Port Connectivity Checks: "DoubleDigitDisplay:comb_32|SevenSegDecoder:comb_7"
- 17. Port Connectivity Checks: "DoubleDigitDisplay:comb_32|SevenSegDecoder:comb_5"
- 18. Port Connectivity Checks: "DoubleDigitDisplay:comb_32|SevenSegDecoder:comb_3"
- 19. Port Connectivity Checks: "DoubleDigitDisplay:comb_32"
- 20. Port Connectivity Checks: "sprite:ship"
- 21. Port Connectivity Checks: "rom_sync:spaceship_mem"
- 22. Port Connectivity Checks: "display_480p:comb_28"
- 23. Port Connectivity Checks: "ip:ip1"
- 24. Post-Synthesis Netlist Statistics for Top Partition
- 25. Elapsed Time Per Partition
- 26. Analysis & Synthesis Messages
- 27. Analysis & Synthesis Suppressed Messages
+  9. General Register Statistics
+ 10. Parameter Settings for User Entity Instance: ip:ip1|altpll:altpll_component
+ 11. Parameter Settings for User Entity Instance: display_480p:comb_28
+ 12. Parameter Settings for User Entity Instance: rom_sync:spaceship_mem
+ 13. Parameter Settings for User Entity Instance: sprite:ship
+ 14. Parameter Settings for Inferred Entity Instance: DoubleDigitDisplay:comb_172|lpm_divide:Mod0
+ 15. Parameter Settings for Inferred Entity Instance: DoubleDigitDisplay:comb_172|lpm_divide:Mod1
+ 16. Parameter Settings for Inferred Entity Instance: DoubleDigitDisplay:comb_172|lpm_divide:Div0
+ 17. Parameter Settings for Inferred Entity Instance: DoubleDigitDisplay:comb_172|lpm_divide:Div1
+ 18. altpll Parameter Settings by Entity Instance
+ 19. Port Connectivity Checks: "DoubleDigitDisplay:comb_172|SevenSegDecoder:comb_8"
+ 20. Port Connectivity Checks: "DoubleDigitDisplay:comb_172|SevenSegDecoder:comb_5"
+ 21. Port Connectivity Checks: "DoubleDigitDisplay:comb_172|SevenSegDecoder:comb_3"
+ 22. Port Connectivity Checks: "DoubleDigitDisplay:comb_172"
+ 23. Port Connectivity Checks: "sprite:ship"
+ 24. Port Connectivity Checks: "rom_sync:spaceship_mem"
+ 25. Port Connectivity Checks: "display_480p:comb_28"
+ 26. Port Connectivity Checks: "ip:ip1"
+ 27. Post-Synthesis Netlist Statistics for Top Partition
+ 28. Elapsed Time Per Partition
+ 29. Analysis & Synthesis Messages
+ 30. Analysis & Synthesis Suppressed Messages
 
 
 
@@ -59,15 +62,15 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Fri Mar 25 23:26:15 2022       ;
+; Analysis & Synthesis Status        ; Successful - Sat Mar 26 01:25:37 2022       ;
 ; Quartus Prime Version              ; 20.1.0 Build 711 06/05/2020 SJ Lite Edition ;
 ; Revision Name                      ; 3216proj                                    ;
 ; Top-level Entity Name              ; Top                                         ;
 ; Family                             ; MAX 10                                      ;
-; Total logic elements               ; 182                                         ;
-;     Total combinational functions  ; 140                                         ;
-;     Dedicated logic registers      ; 102                                         ;
-; Total registers                    ; 102                                         ;
+; Total logic elements               ; 623                                         ;
+;     Total combinational functions  ; 581                                         ;
+;     Dedicated logic registers      ; 121                                         ;
+; Total registers                    ; 121                                         ;
 ; Total pins                         ; 91                                          ;
 ; Total virtual pins                 ; 0                                           ;
 ; Total memory bits                  ; 0                                           ;
@@ -177,27 +180,43 @@ https://fpgasoftware.intel.com/eula.
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
-;     Processors 2-4         ;   0.0%      ;
+;     Processor 2            ;   0.0%      ;
+;     Processors 3-4         ;   0.0%      ;
 +----------------------------+-------------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                                                                                                                                                      ;
-+----------------------------------+-----------------+------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                                                                                                                                  ; Library ;
-+----------------------------------+-----------------+------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------+
-; Top.sv                           ; yes             ; User SystemVerilog HDL File  ; C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv          ;         ;
-; ip.sv                            ; yes             ; User Wizard-Generated File   ; C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/ip.sv           ;         ;
-; display_480p.sv                  ; yes             ; User SystemVerilog HDL File  ; C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/display_480p.sv ;         ;
-; rom_sync.sv                      ; yes             ; User SystemVerilog HDL File  ; C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/rom_sync.sv     ;         ;
-; sprite.sv                        ; yes             ; User SystemVerilog HDL File  ; C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/sprite.sv       ;         ;
-; altpll.tdf                       ; yes             ; Megafunction                 ; c:/intelfpga_lite/20.1/quartus/libraries/megafunctions/altpll.tdf                                                                                                             ;         ;
-; aglobal201.inc                   ; yes             ; Megafunction                 ; c:/intelfpga_lite/20.1/quartus/libraries/megafunctions/aglobal201.inc                                                                                                         ;         ;
-; stratix_pll.inc                  ; yes             ; Megafunction                 ; c:/intelfpga_lite/20.1/quartus/libraries/megafunctions/stratix_pll.inc                                                                                                        ;         ;
-; stratixii_pll.inc                ; yes             ; Megafunction                 ; c:/intelfpga_lite/20.1/quartus/libraries/megafunctions/stratixii_pll.inc                                                                                                      ;         ;
-; cycloneii_pll.inc                ; yes             ; Megafunction                 ; c:/intelfpga_lite/20.1/quartus/libraries/megafunctions/cycloneii_pll.inc                                                                                                      ;         ;
-; db/ip_altpll.v                   ; yes             ; Auto-Generated Megafunction  ; C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/db/ip_altpll.v  ;         ;
-+----------------------------------+-----------------+------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                                                                                                                                 ;
++----------------------------------+-----------------+------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                                                                                                                                             ; Library ;
++----------------------------------+-----------------+------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------+
+; Top.sv                           ; yes             ; User SystemVerilog HDL File  ; C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv                     ;         ;
+; ip.sv                            ; yes             ; User Wizard-Generated File   ; C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/ip.sv                      ;         ;
+; display_480p.sv                  ; yes             ; User SystemVerilog HDL File  ; C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/display_480p.sv            ;         ;
+; rom_sync.sv                      ; yes             ; User SystemVerilog HDL File  ; C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/rom_sync.sv                ;         ;
+; sprite.sv                        ; yes             ; User SystemVerilog HDL File  ; C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/sprite.sv                  ;         ;
+; altpll.tdf                       ; yes             ; Megafunction                 ; c:/intelfpga_lite/20.1/quartus/libraries/megafunctions/altpll.tdf                                                                                                                        ;         ;
+; aglobal201.inc                   ; yes             ; Megafunction                 ; c:/intelfpga_lite/20.1/quartus/libraries/megafunctions/aglobal201.inc                                                                                                                    ;         ;
+; stratix_pll.inc                  ; yes             ; Megafunction                 ; c:/intelfpga_lite/20.1/quartus/libraries/megafunctions/stratix_pll.inc                                                                                                                   ;         ;
+; stratixii_pll.inc                ; yes             ; Megafunction                 ; c:/intelfpga_lite/20.1/quartus/libraries/megafunctions/stratixii_pll.inc                                                                                                                 ;         ;
+; cycloneii_pll.inc                ; yes             ; Megafunction                 ; c:/intelfpga_lite/20.1/quartus/libraries/megafunctions/cycloneii_pll.inc                                                                                                                 ;         ;
+; db/ip_altpll.v                   ; yes             ; Auto-Generated Megafunction  ; C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/db/ip_altpll.v             ;         ;
+; lpm_divide.tdf                   ; yes             ; Megafunction                 ; c:/intelfpga_lite/20.1/quartus/libraries/megafunctions/lpm_divide.tdf                                                                                                                    ;         ;
+; abs_divider.inc                  ; yes             ; Megafunction                 ; c:/intelfpga_lite/20.1/quartus/libraries/megafunctions/abs_divider.inc                                                                                                                   ;         ;
+; sign_div_unsign.inc              ; yes             ; Megafunction                 ; c:/intelfpga_lite/20.1/quartus/libraries/megafunctions/sign_div_unsign.inc                                                                                                               ;         ;
+; db/lpm_divide_lll.tdf            ; yes             ; Auto-Generated Megafunction  ; C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/db/lpm_divide_lll.tdf      ;         ;
+; db/sign_div_unsign_klh.tdf       ; yes             ; Auto-Generated Megafunction  ; C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/db/sign_div_unsign_klh.tdf ;         ;
+; db/alt_u_div_ihe.tdf             ; yes             ; Auto-Generated Megafunction  ; C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/db/alt_u_div_ihe.tdf       ;         ;
+; db/add_sub_t3c.tdf               ; yes             ; Auto-Generated Megafunction  ; C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/db/add_sub_t3c.tdf         ;         ;
+; db/add_sub_u3c.tdf               ; yes             ; Auto-Generated Megafunction  ; C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/db/add_sub_u3c.tdf         ;         ;
+; db/lpm_divide_oll.tdf            ; yes             ; Auto-Generated Megafunction  ; C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/db/lpm_divide_oll.tdf      ;         ;
+; db/sign_div_unsign_nlh.tdf       ; yes             ; Auto-Generated Megafunction  ; C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/db/sign_div_unsign_nlh.tdf ;         ;
+; db/alt_u_div_ohe.tdf             ; yes             ; Auto-Generated Megafunction  ; C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/db/alt_u_div_ohe.tdf       ;         ;
+; db/lpm_divide_8sl.tdf            ; yes             ; Auto-Generated Megafunction  ; C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/db/lpm_divide_8sl.tdf      ;         ;
+; db/sign_div_unsign_akh.tdf       ; yes             ; Auto-Generated Megafunction  ; C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/db/sign_div_unsign_akh.tdf ;         ;
+; db/alt_u_div_uee.tdf             ; yes             ; Auto-Generated Megafunction  ; C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/db/alt_u_div_uee.tdf       ;         ;
+; db/lpm_divide_ltl.tdf            ; yes             ; Auto-Generated Megafunction  ; C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/db/lpm_divide_ltl.tdf      ;         ;
++----------------------------------+-----------------+------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------+
 
 
 +------------------------------------------------------------------------------------------------------------------------+
@@ -205,20 +224,20 @@ https://fpgasoftware.intel.com/eula.
 +---------------------------------------------+--------------------------------------------------------------------------+
 ; Resource                                    ; Usage                                                                    ;
 +---------------------------------------------+--------------------------------------------------------------------------+
-; Estimated Total logic elements              ; 182                                                                      ;
+; Estimated Total logic elements              ; 623                                                                      ;
 ;                                             ;                                                                          ;
-; Total combinational functions               ; 140                                                                      ;
+; Total combinational functions               ; 581                                                                      ;
 ; Logic element usage by number of LUT inputs ;                                                                          ;
-;     -- 4 input functions                    ; 58                                                                       ;
-;     -- 3 input functions                    ; 6                                                                        ;
-;     -- <=2 input functions                  ; 76                                                                       ;
+;     -- 4 input functions                    ; 174                                                                      ;
+;     -- 3 input functions                    ; 88                                                                       ;
+;     -- <=2 input functions                  ; 319                                                                      ;
 ;                                             ;                                                                          ;
 ; Logic elements by mode                      ;                                                                          ;
-;     -- normal mode                          ; 97                                                                       ;
-;     -- arithmetic mode                      ; 43                                                                       ;
+;     -- normal mode                          ; 405                                                                      ;
+;     -- arithmetic mode                      ; 176                                                                      ;
 ;                                             ;                                                                          ;
-; Total registers                             ; 102                                                                      ;
-;     -- Dedicated logic registers            ; 102                                                                      ;
+; Total registers                             ; 121                                                                      ;
+;     -- Dedicated logic registers            ; 121                                                                      ;
 ;     -- I/O registers                        ; 0                                                                        ;
 ;                                             ;                                                                          ;
 ; I/O pins                                    ; 91                                                                       ;
@@ -229,52 +248,58 @@ https://fpgasoftware.intel.com/eula.
 ;     -- PLLs                                 ; 1                                                                        ;
 ;                                             ;                                                                          ;
 ; Maximum fan-out node                        ; ip:ip1|altpll:altpll_component|ip_altpll:auto_generated|wire_pll1_clk[0] ;
-; Maximum fan-out                             ; 103                                                                      ;
-; Total fan-out                               ; 724                                                                      ;
-; Average fan-out                             ; 1.70                                                                     ;
+; Maximum fan-out                             ; 106                                                                      ;
+; Total fan-out                               ; 1969                                                                     ;
+; Average fan-out                             ; 2.22                                                                     ;
 +---------------------------------------------+--------------------------------------------------------------------------+
 
 
-+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                                   ;
-+-------------------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+--------------------------------------------------------------+--------------+--------------+
-; Compilation Hierarchy Node          ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; UFM Blocks ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; ADC blocks ; Full Hierarchy Name                                          ; Entity Name  ; Library Name ;
-+-------------------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+--------------------------------------------------------------+--------------+--------------+
-; |Top                                ; 140 (3)             ; 102 (14)                  ; 0           ; 0          ; 0            ; 0       ; 0         ; 91   ; 0            ; 0          ; |Top                                                         ; Top          ; work         ;
-;    |display_480p:comb_28|           ; 75 (75)             ; 67 (67)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |Top|display_480p:comb_28                                    ; display_480p ; work         ;
-;    |ip:ip1|                         ; 0 (0)               ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |Top|ip:ip1                                                  ; ip           ; work         ;
-;       |altpll:altpll_component|     ; 0 (0)               ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |Top|ip:ip1|altpll:altpll_component                          ; altpll       ; work         ;
-;          |ip_altpll:auto_generated| ; 0 (0)               ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |Top|ip:ip1|altpll:altpll_component|ip_altpll:auto_generated ; ip_altpll    ; work         ;
-;    |rom_sync:spaceship_mem|         ; 6 (6)               ; 2 (2)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |Top|rom_sync:spaceship_mem                                  ; rom_sync     ; work         ;
-;    |sprite:ship|                    ; 56 (56)             ; 19 (19)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |Top|sprite:ship                                             ; sprite       ; work         ;
-+-------------------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+--------------------------------------------------------------+--------------+--------------+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                                                                                                                    ;
++-------------------------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+----------------------------------------------------------------------------------------------------------------------------------+---------------------+--------------+
+; Compilation Hierarchy Node                ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; UFM Blocks ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; ADC blocks ; Full Hierarchy Name                                                                                                              ; Entity Name         ; Library Name ;
++-------------------------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+----------------------------------------------------------------------------------------------------------------------------------+---------------------+--------------+
+; |Top                                      ; 581 (110)           ; 121 (30)                  ; 0           ; 0          ; 0            ; 0       ; 0         ; 91   ; 0            ; 0          ; |Top                                                                                                                             ; Top                 ; work         ;
+;    |DoubleDigitDisplay:comb_172|          ; 305 (0)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |Top|DoubleDigitDisplay:comb_172                                                                                                 ; DoubleDigitDisplay  ; work         ;
+;       |SevenSegDecoder:comb_3|            ; 7 (7)               ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |Top|DoubleDigitDisplay:comb_172|SevenSegDecoder:comb_3                                                                          ; SevenSegDecoder     ; work         ;
+;       |SevenSegDecoder:comb_5|            ; 7 (7)               ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |Top|DoubleDigitDisplay:comb_172|SevenSegDecoder:comb_5                                                                          ; SevenSegDecoder     ; work         ;
+;       |SevenSegDecoder:comb_8|            ; 7 (7)               ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |Top|DoubleDigitDisplay:comb_172|SevenSegDecoder:comb_8                                                                          ; SevenSegDecoder     ; work         ;
+;       |lpm_divide:Div0|                   ; 46 (0)              ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |Top|DoubleDigitDisplay:comb_172|lpm_divide:Div0                                                                                 ; lpm_divide          ; work         ;
+;          |lpm_divide_8sl:auto_generated|  ; 46 (0)              ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |Top|DoubleDigitDisplay:comb_172|lpm_divide:Div0|lpm_divide_8sl:auto_generated                                                   ; lpm_divide_8sl      ; work         ;
+;             |sign_div_unsign_akh:divider| ; 46 (0)              ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |Top|DoubleDigitDisplay:comb_172|lpm_divide:Div0|lpm_divide_8sl:auto_generated|sign_div_unsign_akh:divider                       ; sign_div_unsign_akh ; work         ;
+;                |alt_u_div_uee:divider|    ; 46 (46)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |Top|DoubleDigitDisplay:comb_172|lpm_divide:Div0|lpm_divide_8sl:auto_generated|sign_div_unsign_akh:divider|alt_u_div_uee:divider ; alt_u_div_uee       ; work         ;
+;       |lpm_divide:Div1|                   ; 69 (0)              ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |Top|DoubleDigitDisplay:comb_172|lpm_divide:Div1                                                                                 ; lpm_divide          ; work         ;
+;          |lpm_divide_ltl:auto_generated|  ; 69 (0)              ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |Top|DoubleDigitDisplay:comb_172|lpm_divide:Div1|lpm_divide_ltl:auto_generated                                                   ; lpm_divide_ltl      ; work         ;
+;             |sign_div_unsign_nlh:divider| ; 69 (0)              ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |Top|DoubleDigitDisplay:comb_172|lpm_divide:Div1|lpm_divide_ltl:auto_generated|sign_div_unsign_nlh:divider                       ; sign_div_unsign_nlh ; work         ;
+;                |alt_u_div_ohe:divider|    ; 69 (69)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |Top|DoubleDigitDisplay:comb_172|lpm_divide:Div1|lpm_divide_ltl:auto_generated|sign_div_unsign_nlh:divider|alt_u_div_ohe:divider ; alt_u_div_ohe       ; work         ;
+;       |lpm_divide:Mod0|                   ; 85 (0)              ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |Top|DoubleDigitDisplay:comb_172|lpm_divide:Mod0                                                                                 ; lpm_divide          ; work         ;
+;          |lpm_divide_lll:auto_generated|  ; 85 (0)              ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |Top|DoubleDigitDisplay:comb_172|lpm_divide:Mod0|lpm_divide_lll:auto_generated                                                   ; lpm_divide_lll      ; work         ;
+;             |sign_div_unsign_klh:divider| ; 85 (0)              ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |Top|DoubleDigitDisplay:comb_172|lpm_divide:Mod0|lpm_divide_lll:auto_generated|sign_div_unsign_klh:divider                       ; sign_div_unsign_klh ; work         ;
+;                |alt_u_div_ihe:divider|    ; 85 (85)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |Top|DoubleDigitDisplay:comb_172|lpm_divide:Mod0|lpm_divide_lll:auto_generated|sign_div_unsign_klh:divider|alt_u_div_ihe:divider ; alt_u_div_ihe       ; work         ;
+;       |lpm_divide:Mod1|                   ; 84 (0)              ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |Top|DoubleDigitDisplay:comb_172|lpm_divide:Mod1                                                                                 ; lpm_divide          ; work         ;
+;          |lpm_divide_oll:auto_generated|  ; 84 (0)              ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |Top|DoubleDigitDisplay:comb_172|lpm_divide:Mod1|lpm_divide_oll:auto_generated                                                   ; lpm_divide_oll      ; work         ;
+;             |sign_div_unsign_nlh:divider| ; 84 (0)              ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |Top|DoubleDigitDisplay:comb_172|lpm_divide:Mod1|lpm_divide_oll:auto_generated|sign_div_unsign_nlh:divider                       ; sign_div_unsign_nlh ; work         ;
+;                |alt_u_div_ohe:divider|    ; 84 (84)             ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |Top|DoubleDigitDisplay:comb_172|lpm_divide:Mod1|lpm_divide_oll:auto_generated|sign_div_unsign_nlh:divider|alt_u_div_ohe:divider ; alt_u_div_ohe       ; work         ;
+;    |display_480p:comb_28|                 ; 75 (75)             ; 67 (67)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |Top|display_480p:comb_28                                                                                                        ; display_480p        ; work         ;
+;    |ip:ip1|                               ; 0 (0)               ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |Top|ip:ip1                                                                                                                      ; ip                  ; work         ;
+;       |altpll:altpll_component|           ; 0 (0)               ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |Top|ip:ip1|altpll:altpll_component                                                                                              ; altpll              ; work         ;
+;          |ip_altpll:auto_generated|       ; 0 (0)               ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |Top|ip:ip1|altpll:altpll_component|ip_altpll:auto_generated                                                                     ; ip_altpll           ; work         ;
+;    |rom_sync:spaceship_mem|               ; 4 (4)               ; 1 (1)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |Top|rom_sync:spaceship_mem                                                                                                      ; rom_sync            ; work         ;
+;    |sprite:ship|                          ; 87 (87)             ; 23 (23)                   ; 0           ; 0          ; 0            ; 0       ; 0         ; 0    ; 0            ; 0          ; |Top|sprite:ship                                                                                                                 ; sprite              ; work         ;
++-------------------------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+----------------------------------------------------------------------------------------------------------------------------------+---------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
 
-+-------------------------------------------------------------------------------------+
-; Registers Removed During Synthesis                                                  ;
-+----------------------------------------+--------------------------------------------+
-; Register name                          ; Reason for Removal                         ;
-+----------------------------------------+--------------------------------------------+
-; sprite:ship|state[3..31]               ; Stuck at GND due to stuck port data_in     ;
-; sprite:ship|cnt_x[-1]                  ; Stuck at GND due to stuck port data_in     ;
-; sprite:ship|cnt_x[0]                   ; Stuck at GND due to stuck port data_in     ;
-; sprite:ship|cnt_y[0]                   ; Stuck at GND due to stuck port data_in     ;
-; sprite:ship|cnt_y[-1]                  ; Stuck at GND due to stuck port data_in     ;
-; rom_sync:spaceship_mem|data[1,2]       ; Merged with rom_sync:spaceship_mem|data[0] ;
-; display_480p:comb_28|sx[0]             ; Merged with display_480p:comb_28|x[0]      ;
-; Total Number of Removed Registers = 36 ;                                            ;
-+----------------------------------------+--------------------------------------------+
-
-
-+------------------------------------------------------------------------------------------------+
-; Removed Registers Triggering Further Register Optimizations                                    ;
-+----------------------+---------------------------+---------------------------------------------+
-; Register name        ; Reason for Removal        ; Registers Removed due to This Register      ;
-+----------------------+---------------------------+---------------------------------------------+
-; sprite:ship|state[3] ; Stuck at GND              ; sprite:ship|cnt_y[0], sprite:ship|cnt_y[-1] ;
-;                      ; due to stuck port data_in ;                                             ;
-+----------------------+---------------------------+---------------------------------------------+
++---------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                              ;
++----------------------------------------+----------------------------------------+
+; Register name                          ; Reason for Removal                     ;
++----------------------------------------+----------------------------------------+
+; sprite:ship|state[3..31]               ; Stuck at GND due to stuck port data_in ;
+; rom_sync:spaceship_mem|data[1..3]      ; Stuck at GND due to stuck port data_in ;
+; display_480p:comb_28|sx[0]             ; Merged with display_480p:comb_28|x[0]  ;
+; Total Number of Removed Registers = 33 ;                                        ;
++----------------------------------------+----------------------------------------+
 
 
 +------------------------------------------------------+
@@ -282,12 +307,12 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 102   ;
+; Total registers                              ; 121   ;
 ; Number of registers using Synchronous Clear  ; 0     ;
 ; Number of registers using Synchronous Load   ; 0     ;
-; Number of registers using Asynchronous Clear ; 0     ;
+; Number of registers using Asynchronous Clear ; 16    ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 16    ;
+; Number of registers using Clock Enable       ; 31    ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -692,7 +717,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; Parameter Name ; Value         ; Type                               ;
 +----------------+---------------+------------------------------------+
 ; WIDTH          ; 4             ; Signed Integer                     ;
-; DEPTH          ; 306           ; Signed Integer                     ;
+; DEPTH          ; 640           ; Signed Integer                     ;
 ; INIT_F         ; spaceship.mem ; String                             ;
 +----------------+---------------+------------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
@@ -703,14 +728,106 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+-------+---------------------------------+
 ; Parameter Name ; Value ; Type                            ;
 +----------------+-------+---------------------------------+
-; WIDTH          ; 17    ; Signed Integer                  ;
-; HEIGHT         ; 18    ; Signed Integer                  ;
-; SCALE_X        ; 1     ; Signed Integer                  ;
-; SCALE_Y        ; 1     ; Signed Integer                  ;
+; WIDTH          ; 32    ; Signed Integer                  ;
+; HEIGHT         ; 20    ; Signed Integer                  ;
+; SCALE_X        ; 4     ; Signed Integer                  ;
+; SCALE_Y        ; 4     ; Signed Integer                  ;
 ; COLR_BITS      ; 4     ; Signed Integer                  ;
 ; CORDW          ; 16    ; Signed Integer                  ;
 ; ADDRW          ; 6     ; Signed Integer                  ;
 +----------------+-------+---------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: DoubleDigitDisplay:comb_172|lpm_divide:Mod0 ;
++------------------------+----------------+----------------------------------------------------+
+; Parameter Name         ; Value          ; Type                                               ;
++------------------------+----------------+----------------------------------------------------+
+; LPM_WIDTHN             ; 10             ; Untyped                                            ;
+; LPM_WIDTHD             ; 4              ; Untyped                                            ;
+; LPM_NREPRESENTATION    ; UNSIGNED       ; Untyped                                            ;
+; LPM_DREPRESENTATION    ; UNSIGNED       ; Untyped                                            ;
+; LPM_PIPELINE           ; 0              ; Untyped                                            ;
+; LPM_REMAINDERPOSITIVE  ; TRUE           ; Untyped                                            ;
+; MAXIMIZE_SPEED         ; 5              ; Untyped                                            ;
+; CBXI_PARAMETER         ; lpm_divide_lll ; Untyped                                            ;
+; CARRY_CHAIN            ; MANUAL         ; Untyped                                            ;
+; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                                            ;
+; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY                                         ;
+; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY                                       ;
+; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE                                       ;
+; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE                                     ;
++------------------------+----------------+----------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: DoubleDigitDisplay:comb_172|lpm_divide:Mod1 ;
++------------------------+----------------+----------------------------------------------------+
+; Parameter Name         ; Value          ; Type                                               ;
++------------------------+----------------+----------------------------------------------------+
+; LPM_WIDTHN             ; 10             ; Untyped                                            ;
+; LPM_WIDTHD             ; 7              ; Untyped                                            ;
+; LPM_NREPRESENTATION    ; UNSIGNED       ; Untyped                                            ;
+; LPM_DREPRESENTATION    ; UNSIGNED       ; Untyped                                            ;
+; LPM_PIPELINE           ; 0              ; Untyped                                            ;
+; LPM_REMAINDERPOSITIVE  ; TRUE           ; Untyped                                            ;
+; MAXIMIZE_SPEED         ; 5              ; Untyped                                            ;
+; CBXI_PARAMETER         ; lpm_divide_oll ; Untyped                                            ;
+; CARRY_CHAIN            ; MANUAL         ; Untyped                                            ;
+; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                                            ;
+; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY                                         ;
+; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY                                       ;
+; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE                                       ;
+; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE                                     ;
++------------------------+----------------+----------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: DoubleDigitDisplay:comb_172|lpm_divide:Div0 ;
++------------------------+----------------+----------------------------------------------------+
+; Parameter Name         ; Value          ; Type                                               ;
++------------------------+----------------+----------------------------------------------------+
+; LPM_WIDTHN             ; 7              ; Untyped                                            ;
+; LPM_WIDTHD             ; 4              ; Untyped                                            ;
+; LPM_NREPRESENTATION    ; UNSIGNED       ; Untyped                                            ;
+; LPM_DREPRESENTATION    ; UNSIGNED       ; Untyped                                            ;
+; LPM_PIPELINE           ; 0              ; Untyped                                            ;
+; LPM_REMAINDERPOSITIVE  ; TRUE           ; Untyped                                            ;
+; MAXIMIZE_SPEED         ; 5              ; Untyped                                            ;
+; CBXI_PARAMETER         ; lpm_divide_8sl ; Untyped                                            ;
+; CARRY_CHAIN            ; MANUAL         ; Untyped                                            ;
+; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                                            ;
+; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY                                         ;
+; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY                                       ;
+; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE                                       ;
+; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE                                     ;
++------------------------+----------------+----------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++----------------------------------------------------------------------------------------------+
+; Parameter Settings for Inferred Entity Instance: DoubleDigitDisplay:comb_172|lpm_divide:Div1 ;
++------------------------+----------------+----------------------------------------------------+
+; Parameter Name         ; Value          ; Type                                               ;
++------------------------+----------------+----------------------------------------------------+
+; LPM_WIDTHN             ; 10             ; Untyped                                            ;
+; LPM_WIDTHD             ; 7              ; Untyped                                            ;
+; LPM_NREPRESENTATION    ; UNSIGNED       ; Untyped                                            ;
+; LPM_DREPRESENTATION    ; UNSIGNED       ; Untyped                                            ;
+; LPM_PIPELINE           ; 0              ; Untyped                                            ;
+; LPM_REMAINDERPOSITIVE  ; TRUE           ; Untyped                                            ;
+; MAXIMIZE_SPEED         ; 5              ; Untyped                                            ;
+; CBXI_PARAMETER         ; lpm_divide_ltl ; Untyped                                            ;
+; CARRY_CHAIN            ; MANUAL         ; Untyped                                            ;
+; OPTIMIZE_FOR_SPEED     ; 5              ; Untyped                                            ;
+; AUTO_CARRY_CHAINS      ; ON             ; AUTO_CARRY                                         ;
+; IGNORE_CARRY_BUFFERS   ; OFF            ; IGNORE_CARRY                                       ;
+; AUTO_CASCADE_CHAINS    ; ON             ; AUTO_CASCADE                                       ;
+; IGNORE_CASCADE_BUFFERS ; OFF            ; IGNORE_CASCADE                                     ;
++------------------------+----------------+----------------------------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
@@ -732,7 +849,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 
 
 +--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "DoubleDigitDisplay:comb_32|SevenSegDecoder:comb_7"                                                                                                                                ;
+; Port Connectivity Checks: "DoubleDigitDisplay:comb_172|SevenSegDecoder:comb_8"                                                                                                                               ;
 +------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 ; Port ; Type  ; Severity ; Details                                                                                                                                                                            ;
 +------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -741,7 +858,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 
 
 +--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "DoubleDigitDisplay:comb_32|SevenSegDecoder:comb_5"                                                                                                                                ;
+; Port Connectivity Checks: "DoubleDigitDisplay:comb_172|SevenSegDecoder:comb_5"                                                                                                                               ;
 +------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 ; Port ; Type  ; Severity ; Details                                                                                                                                                                            ;
 +------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -750,7 +867,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 
 
 +--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "DoubleDigitDisplay:comb_32|SevenSegDecoder:comb_3"                                                                                                                                ;
+; Port Connectivity Checks: "DoubleDigitDisplay:comb_172|SevenSegDecoder:comb_3"                                                                                                                               ;
 +------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 ; Port ; Type  ; Severity ; Details                                                                                                                                                                            ;
 +------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -758,17 +875,16 @@ Note: In order to hide this table in the UI and the text report file, please set
 +------+-------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 
-+--------------------------------------------------------+
-; Port Connectivity Checks: "DoubleDigitDisplay:comb_32" ;
-+--------------+-------+----------+----------------------+
-; Port         ; Type  ; Severity ; Details              ;
-+--------------+-------+----------+----------------------+
-; number[7..6] ; Input ; Info     ; Stuck at VCC         ;
-; number[4..2] ; Input ; Info     ; Stuck at VCC         ;
-; number[9..8] ; Input ; Info     ; Stuck at GND         ;
-; number[1..0] ; Input ; Info     ; Stuck at GND         ;
-; number[5]    ; Input ; Info     ; Stuck at GND         ;
-+--------------+-------+----------+----------------------+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "DoubleDigitDisplay:comb_172"                                                                                                                                                               ;
++--------------+--------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port         ; Type   ; Severity ; Details                                                                                                                                                                            ;
++--------------+--------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; number       ; Input  ; Warning  ; Input port expression (16 bits) is wider than the input port (10 bits) it drives.  The 6 most-significant bit(s) in the expression will be dangling if they have no other fanouts. ;
+; dispUnit     ; Output ; Warning  ; Output or bidir port (7 bits) is smaller than the port expression (8 bits) it drives.  The 1 most-significant bit(s) in the port expression will be connected to GND.              ;
+; dispTens     ; Output ; Warning  ; Output or bidir port (7 bits) is smaller than the port expression (8 bits) it drives.  The 1 most-significant bit(s) in the port expression will be connected to GND.              ;
+; dispHundreds ; Output ; Warning  ; Output or bidir port (7 bits) is smaller than the port expression (8 bits) it drives.  The 1 most-significant bit(s) in the port expression will be connected to GND.              ;
++--------------+--------+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 
 +----------------------------------------------------------+
@@ -777,16 +893,13 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; Port        ; Type   ; Severity ; Details                ;
 +-------------+--------+----------+------------------------+
 ; rst         ; Input  ; Info     ; Stuck at GND           ;
-; sprx[7..6]  ; Input  ; Info     ; Stuck at VCC           ;
-; sprx[4..2]  ; Input  ; Info     ; Stuck at VCC           ;
-; sprx[15..8] ; Input  ; Info     ; Stuck at GND           ;
-; sprx[1..0]  ; Input  ; Info     ; Stuck at GND           ;
-; sprx[5]     ; Input  ; Info     ; Stuck at GND           ;
 ; spry[3..2]  ; Input  ; Info     ; Stuck at VCC           ;
-; spry[15..8] ; Input  ; Info     ; Stuck at GND           ;
-; spry[6..4]  ; Input  ; Info     ; Stuck at GND           ;
+; spry[15..9] ; Input  ; Info     ; Stuck at GND           ;
+; spry[7..6]  ; Input  ; Info     ; Stuck at GND           ;
 ; spry[1..0]  ; Input  ; Info     ; Stuck at GND           ;
-; spry[7]     ; Input  ; Info     ; Stuck at VCC           ;
+; spry[8]     ; Input  ; Info     ; Stuck at VCC           ;
+; spry[5]     ; Input  ; Info     ; Stuck at VCC           ;
+; spry[4]     ; Input  ; Info     ; Stuck at GND           ;
 ; drawing     ; Output ; Info     ; Explicitly unconnected ;
 ; done        ; Output ; Info     ; Explicitly unconnected ;
 +-------------+--------+----------+------------------------+
@@ -797,7 +910,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +------------+-------+----------+--------------------+
 ; Port       ; Type  ; Severity ; Details            ;
 +------------+-------+----------+--------------------+
-; addr[8..6] ; Input ; Info     ; Stuck at GND       ;
+; addr[9..6] ; Input ; Info     ; Stuck at GND       ;
 +------------+-------+----------+--------------------+
 
 
@@ -827,23 +940,26 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
 ; boundary_port         ; 91                          ;
-; cycloneiii_ff         ; 102                         ;
+; cycloneiii_ff         ; 121                         ;
+;     CLR               ; 1                           ;
 ;     ENA               ; 16                          ;
-;     plain             ; 86                          ;
+;     ENA CLR           ; 15                          ;
+;     plain             ; 89                          ;
 ; cycloneiii_io_obuf    ; 2                           ;
-; cycloneiii_lcell_comb ; 142                         ;
-;     arith             ; 43                          ;
-;         2 data inputs ; 43                          ;
-;     normal            ; 99                          ;
-;         0 data inputs ; 2                           ;
-;         1 data inputs ; 7                           ;
-;         2 data inputs ; 26                          ;
-;         3 data inputs ; 6                           ;
-;         4 data inputs ; 58                          ;
+; cycloneiii_lcell_comb ; 583                         ;
+;     arith             ; 176                         ;
+;         2 data inputs ; 97                          ;
+;         3 data inputs ; 79                          ;
+;     normal            ; 407                         ;
+;         0 data inputs ; 21                          ;
+;         1 data inputs ; 10                          ;
+;         2 data inputs ; 193                         ;
+;         3 data inputs ; 9                           ;
+;         4 data inputs ; 174                         ;
 ; cycloneiii_pll        ; 1                           ;
 ;                       ;                             ;
-; Max LUT depth         ; 4.00                        ;
-; Average LUT depth     ; 2.66                        ;
+; Max LUT depth         ; 19.80                       ;
+; Average LUT depth     ; 8.83                        ;
 +-----------------------+-----------------------------+
 
 
@@ -852,7 +968,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:00     ;
+; Top            ; 00:00:01     ;
 +----------------+--------------+
 
 
@@ -862,14 +978,14 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
-    Info: Processing started: Fri Mar 25 23:26:03 2022
+    Info: Processing started: Sat Mar 26 01:25:26 2022
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off 3216proj -c 3216proj
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
 Info (12021): Found 3 design units, including 3 entities, in source file top.sv
     Info (12023): Found entity 1: Top File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 6
-    Info (12023): Found entity 2: DoubleDigitDisplay File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 146
-    Info (12023): Found entity 3: SevenSegDecoder File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 153
+    Info (12023): Found entity 2: DoubleDigitDisplay File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 161
+    Info (12023): Found entity 3: SevenSegDecoder File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 168
 Info (12021): Found 1 design units, including 1 entities, in source file ip.sv
     Info (12023): Found entity 1: ip File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/ip.sv Line: 40
 Info (12021): Found 1 design units, including 1 entities, in source file display_480p.sv
@@ -879,11 +995,13 @@ Info (12021): Found 1 design units, including 1 entities, in source file rom_syn
 Info (12021): Found 1 design units, including 1 entities, in source file sprite.sv
     Info (12023): Found entity 1: sprite File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/sprite.sv Line: 1
 Critical Warning (10846): Verilog HDL Instantiation warning at Top.sv(74): instance has no name File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 74
-Critical Warning (10846): Verilog HDL Instantiation warning at Top.sv(148): instance has no name File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 148
-Critical Warning (10846): Verilog HDL Instantiation warning at Top.sv(149): instance has no name File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 149
-Critical Warning (10846): Verilog HDL Instantiation warning at Top.sv(150): instance has no name File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 150
-Critical Warning (10846): Verilog HDL Instantiation warning at Top.sv(117): instance has no name File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 117
+Critical Warning (10846): Verilog HDL Instantiation warning at Top.sv(163): instance has no name File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 163
+Critical Warning (10846): Verilog HDL Instantiation warning at Top.sv(164): instance has no name File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 164
+Critical Warning (10846): Verilog HDL Instantiation warning at Top.sv(165): instance has no name File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 165
+Critical Warning (10846): Verilog HDL Instantiation warning at Top.sv(132): instance has no name File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 132
 Info (12127): Elaborating entity "Top" for the top level hierarchy
+Warning (10230): Verilog HDL assignment warning at Top.sv(110): truncated value with size 32 to match size of target (16) File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 110
+Warning (10230): Verilog HDL assignment warning at Top.sv(112): truncated value with size 32 to match size of target (16) File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 112
 Warning (10034): Output port "LEDR" at Top.sv(30) has no driver File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 30
 Warning (10034): Output port "GSENSOR_CS_N" at Top.sv(36) has no driver File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 36
 Warning (10034): Output port "GSENSOR_SCLK" at Top.sv(38) has no driver File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 38
@@ -957,49 +1075,104 @@ Warning (10230): Verilog HDL assignment warning at display_480p.sv(72): truncate
 Warning (10230): Verilog HDL assignment warning at display_480p.sv(73): truncated value with size 32 to match size of target (16) File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/display_480p.sv Line: 73
 Warning (10230): Verilog HDL assignment warning at display_480p.sv(82): truncated value with size 32 to match size of target (16) File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/display_480p.sv Line: 82
 Warning (10230): Verilog HDL assignment warning at display_480p.sv(83): truncated value with size 32 to match size of target (16) File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/display_480p.sv Line: 83
-Info (12128): Elaborating entity "rom_sync" for hierarchy "rom_sync:spaceship_mem" File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 96
-Info (10648): Verilog HDL Display System Task info at rom_sync.sv(15): Creating rom_sync from init file 'spaceship.mem'. File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/rom_sync.sv Line: 15
-Warning (10030): Net "memory.data_a" at rom_sync.sv(13) has no driver or initial value, using a default initial value '0' File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/rom_sync.sv Line: 13
-Warning (10030): Net "memory.waddr_a" at rom_sync.sv(13) has no driver or initial value, using a default initial value '0' File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/rom_sync.sv Line: 13
-Warning (10030): Net "memory.we_a" at rom_sync.sv(13) has no driver or initial value, using a default initial value '0' File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/rom_sync.sv Line: 13
-Info (12128): Elaborating entity "sprite" for hierarchy "sprite:ship" File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 115
+Info (12128): Elaborating entity "rom_sync" for hierarchy "rom_sync:spaceship_mem" File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 98
+Info (10648): Verilog HDL Display System Task info at rom_sync.sv(16): Creating rom_sync from init file 'spaceship.mem'. File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/rom_sync.sv Line: 16
+Warning (10850): Verilog HDL warning at rom_sync.sv(17): number of words (64) in memory file does not match the number of elements in the address range [0:639] File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/rom_sync.sv Line: 17
+Warning (10030): Net "memory.data_a" at rom_sync.sv(12) has no driver or initial value, using a default initial value '0' File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/rom_sync.sv Line: 12
+Warning (10030): Net "memory.waddr_a" at rom_sync.sv(12) has no driver or initial value, using a default initial value '0' File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/rom_sync.sv Line: 12
+Warning (10030): Net "memory.we_a" at rom_sync.sv(12) has no driver or initial value, using a default initial value '0' File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/rom_sync.sv Line: 12
+Info (12128): Elaborating entity "sprite" for hierarchy "sprite:ship" File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 130
 Warning (10230): Verilog HDL assignment warning at sprite.sv(60): truncated value with size 32 to match size of target (5) File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/sprite.sv Line: 60
 Warning (10230): Verilog HDL assignment warning at sprite.sv(62): truncated value with size 32 to match size of target (6) File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/sprite.sv Line: 62
+Warning (10230): Verilog HDL assignment warning at sprite.sv(64): truncated value with size 32 to match size of target (2) File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/sprite.sv Line: 64
 Warning (10230): Verilog HDL assignment warning at sprite.sv(69): truncated value with size 32 to match size of target (5) File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/sprite.sv Line: 69
+Warning (10230): Verilog HDL assignment warning at sprite.sv(72): truncated value with size 32 to match size of target (2) File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/sprite.sv Line: 72
+Warning (10230): Verilog HDL assignment warning at sprite.sv(73): truncated value with size 32 to match size of target (6) File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/sprite.sv Line: 73
 Warning (10230): Verilog HDL assignment warning at sprite.sv(91): truncated value with size 32 to match size of target (4) File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/sprite.sv Line: 91
-Info (12128): Elaborating entity "DoubleDigitDisplay" for hierarchy "DoubleDigitDisplay:comb_32" File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 117
-Info (12128): Elaborating entity "SevenSegDecoder" for hierarchy "DoubleDigitDisplay:comb_32|SevenSegDecoder:comb_3" File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 148
-Critical Warning (127005): Memory depth (512) in the design file differs from memory depth (306) in the Memory Initialization File "C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/db/3216proj.ram0_rom_sync_2f7a0e8a.hdl.mif" -- setting initial value for remaining addresses to 0
+Info (12128): Elaborating entity "DoubleDigitDisplay" for hierarchy "DoubleDigitDisplay:comb_172" File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 132
+Info (12128): Elaborating entity "SevenSegDecoder" for hierarchy "DoubleDigitDisplay:comb_172|SevenSegDecoder:comb_3" File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 163
+Critical Warning (127005): Memory depth (1024) in the design file differs from memory depth (640) in the Memory Initialization File "C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/db/3216proj.ram0_rom_sync_20334e0b.hdl.mif" -- setting initial value for remaining addresses to 0
+Warning (127007): Memory Initialization File or Hexadecimal (Intel-Format) File "C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/db/3216proj.ram0_rom_sync_20334e0b.hdl.mif" contains "don't care" values -- overwriting them with 0s
 Info (276014): Found 1 instances of uninferred RAM logic
-    Info (276013): RAM logic "rom_sync:spaceship_mem|memory" is uninferred because MIF is not supported for the selected family File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/rom_sync.sv Line: 13
-Warning (12241): 3 hierarchies have connectivity warnings - see the Connectivity Checks report folder
+    Info (276013): RAM logic "rom_sync:spaceship_mem|memory" is uninferred because MIF is not supported for the selected family File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/rom_sync.sv Line: 12
+Warning (127007): Memory Initialization File or Hexadecimal (Intel-Format) File "C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/db/3216proj.ram0_rom_sync_20334e0b.hdl.mif" contains "don't care" values -- overwriting them with 0s
+Info (278001): Inferred 4 megafunctions from design logic
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "DoubleDigitDisplay:comb_172|Mod0" File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 163
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "DoubleDigitDisplay:comb_172|Mod1" File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 164
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "DoubleDigitDisplay:comb_172|Div0" File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 164
+    Info (278004): Inferred divider/modulo megafunction ("lpm_divide") from the following logic: "DoubleDigitDisplay:comb_172|Div1" File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 165
+Info (12130): Elaborated megafunction instantiation "DoubleDigitDisplay:comb_172|lpm_divide:Mod0" File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 163
+Info (12133): Instantiated megafunction "DoubleDigitDisplay:comb_172|lpm_divide:Mod0" with the following parameter: File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 163
+    Info (12134): Parameter "LPM_WIDTHN" = "10"
+    Info (12134): Parameter "LPM_WIDTHD" = "4"
+    Info (12134): Parameter "LPM_NREPRESENTATION" = "UNSIGNED"
+    Info (12134): Parameter "LPM_DREPRESENTATION" = "UNSIGNED"
+Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_divide_lll.tdf
+    Info (12023): Found entity 1: lpm_divide_lll File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/db/lpm_divide_lll.tdf Line: 25
+Info (12021): Found 1 design units, including 1 entities, in source file db/sign_div_unsign_klh.tdf
+    Info (12023): Found entity 1: sign_div_unsign_klh File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/db/sign_div_unsign_klh.tdf Line: 25
+Info (12021): Found 1 design units, including 1 entities, in source file db/alt_u_div_ihe.tdf
+    Info (12023): Found entity 1: alt_u_div_ihe File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/db/alt_u_div_ihe.tdf Line: 27
+Info (12021): Found 1 design units, including 1 entities, in source file db/add_sub_t3c.tdf
+    Info (12023): Found entity 1: add_sub_t3c File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/db/add_sub_t3c.tdf Line: 23
+Info (12021): Found 1 design units, including 1 entities, in source file db/add_sub_u3c.tdf
+    Info (12023): Found entity 1: add_sub_u3c File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/db/add_sub_u3c.tdf Line: 23
+Info (12130): Elaborated megafunction instantiation "DoubleDigitDisplay:comb_172|lpm_divide:Mod1" File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 164
+Info (12133): Instantiated megafunction "DoubleDigitDisplay:comb_172|lpm_divide:Mod1" with the following parameter: File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 164
+    Info (12134): Parameter "LPM_WIDTHN" = "10"
+    Info (12134): Parameter "LPM_WIDTHD" = "7"
+    Info (12134): Parameter "LPM_NREPRESENTATION" = "UNSIGNED"
+    Info (12134): Parameter "LPM_DREPRESENTATION" = "UNSIGNED"
+Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_divide_oll.tdf
+    Info (12023): Found entity 1: lpm_divide_oll File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/db/lpm_divide_oll.tdf Line: 25
+Info (12021): Found 1 design units, including 1 entities, in source file db/sign_div_unsign_nlh.tdf
+    Info (12023): Found entity 1: sign_div_unsign_nlh File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/db/sign_div_unsign_nlh.tdf Line: 25
+Info (12021): Found 1 design units, including 1 entities, in source file db/alt_u_div_ohe.tdf
+    Info (12023): Found entity 1: alt_u_div_ohe File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/db/alt_u_div_ohe.tdf Line: 27
+Info (12130): Elaborated megafunction instantiation "DoubleDigitDisplay:comb_172|lpm_divide:Div0" File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 164
+Info (12133): Instantiated megafunction "DoubleDigitDisplay:comb_172|lpm_divide:Div0" with the following parameter: File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 164
+    Info (12134): Parameter "LPM_WIDTHN" = "7"
+    Info (12134): Parameter "LPM_WIDTHD" = "4"
+    Info (12134): Parameter "LPM_NREPRESENTATION" = "UNSIGNED"
+    Info (12134): Parameter "LPM_DREPRESENTATION" = "UNSIGNED"
+Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_divide_8sl.tdf
+    Info (12023): Found entity 1: lpm_divide_8sl File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/db/lpm_divide_8sl.tdf Line: 25
+Info (12021): Found 1 design units, including 1 entities, in source file db/sign_div_unsign_akh.tdf
+    Info (12023): Found entity 1: sign_div_unsign_akh File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/db/sign_div_unsign_akh.tdf Line: 25
+Info (12021): Found 1 design units, including 1 entities, in source file db/alt_u_div_uee.tdf
+    Info (12023): Found entity 1: alt_u_div_uee File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/db/alt_u_div_uee.tdf Line: 27
+Info (12130): Elaborated megafunction instantiation "DoubleDigitDisplay:comb_172|lpm_divide:Div1" File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 165
+Info (12133): Instantiated megafunction "DoubleDigitDisplay:comb_172|lpm_divide:Div1" with the following parameter: File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 165
+    Info (12134): Parameter "LPM_WIDTHN" = "10"
+    Info (12134): Parameter "LPM_WIDTHD" = "7"
+    Info (12134): Parameter "LPM_NREPRESENTATION" = "UNSIGNED"
+    Info (12134): Parameter "LPM_DREPRESENTATION" = "UNSIGNED"
+Info (12021): Found 1 design units, including 1 entities, in source file db/lpm_divide_ltl.tdf
+    Info (12023): Found entity 1: lpm_divide_ltl File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/db/lpm_divide_ltl.tdf Line: 25
+Warning (12241): 4 hierarchies have connectivity warnings - see the Connectivity Checks report folder
 Warning (13039): The following bidirectional pins have no drivers
     Warning (13040): bidirectional pin "GSENSOR_SDI" has no driver File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 39
     Warning (13040): bidirectional pin "GSENSOR_SDO" has no driver File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 41
+Warning (13004): Presettable and clearable registers converted to equivalent circuits with latches. Registers power-up to an undefined state, and DEVCLRn places the registers in an undefined state.
+    Warning (13310): Register "ship_x[0]" is converted into an equivalent circuit using register "ship_x[0]~_emulated" and latch "ship_x[0]~1" File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 111
+    Warning (13310): Register "ship_x[3]" is converted into an equivalent circuit using register "ship_x[3]~_emulated" and latch "ship_x[3]~6" File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 111
+    Warning (13310): Register "ship_x[2]" is converted into an equivalent circuit using register "ship_x[2]~_emulated" and latch "ship_x[2]~11" File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 111
+    Warning (13310): Register "ship_x[1]" is converted into an equivalent circuit using register "ship_x[1]~_emulated" and latch "ship_x[1]~16" File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 111
+    Warning (13310): Register "ship_x[15]" is converted into an equivalent circuit using register "ship_x[15]~_emulated" and latch "ship_x[15]~21" File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 111
+    Warning (13310): Register "ship_x[14]" is converted into an equivalent circuit using register "ship_x[14]~_emulated" and latch "ship_x[14]~26" File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 111
+    Warning (13310): Register "ship_x[13]" is converted into an equivalent circuit using register "ship_x[13]~_emulated" and latch "ship_x[13]~31" File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 111
+    Warning (13310): Register "ship_x[12]" is converted into an equivalent circuit using register "ship_x[12]~_emulated" and latch "ship_x[12]~36" File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 111
+    Warning (13310): Register "ship_x[11]" is converted into an equivalent circuit using register "ship_x[11]~_emulated" and latch "ship_x[11]~41" File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 111
+    Warning (13310): Register "ship_x[10]" is converted into an equivalent circuit using register "ship_x[10]~_emulated" and latch "ship_x[10]~46" File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 111
+    Warning (13310): Register "ship_x[9]" is converted into an equivalent circuit using register "ship_x[9]~_emulated" and latch "ship_x[9]~51" File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 111
+    Warning (13310): Register "ship_x[8]" is converted into an equivalent circuit using register "ship_x[8]~_emulated" and latch "ship_x[8]~56" File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 111
+    Warning (13310): Register "ship_x[7]" is converted into an equivalent circuit using register "ship_x[7]~_emulated" and latch "ship_x[7]~61" File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 111
+    Warning (13310): Register "ship_x[6]" is converted into an equivalent circuit using register "ship_x[6]~_emulated" and latch "ship_x[6]~66" File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 111
+    Warning (13310): Register "ship_x[5]" is converted into an equivalent circuit using register "ship_x[5]~_emulated" and latch "ship_x[5]~71" File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 111
+    Warning (13310): Register "ship_x[4]" is converted into an equivalent circuit using register "ship_x[4]~_emulated" and latch "ship_x[4]~76" File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 111
 Warning (13024): Output pins are stuck at VCC or GND
-    Warning (13410): Pin "HEX0[0]" is stuck at GND File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 19
-    Warning (13410): Pin "HEX0[1]" is stuck at GND File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 19
-    Warning (13410): Pin "HEX0[2]" is stuck at GND File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 19
-    Warning (13410): Pin "HEX0[3]" is stuck at GND File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 19
-    Warning (13410): Pin "HEX0[4]" is stuck at GND File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 19
-    Warning (13410): Pin "HEX0[5]" is stuck at GND File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 19
-    Warning (13410): Pin "HEX0[6]" is stuck at VCC File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 19
     Warning (13410): Pin "HEX0[7]" is stuck at GND File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 19
-    Warning (13410): Pin "HEX1[0]" is stuck at GND File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 20
-    Warning (13410): Pin "HEX1[1]" is stuck at VCC File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 20
-    Warning (13410): Pin "HEX1[2]" is stuck at GND File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 20
-    Warning (13410): Pin "HEX1[3]" is stuck at GND File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 20
-    Warning (13410): Pin "HEX1[4]" is stuck at GND File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 20
-    Warning (13410): Pin "HEX1[5]" is stuck at GND File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 20
-    Warning (13410): Pin "HEX1[6]" is stuck at GND File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 20
     Warning (13410): Pin "HEX1[7]" is stuck at GND File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 20
-    Warning (13410): Pin "HEX2[0]" is stuck at GND File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 21
-    Warning (13410): Pin "HEX2[1]" is stuck at GND File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 21
-    Warning (13410): Pin "HEX2[2]" is stuck at VCC File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 21
-    Warning (13410): Pin "HEX2[3]" is stuck at GND File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 21
-    Warning (13410): Pin "HEX2[4]" is stuck at GND File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 21
-    Warning (13410): Pin "HEX2[5]" is stuck at VCC File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 21
-    Warning (13410): Pin "HEX2[6]" is stuck at GND File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 21
     Warning (13410): Pin "HEX2[7]" is stuck at GND File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 21
     Warning (13410): Pin "HEX3[0]" is stuck at VCC File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 22
     Warning (13410): Pin "HEX3[1]" is stuck at VCC File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 22
@@ -1041,10 +1214,7 @@ Info (286030): Timing-Driven Synthesis is running
 Info (144001): Generated suppressed messages file C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/output_files/3216proj.map.smsg
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 1 node(s), including 0 DDIO, 1 PLL, 0 transceiver and 0 LCELL
-Warning (21074): Design contains 14 input pin(s) that do not drive logic
-    Warning (15610): No output dependent on input pin "KEY[0]" File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 27
-    Warning (15610): No output dependent on input pin "KEY[1]" File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 27
-    Warning (15610): No output dependent on input pin "SW[0]" File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 33
+Warning (21074): Design contains 11 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "SW[1]" File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 33
     Warning (15610): No output dependent on input pin "SW[2]" File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 33
     Warning (15610): No output dependent on input pin "SW[3]" File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 33
@@ -1056,17 +1226,17 @@ Warning (21074): Design contains 14 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "SW[9]" File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 33
     Warning (15610): No output dependent on input pin "GSENSOR_INT[1]" File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 37
     Warning (15610): No output dependent on input pin "GSENSOR_INT[2]" File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/3216proj/Top.sv Line: 37
-Info (21057): Implemented 275 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 716 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 15 input pins
     Info (21059): Implemented 74 output pins
     Info (21060): Implemented 2 bidirectional pins
-    Info (21061): Implemented 183 logic cells
+    Info (21061): Implemented 624 logic cells
     Info (21065): Implemented 1 PLLs
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 104 warnings
-    Info: Peak virtual memory: 4772 megabytes
-    Info: Processing ended: Fri Mar 25 23:26:15 2022
-    Info: Elapsed time: 00:00:12
-    Info: Total CPU time (on all processors): 00:00:29
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 105 warnings
+    Info: Peak virtual memory: 4800 megabytes
+    Info: Processing ended: Sat Mar 26 01:25:37 2022
+    Info: Elapsed time: 00:00:11
+    Info: Total CPU time (on all processors): 00:00:26
 
 
 +------------------------------------------+
