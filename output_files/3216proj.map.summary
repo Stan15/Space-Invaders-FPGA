@@ -1,10 +1,19 @@
+<<<<<<< HEAD
 Analysis & Synthesis Status : Successful - Sun Mar 27 19:48:32 2022
+=======
+Analysis & Synthesis Status : Successful - Sun Mar 27 13:17:15 2022
+>>>>>>> 1259f1f3171c0e05b3369a4b55a9e469e8c3605c
 Quartus Prime Version : 20.1.0 Build 711 06/05/2020 SJ Lite Edition
 Revision Name : 3216proj
 Top-level Entity Name : Top
 Family : MAX 10
+<<<<<<< HEAD
 Total logic elements : 604
     Total combinational functions : 565
+=======
+Total logic elements : 312
+    Total combinational functions : 273
+>>>>>>> 1259f1f3171c0e05b3369a4b55a9e469e8c3605c
     Dedicated logic registers : 130
 Total registers : 130
 Total pins : 91

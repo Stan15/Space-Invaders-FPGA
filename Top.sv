@@ -68,6 +68,33 @@ module Top(
 	);
 	//===========End of VGA Controller Logic===========
 
+<<<<<<< HEAD
+=======
+
+	//-----------spaceship sprite------------------
+	
+	// setup rom for retrieving pixel data for spaceship from the spaceship.mem 
+	localparam SHIP_WIDTH = 17;
+	localparam SHIP_HEIGHT = 18;
+	localparam SHIP_SCALE_X = 4;
+	localparam SHIP_SCALE_Y = 4;
+	localparam COLR_BITS = 4;						// bits per pixel (2^4=16 colours)
+	localparam SHIP_PIX_COUNT = SHIP_WIDTH * SHIP_HEIGHT;			// number of pixels making up spaceship
+	localparam SHIP_ADDRW = $clog2(SHIP_PIX_COUNT);
+	localparam SHIP_FILE = "spaceship.mem";
+	
+	logic [COLR_BITS-1:0] ship_rom_data;
+	logic [SHIP_ADDRW-1:0] ship_rom_addr;
+	rom_sync #(
+		.WIDTH(COLR_BITS), 	// each pixel in sprite is 4 bits wide, describing its color
+		.DEPTH(SHIP_PIX_COUNT),				// there are 306 pixels in the spaceship file
+		.INIT_F(SHIP_FILE)
+	) spaceship_mem (
+		.clk(clk_pix),
+		.addr(ship_rom_addr),
+		.data(ship_rom_data)
+	);
+>>>>>>> 1259f1f3171c0e05b3369a4b55a9e469e8c3605c
 	
 	
 	//==========Spaceship Logic===================
@@ -75,6 +102,7 @@ module Top(
 	localparam SPACESHIP_WIDTH = 17;
 	localparam SPACESHIP_HEIGHT = 18;
 	
+<<<<<<< HEAD
 	//-----spaceship position controller (replace code here with code for accelerometer controlling spaceship_x and spaceship_y value. for better modularity, the controller can be implemented in its own module)----
 	logic [SCREEN_CORDW-1:0] spaceship_x, spaceship_y;
 	always_ff @(negedge KEY[0]) begin
@@ -89,6 +117,16 @@ module Top(
 	// spaceship pixel data generator
 	logic [3:0] spaceship_pixel;
 	logic spaceship_drawing;			// flag indicating if spaceship pixel should be drawn the current screen position.
+=======
+	logic [15:0] ship_x;	// the ship's coordinate on screen. This is the part that should be controlled by the accelerometer
+	logic [15:0] ship_y = 300;
+	logic [3:0]  ship_pix;		// the ship's pixel data ()
+	
+	always_ff @(posedge KEY[0]) begin
+		ship_x <= ship_x + (SW[0] ? 1 : -1);
+	end
+	
+>>>>>>> 1259f1f3171c0e05b3369a4b55a9e469e8c3605c
 	sprite #(
 		.FILE(SPACESHIP_FILE),
 		.WIDTH(SPACESHIP_WIDTH),
@@ -103,6 +141,7 @@ module Top(
 		.pixel(spaceship_pixel),
 		.drawing(spaceship_drawing)
 	);
+<<<<<<< HEAD
 	//======End of Spaceship Logic===============
 	
 	
@@ -117,6 +156,22 @@ module Top(
 	logic [3:0] red, green, blue;
 	always_comb begin
 		{red, green, blue} = color_value;
+=======
+	DoubleDigitDisplay (ship_rom_data, HEX0, HEX1, HEX2);
+	
+	logic [3:0] bg_pix;
+	assign bg_pix = 15;
+	logic [3:0] screen_pix;
+	assign screen_pix = ship_pix ? ship_pix : bg_pix; // hierarchy of sprites to display. pix=0 means transparent
+	
+	// map pixel color code to actual color value
+	logic [11:0] color;
+	color_mapper (.clk(clk_pix), .color_code(screen_pix), .color);
+	logic [3:0] red, green, blue;
+	assign LEDR[0] = color==11'hFFF;
+	always_comb begin
+		{red, green, blue} = color;
+>>>>>>> 1259f1f3171c0e05b3369a4b55a9e469e8c3605c
 	end
 	//==========End of Color Value Logic===================
 	

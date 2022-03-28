@@ -1,12 +1,21 @@
+<<<<<<< HEAD
 Fitter Status : Successful - Sun Mar 27 19:48:49 2022
+=======
+Fitter Status : Successful - Sun Mar 27 13:17:28 2022
+>>>>>>> 1259f1f3171c0e05b3369a4b55a9e469e8c3605c
 Quartus Prime Version : 20.1.0 Build 711 06/05/2020 SJ Lite Edition
 Revision Name : 3216proj
 Top-level Entity Name : Top
 Family : MAX 10
 Device : 10M50DAF484C6GES
 Timing Models : Preliminary
+<<<<<<< HEAD
 Total logic elements : 588 / 49,760 ( 1 % )
     Total combinational functions : 566 / 49,760 ( 1 % )
+=======
+Total logic elements : 299 / 49,760 ( < 1 % )
+    Total combinational functions : 274 / 49,760 ( < 1 % )
+>>>>>>> 1259f1f3171c0e05b3369a4b55a9e469e8c3605c
     Dedicated logic registers : 130 / 49,760 ( < 1 % )
 Total registers : 130
 Total pins : 91 / 360 ( 25 % )
