@@ -39,126 +39,108 @@ module Top(
    inout 		          		GSENSOR_SDI,
    inout 		          		GSENSOR_SDO
 );
-
-//	assign HEX0 = 7'b1111111;
-//	assign HEX1 = 7'b1111111;
-//	assign HEX2 = 7'b1111111;
-	assign HEX3 = 7'b1111111;
-	assign HEX4 = 7'b1111111;
-	assign HEX5 = 7'b1111111;
-
-	// slow down 50MHz clock to 25MHz
-	wire clk25MHz;
+	//===========VGA Controller Logic==========================
+	localparam H_RES=640;			// horizontal screen resolution
+	localparam V_RES=480;			// vertical screen resolution
+	localparam SCREEN_CORDW = 16; // # of bits used to store screen coordinates
+	
+	// slow down 50MHz clock to 25MHz and use 25MHz clock (clk_pix) to drive display
+	logic clk_pix;
 	reg reset = 0;  // for PLL
-	ip ip1(
-		.areset(reset),
-		.inclk0(MAX10_CLK1_50),
-		.c0(clk25MHz),
-		.locked()
-	);
-	wire clk_pix = clk25MHz;	// use 25MHz clk to drive display
+	ip (.areset(reset), .inclk0(MAX10_CLK1_50), .c0(clk_pix), .locked());
 
-	// renders the display pixel-by-pixel
-	wire [15:0] sx, sy;
-	wire hsync, vsync, de, frame, line;
-	display_480p (
+	// go through the display pixel-by-pixel
+	logic [SCREEN_CORDW-1:0] screen_x, screen_y;
+	logic hsync, vsync, de, frame, screen_line;
+	display_480p #(
+		.H_RES(H_RES),
+		.V_RES(V_RES)
+	) (
 		.clk_pix,
 		.rst(0), 
 		.hsync,
 		.vsync, 
-		.de, 					// (data-enabled) signal asserted when we are rendering a visible part of the screen (i.e. we are not in blanking region)
-		.frame, 				// signal asserted when we start rendering a new frame
-		.line,				// signal asserted when we start rendering a new line of a frame
-		.sx,			 		// (x-coord) indicates what point of the frame we are currently rendering
-		.sy					// (y-coord)
+		.de, 					// (data-enabled) signal asserted when we are in a region of screen which will be visible (i.e. we are not in blanking region)
+		.frame, 				// signal asserted when we begin a new frame
+		.line(screen_line),				// signal asserted when we begin a new line in a frame
+		.screen_x,	 		// (x-coord) indicates what point of the frame we are currently rendering
+		.screen_y			// (y-coord)
 	);
+	//===========End of VGA Controller Logic===========
 
-
-	//-----------spaceship sprite------------------
-	
-	// setup rom for retrieving pixel data for spaceship from the spaceship.mem 
-	localparam SHIP_WIDTH = 32;
-	localparam SHIP_HEIGHT = 20;
-	localparam SHIP_SCALE_X = 4;
-	localparam SHIP_SCALE_Y = 4;
-	localparam COLR_BITS = 4;						// bits per pixel (2^4=16 colours)
-	localparam SHIP_PIX_COUNT = SHIP_WIDTH * SHIP_HEIGHT;			// number of pixels making up spaceship
-	localparam SHIP_FILE = "spaceship.mem";
-	
-	logic [COLR_BITS-1:0] ship_rom_data;
-	logic [$clog2(SHIP_PIX_COUNT)-1:0] ship_rom_addr;
-	rom_sync #(
-		.WIDTH(COLR_BITS), 	// each pixel in sprite is 4 bits wide, describing its color
-		.DEPTH(SHIP_PIX_COUNT),				// there are 306 pixels in the spaceship file
-		.INIT_F(SHIP_FILE)
-	) spaceship_mem (
-		.clk(clk_pix),
-		.addr(ship_rom_addr),
-		.data(ship_rom_data)
-	);
 	
 	
+	//==========Spaceship Logic===================
+	localparam SPACESHIP_FILE = "spaceship.mem";
+	localparam SPACESHIP_WIDTH = 17;
+	localparam SPACESHIP_HEIGHT = 18;
 	
-	logic [15:0] ship_x;	// the ship's coordinate on screen. This is the part that should be controlled by the accelerometer
-	logic [15:0] ship_y = 300;
-	logic [3:0]  ship_pix;		// the ship's pixel data ()
-	
-	always @(negedge KEY[0], negedge KEY[1], negedge SW[0]) begin
-		if (~SW[0]) begin
-			ship_x <= 0; 
-		end else if (~KEY[0]) begin
-			if (ship_x < 15'd630) ship_x <= ship_x + 1;
-		end else if (~KEY[1]) begin
-			if (ship_x > 0) ship_x <= ship_x - 1;
-		end
+	//-----spaceship position controller (replace code here with code for accelerometer controlling spaceship_x and spaceship_y value. for better modularity, the controller can be implemented in its own module)----
+	logic [SCREEN_CORDW-1:0] spaceship_x, spaceship_y;
+	always_ff @(negedge KEY[0]) begin
+		if (SW[0] && spaceship_x < H_RES) spaceship_x <= spaceship_x + 1;
+		else if (~SW[0] && spaceship_x > 0) spaceship_x <= spaceship_x - 1;
+		spaceship_y <= 300;
 	end
+	TripleDigitDisplay(spaceship_x, HEX3, HEX4, HEX5); // display x and y coordinates of the spaceship
+	TripleDigitDisplay(spaceship_y, HEX0, HEX1, HEX2);
+	//----------------------------------------
+	
+	// spaceship pixel data generator
+	logic [3:0] spaceship_pixel;
+	logic spaceship_drawing;			// flag indicating if spaceship pixel should be drawn the current screen position.
 	sprite #(
-		.WIDTH(SHIP_WIDTH),
-		.HEIGHT(SHIP_HEIGHT),
-		.SCALE_X(SHIP_SCALE_X),
-		.SCALE_Y(SHIP_SCALE_Y)
-	) ship(
-		.clk(clk_pix), .rst(0),
-		.line,
-		.sx(sx), .sy(sy),
-		.sprx(ship_x), .spry(ship_y),
-		.data_in(ship_rom_data),
-		.pos(ship_rom_addr),
-		.pix(ship_pix),
-		.drawing(),
-		.done()
+		.FILE(SPACESHIP_FILE),
+		.WIDTH(SPACESHIP_WIDTH),
+		.HEIGHT(SPACESHIP_HEIGHT),
+		.SCALE(4), 							// it is scaled by 4x its original size
+		.SCREEN_CORDW(SCREEN_CORDW)
+	)(
+		.clk_pix, .rst(0),
+		.screen_line,
+		.screen_x, .screen_y,
+		.sprite_x(spaceship_x), .sprite_y(spaceship_y),
+		.pixel(spaceship_pixel),
+		.drawing(spaceship_drawing)
 	);
+	//======End of Spaceship Logic===============
 	
-	DoubleDigitDisplay (ship_x, HEX0, HEX1, HEX2);
 	
+	//===========Color Value Logic========================
+	wire [3:0] bg_pix = 15;
+	logic [3:0] screen_pix;
+	assign screen_pix = spaceship_drawing ? spaceship_pixel : bg_pix; // hierarchy of sprites to display. pixel value of 0 represents transparent
 	
-//	wire color_r, color_g, color_b;
-//	color_map(.color_code(pix), .);
-	logic [3:0] paint_r, paint_g, paint_b;
+	// map pixel color code to actual red-green-blue values
+	logic [11:0] color_value;
+	color_mapper (.clk(clk_pix), .color_code(screen_pix), .color_value);
+	logic [3:0] red, green, blue;
 	always_comb begin
-		paint_r = (ship_pix==0) ? 4'hF : 4'h1;
-		paint_g = (ship_pix==0) ? 4'hF : 4'h3;
-		paint_b = (ship_pix==0) ? 4'hF : 4'h7;
+		{red, green, blue} = color_value;
 	end
+	//==========End of Color Value Logic===================
+	
+	
 
-	// passes the generated VGA signals to VGA output
+	//==========Output VGA Signals====================
 	always_ff @(posedge clk_pix) begin
 		VGA_HS <= hsync;
 		VGA_VS <= vsync;
 		if (de) begin	// only when we are in visible part of screen should we render color. otherwise, black.
-			VGA_R <= paint_r;
-			VGA_G <= paint_g;
-			VGA_B <= paint_b;
+			VGA_R <= red;
+			VGA_G <= green;
+			VGA_B <= blue;
 		end else begin
 			VGA_R <= 0;
 			VGA_G <= 0;
 			VGA_B <= 0;
 		end
 	end
+	//==========End of "Output VGA Signals"===============
 	
 endmodule
 
-module DoubleDigitDisplay (input[9:0] number, output[6:0] dispUnit, dispTens, dispHundreds);
+module TripleDigitDisplay (input[9:0] number, output[6:0] dispUnit, dispTens, dispHundreds);
 	wire [6:0]unit, tens;
 	SevenSegDecoder (number%10, dispUnit);
 	SevenSegDecoder ((number%100)/10, dispTens);

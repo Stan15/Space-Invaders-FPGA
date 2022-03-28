@@ -1,14 +1,13 @@
 module rom_sync #(
-    parameter WIDTH=8,
+    parameter WIDTH=4,
     parameter DEPTH=256,
-    parameter INIT_F=""
+    parameter INIT_F="",
+    parameter ADDRW=$clog2(DEPTH)
  ) (
     input wire logic clk,
     input wire logic [ADDRW-1:0] addr,
     output     logic [WIDTH-1:0] data
  );
-
-    localparam ADDRW=$clog2(DEPTH);
     logic [WIDTH-1:0] memory [DEPTH];
 
     initial begin

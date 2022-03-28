@@ -11,15 +11,15 @@ module display_480p #(
 	H_POL=0,    // horizontal sync polarity (0:neg, 1:pos)
 	V_POL=0     // vertical sync polarity (0:neg, 1:pos)
 ) (
-	input wire clk_pix,				// pixel clock
-	input logic rst,					// reset
-	output logic hsync,				// horizontal sync
-	output logic vsync,				// vertical sync
-	output logic de,					// data enable (low in blanking interval)
-	output logic frame,				// high at start of frame
-	output logic line,				// high at start of active line
-	output logic [CORDW-1:0] sx,	// horizontal screen position
-	output logic [CORDW-1:0] sy	// vertical screen position
+	input wire clk_pix,						// pixel clock
+	input logic rst,							// reset
+	output logic hsync,						// horizontal sync
+	output logic vsync,						// vertical sync
+	output logic de,							// data enable (low in blanking interval)
+	output logic frame,						// high at start of frame
+	output logic line,						// high at start of active line
+	output logic [CORDW-1:0] screen_x,	// horizontal screen position
+	output logic [CORDW-1:0] screen_y	// vertical screen position
 );
 
 	// horizontal timings
@@ -76,11 +76,11 @@ module display_480p #(
 
 	// delay screen position to match sync and control signals
 	always_ff @ (posedge clk_pix) begin
-	  sx <= x;
-	  sy <= y;
+	  screen_x <= x;
+	  screen_y <= y;
 	  if (rst) begin
-			sx <= H_STA;
-			sy <= V_STA;
+			screen_x <= H_STA;
+			screen_y <= V_STA;
 	  end
 	end
 

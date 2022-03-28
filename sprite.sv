@@ -1,11 +1,68 @@
 module sprite #(
+	parameter FILE = "",
+	parameter WIDTH = 10,
+	parameter HEIGHT = 10,
+	parameter SCREEN_CORDW = 16, 	// # of bits used to store screen coordinates
+	parameter COLR_BITS = 4, 		// # of bits used to address color (there are 2^4=16 colors possible)
+	parameter SCALE = 1
+) (
+	input clk_pix, rst, screen_line,
+	input [SCREEN_CORDW-1:0] screen_x, screen_y,
+	input [SCREEN_CORDW-1:0] sprite_x, sprite_y,
+	output [COLR_BITS-1:0] pixel,
+	output drawing
+);
+	logic [$clog2(WIDTH * HEIGHT)-1:0] rom_addr; 		// for addressing pixel data from sprite file
+	logic [COLR_BITS-1:0] rom_data;	// contains data located at rom_addr in the sprite file
+	
+	//------ First instantiate the memory containing the sprite data.
+	localparam PIXEL_COUNT = WIDTH * HEIGHT;
+	
+	rom_sync #(
+		.WIDTH(COLR_BITS), 			// each pixel in sprite is 4 bits wide, describing its color
+		.DEPTH(PIXEL_COUNT),		// # of pixels in the sprite file
+		.INIT_F(FILE)
+	) spaceship_mem (
+		.clk(clk_pix),
+		.addr(rom_addr),
+		.data(rom_data)
+	);
+	//------------------------------------------------
+	
+	//-----------control what sprite pixel data to display based on the current screen coordinates
+	logic drawing_tmp;
+	sprite_main #(
+		.WIDTH(WIDTH),
+		.HEIGHT(HEIGHT),
+		.SCALE_X(SCALE),
+		.SCALE_Y(SCALE),
+		.CORDW(SCREEN_CORDW)
+	) ship(
+		.clk(clk_pix), .rst,
+		.line(screen_line),
+		.sx(screen_x), .sy(screen_y),
+		.sprx(sprite_x), .spry(sprite_y),
+		.data_in(rom_data),
+		.pos(rom_addr),
+		.pix(pixel),
+		.drawing(drawing_tmp),
+		.done()
+	);
+	
+	assign drawing = drawing_tmp && pixel!=0; // it is only drawing when we are drawing a non-transparent pixel of the sprite
+
+	//----------------------------------------------------
+	
+endmodule
+
+module sprite_main #(
     parameter WIDTH=8,         // graphic width in pixels
     parameter HEIGHT=8,        // graphic height in pixels
     parameter SCALE_X=1,       // sprite width scale-factor
     parameter SCALE_Y=1,       // sprite height scale-factor
     parameter COLR_BITS=4,     // bits per pixel (2^4=16 colours)
     parameter CORDW=16,        // screen coordinate width in bits
-    parameter ADDRW=6          // width of graphic memory address bus
+    parameter ADDRW=WIDTH*HEIGHT          // width of graphic memory address bus
     ) (
     input  wire logic clk,                      // clock
     input  wire logic rst,                      // reset
