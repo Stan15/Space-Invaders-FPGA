@@ -92,7 +92,6 @@
 					"strict" : false
 				},
 				{
-<<<<<<< HEAD
 					"name" : "HEX4[1]",
 					"strict" : false
 				},
@@ -102,9 +101,6 @@
 				},
 				{
 					"name" : "HEX4[3]",
-=======
-					"name" : "HEX1[3]",
->>>>>>> 1259f1f3171c0e05b3369a4b55a9e469e8c3605c
 					"strict" : false
 				},
 				{
@@ -116,7 +112,6 @@
 					"strict" : false
 				},
 				{
-<<<<<<< HEAD
 					"name" : "HEX4[6]",
 					"strict" : false
 				},
@@ -153,12 +148,6 @@
 					"strict" : false
 				},
 				{
-=======
-					"name" : "KEY[0]",
-					"strict" : false
-				},
-				{
->>>>>>> 1259f1f3171c0e05b3369a4b55a9e469e8c3605c
 					"name" : "SW[0]",
 					"strict" : false
 				}
