@@ -6,7 +6,7 @@ module sprite #(
 	parameter COLR_BITS = 4, 		// # of bits used to address color (there are 2^4=16 colors possible)
 	parameter SCALE = 1
 ) (
-	input clk_pix, rst, screen_line,
+	input clk_pix, rst, en, screen_line,
 	input [SCREEN_CORDW-1:0] screen_x, screen_y,
 	input [SCREEN_CORDW-1:0] sprite_x, sprite_y,
 	output [COLR_BITS-1:0] pixel,
@@ -38,7 +38,7 @@ module sprite #(
 		.SCALE_Y(SCALE),
 		.CORDW(SCREEN_CORDW)
 	) ship(
-		.clk(clk_pix), .rst,
+		.clk(clk_pix), .rst, .en,
 		.line(screen_line),
 		.sx(screen_x), .sy(screen_y),
 		.sprx(sprite_x), .spry(sprite_y),
@@ -66,6 +66,7 @@ module sprite_main #(
     ) (
     input  wire logic clk,                      // clock
     input  wire logic rst,                      // reset
+	 input  wire logic en,								// enable sprite
     input  wire logic line,                     // flag asserted when we start rendering new line in frame
     input  wire logic signed [CORDW-1:0] sx,    // horizontal screen position
 	 input  wire logic signed [CORDW-1:0] sy,    // vertical screen position
@@ -145,14 +146,14 @@ module sprite_main #(
 	end
 
 	// output current pixel colour when drawing
-	always_comb pix = (state == DRAW) ? data_in : 0;
+	always_comb pix = (state == DRAW && en) ? data_in : 0;
 
 	// create status signals
 	logic last_pixel, last_line;
 	always_comb begin
 		last_pixel = (ox == WIDTH-1  && cnt_x == SCALE_X-1);
 		last_line  = (oy == HEIGHT-1 && cnt_y == SCALE_Y-1);
-		drawing = (state == DRAW);
+		drawing = (state == DRAW && en);
 	end
 
 	// determine next state

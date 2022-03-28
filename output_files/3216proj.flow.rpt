@@ -1,5 +1,5 @@
 Flow report for 3216proj
-Sun Mar 27 20:19:03 2022
+Sun Mar 27 21:13:23 2022
 Quartus Prime Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
 
 
@@ -41,17 +41,17 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Flow Summary                                                                     ;
 +------------------------------------+---------------------------------------------+
-; Flow Status                        ; Successful - Sun Mar 27 20:18:58 2022       ;
+; Flow Status                        ; Successful - Sun Mar 27 21:13:18 2022       ;
 ; Quartus Prime Version              ; 20.1.0 Build 711 06/05/2020 SJ Lite Edition ;
 ; Revision Name                      ; 3216proj                                    ;
 ; Top-level Entity Name              ; Top                                         ;
 ; Family                             ; MAX 10                                      ;
 ; Device                             ; 10M50DAF484C6GES                            ;
 ; Timing Models                      ; Preliminary                                 ;
-; Total logic elements               ; 587 / 49,760 ( 1 % )                        ;
-;     Total combinational functions  ; 566 / 49,760 ( 1 % )                        ;
-;     Dedicated logic registers      ; 130 / 49,760 ( < 1 % )                      ;
-; Total registers                    ; 130                                         ;
+; Total logic elements               ; 633 / 49,760 ( 1 % )                        ;
+;     Total combinational functions  ; 612 / 49,760 ( 1 % )                        ;
+;     Dedicated logic registers      ; 148 / 49,760 ( < 1 % )                      ;
+; Total registers                    ; 148                                         ;
 ; Total pins                         ; 91 / 360 ( 25 % )                           ;
 ; Total virtual pins                 ; 0                                           ;
 ; Total memory bits                  ; 0 / 1,677,312 ( 0 % )                       ;
@@ -67,7 +67,7 @@ https://fpgasoftware.intel.com/eula.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 03/27/2022 20:18:21 ;
+; Start date & time ; 03/27/2022 21:12:44 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; 3216proj            ;
 +-------------------+---------------------+
@@ -78,7 +78,7 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------+----------------------------------------+---------------+-------------+------------+
 ; Assignment Name                     ; Value                                  ; Default Value ; Entity Name ; Section Id ;
 +-------------------------------------+----------------------------------------+---------------+-------------+------------+
-; COMPILER_SIGNATURE_ID               ; 1096633731397.164842670125588          ; --            ; --          ; --         ;
+; COMPILER_SIGNATURE_ID               ; 1096633731397.164842996324856          ; --            ; --          ; --         ;
 ; MAX_CORE_JUNCTION_TEMP              ; 85                                     ; --            ; --          ; --         ;
 ; MIN_CORE_JUNCTION_TEMP              ; 0                                      ; --            ; --          ; --         ;
 ; PARTITION_COLOR                     ; -- (Not supported for targeted family) ; --            ; Top         ; Top        ;
@@ -96,11 +96,11 @@ https://fpgasoftware.intel.com/eula.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:16     ; 1.0                     ; 4800 MB             ; 00:00:31                           ;
-; Fitter               ; 00:00:15     ; 1.1                     ; 5655 MB             ; 00:00:22                           ;
-; Assembler            ; 00:00:04     ; 1.0                     ; 4695 MB             ; 00:00:04                           ;
-; Timing Analyzer      ; 00:00:04     ; 1.2                     ; 4827 MB             ; 00:00:04                           ;
-; Total                ; 00:00:39     ; --                      ; --                  ; 00:01:01                           ;
+; Analysis & Synthesis ; 00:00:15     ; 1.0                     ; 4784 MB             ; 00:00:33                           ;
+; Fitter               ; 00:00:14     ; 1.1                     ; 5656 MB             ; 00:00:20                           ;
+; Assembler            ; 00:00:04     ; 1.0                     ; 4692 MB             ; 00:00:04                           ;
+; Timing Analyzer      ; 00:00:04     ; 1.2                     ; 4828 MB             ; 00:00:04                           ;
+; Total                ; 00:00:37     ; --                      ; --                  ; 00:01:01                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 

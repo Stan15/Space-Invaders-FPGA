@@ -3,24 +3,24 @@ Timing Analyzer Summary
 ------------------------------------------------------------
 
 Type  : Slow 1200mV 85C Model Setup 'comb_3|altpll_component|auto_generated|pll1|clk[0]'
-Slack : -6.794
-TNS   : -6.794
+Slack : -6.917
+TNS   : -6.917
 
 Type  : Slow 1200mV 85C Model Setup 'KEY[0]'
-Slack : -2.744
-TNS   : -38.038
+Slack : -2.613
+TNS   : -36.395
 
 Type  : Slow 1200mV 85C Model Hold 'comb_3|altpll_component|auto_generated|pll1|clk[0]'
-Slack : 0.424
+Slack : 0.423
 TNS   : 0.000
 
 Type  : Slow 1200mV 85C Model Hold 'KEY[0]'
-Slack : 0.581
+Slack : 0.582
 TNS   : 0.000
 
 Type  : Slow 1200mV 85C Model Minimum Pulse Width 'KEY[0]'
 Slack : -3.000
-TNS   : -22.776
+TNS   : -23.032
 
 Type  : Slow 1200mV 85C Model Minimum Pulse Width 'MAX10_CLK1_50'
 Slack : 9.777
@@ -31,15 +31,15 @@ Slack : 19.756
 TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Setup 'comb_3|altpll_component|auto_generated|pll1|clk[0]'
-Slack : -5.754
-TNS   : -5.754
+Slack : -5.851
+TNS   : -5.851
 
 Type  : Slow 1200mV 0C Model Setup 'KEY[0]'
-Slack : -2.415
-TNS   : -33.111
+Slack : -2.291
+TNS   : -31.839
 
 Type  : Slow 1200mV 0C Model Hold 'comb_3|altpll_component|auto_generated|pll1|clk[0]'
-Slack : 0.351
+Slack : 0.350
 TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Hold 'KEY[0]'
@@ -55,35 +55,35 @@ Slack : 9.784
 TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Minimum Pulse Width 'comb_3|altpll_component|auto_generated|pll1|clk[0]'
-Slack : 19.712
+Slack : 19.713
 TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Setup 'comb_3|altpll_component|auto_generated|pll1|clk[0]'
-Slack : -3.273
-TNS   : -3.273
+Slack : -3.368
+TNS   : -3.368
 
 Type  : Fast 1200mV 0C Model Setup 'KEY[0]'
-Slack : -0.774
-TNS   : -9.713
+Slack : -0.700
+TNS   : -8.581
 
 Type  : Fast 1200mV 0C Model Hold 'comb_3|altpll_component|auto_generated|pll1|clk[0]'
-Slack : 0.209
+Slack : 0.208
 TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Hold 'KEY[0]'
-Slack : 0.263
+Slack : 0.264
 TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Minimum Pulse Width 'KEY[0]'
 Slack : -3.000
-TNS   : -24.744
+TNS   : -25.256
 
 Type  : Fast 1200mV 0C Model Minimum Pulse Width 'MAX10_CLK1_50'
 Slack : 9.530
 TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Minimum Pulse Width 'comb_3|altpll_component|auto_generated|pll1|clk[0]'
-Slack : 19.799
+Slack : 19.771
 TNS   : 0.000
 
 ------------------------------------------------------------

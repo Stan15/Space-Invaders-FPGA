@@ -94,8 +94,8 @@ module Top(
 		.HEIGHT(SPACESHIP_HEIGHT),
 		.SCALE(3), 							// it is scaled by 4x its original size
 		.SCREEN_CORDW(SCREEN_CORDW)
-	)(
-		.clk_pix, .rst(0),
+	) spaceship(
+		.clk_pix, .rst(0), .en(1),
 		.screen_line,
 		.screen_x, .screen_y,
 		.sprite_x(spaceship_x), .sprite_y(spaceship_y),
@@ -105,10 +105,53 @@ module Top(
 	//======End of Spaceship Logic===============
 	
 	
+	//==========Obstacle Logic===================
+	localparam OBSTACLE_FILE = "obstacle.mem";
+	localparam OBSTACLE_WIDTH = 4;
+	localparam OBSTACLE_HEIGHT = 4;
+	
+	// i'm creating just one obstacle for testing purposes. we should figure out how to create
+	// multiple obstacles and make sure that they are spaced out. might require using generate blocks in some way.
+	logic [SCREEN_CORDW-1:0] obstacle_1_x, obstacle_1_y;
+	logic [3:0] obstacle_1_pixel;
+	logic obstacle_1_drawing;			// flag indicating if spaceship pixel should be drawn the current screen position.
+	sprite #(
+		.FILE(OBSTACLE_FILE),
+		.WIDTH(OBSTACLE_WIDTH),
+		.HEIGHT(OBSTACLE_HEIGHT),
+		.SCALE(10), 							// it is scaled by 4x its original size
+		.SCREEN_CORDW(SCREEN_CORDW)
+	) obstacle1(
+		.clk_pix, .rst(0), .en(SW[9]),
+		.screen_line,
+		.screen_x, .screen_y,
+		.sprite_x(70), .sprite_y(270),
+		.pixel(obstacle_1_pixel),
+		.drawing(obstacle_1_drawing)
+	);
+	//======End of Obstacle Logic=======================
+	
+	//============Collision Detection==============
+	logic collision; // signal to use to check if there's a collision
+	wire collision_in_frame;
+	always @(posedge clk_pix) begin
+		if (frame) begin
+			// only update the collision bit at the end of each frame (after we've gone through all pixels checking for a collision)
+			collision <= collision_in_frame;
+			collision_in_frame <= 0;
+		end else begin
+			// as we move across the screen, check if there's a collision at the pixel we are currently at
+			collision_in_frame <= collision_in_frame || spaceship_drawing && obstacle_1_drawing;
+		end
+	end
+	
+	assign LEDR[0] = collision;
+	//===========End of Collision Detection==========
+	
 	//===========Color Value Logic========================
 	wire [3:0] bg_pix = 15;
 	logic [3:0] screen_pix;
-	assign screen_pix = spaceship_drawing ? spaceship_pixel : bg_pix; // hierarchy of sprites to display. pixel value of 0 represents transparent
+	assign screen_pix = obstacle_1_drawing ? obstacle_1_pixel : (spaceship_drawing ? spaceship_pixel : bg_pix); // hierarchy of sprites to display.
 	
 	// map pixel color code to actual red-green-blue values
 	logic [11:0] color_value;
