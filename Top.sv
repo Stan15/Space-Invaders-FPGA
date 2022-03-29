@@ -92,7 +92,7 @@ module Top(
 		.FILE(SPACESHIP_FILE),
 		.WIDTH(SPACESHIP_WIDTH),
 		.HEIGHT(SPACESHIP_HEIGHT),
-		.SCALE(3), 							// it is scaled by 4x its original size
+		.SCALE(2), 							// it is scaled by 4x its original size
 		.SCREEN_CORDW(SCREEN_CORDW)
 	) spaceship(
 		.clk_pix, .rst(0), .en(1),
