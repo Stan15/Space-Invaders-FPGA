@@ -1,0 +1,125 @@
+------------------------------------------------------------
+Timing Analyzer Summary
+------------------------------------------------------------
+
+Type  : Slow 1200mV 85C Model Setup 'comb_3|altpll_component|auto_generated|pll1|clk[0]'
+Slack : -8.305
+TNS   : -8.305
+
+Type  : Slow 1200mV 85C Model Setup 'pll_inst|altpll_component|auto_generated|pll1|clk[1]'
+Slack : -2.730
+TNS   : -82.324
+
+Type  : Slow 1200mV 85C Model Setup 'AccelClockDivider:acd|count[0]'
+Slack : -2.296
+TNS   : -42.836
+
+Type  : Slow 1200mV 85C Model Hold 'AccelClockDivider:acd|count[0]'
+Slack : 0.324
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'pll_inst|altpll_component|auto_generated|pll1|clk[1]'
+Slack : 0.419
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Hold 'comb_3|altpll_component|auto_generated|pll1|clk[0]'
+Slack : 0.428
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'AccelClockDivider:acd|count[0]'
+Slack : -1.222
+TNS   : -24.440
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'MAX10_CLK1_50'
+Slack : 9.777
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'comb_3|altpll_component|auto_generated|pll1|clk[0]'
+Slack : 19.759
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'pll_inst|altpll_component|auto_generated|pll1|clk[1]'
+Slack : 249.754
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Setup 'comb_3|altpll_component|auto_generated|pll1|clk[0]'
+Slack : -7.090
+TNS   : -7.090
+
+Type  : Slow 1200mV 0C Model Setup 'AccelClockDivider:acd|count[0]'
+Slack : -2.049
+TNS   : -39.149
+
+Type  : Slow 1200mV 0C Model Setup 'pll_inst|altpll_component|auto_generated|pll1|clk[1]'
+Slack : -1.980
+TNS   : -58.667
+
+Type  : Slow 1200mV 0C Model Hold 'pll_inst|altpll_component|auto_generated|pll1|clk[1]'
+Slack : -0.022
+TNS   : -0.027
+
+Type  : Slow 1200mV 0C Model Hold 'AccelClockDivider:acd|count[0]'
+Slack : 0.294
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'comb_3|altpll_component|auto_generated|pll1|clk[0]'
+Slack : 0.355
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'AccelClockDivider:acd|count[0]'
+Slack : -1.222
+TNS   : -24.440
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'MAX10_CLK1_50'
+Slack : 9.784
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'comb_3|altpll_component|auto_generated|pll1|clk[0]'
+Slack : 19.713
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'pll_inst|altpll_component|auto_generated|pll1|clk[1]'
+Slack : 249.711
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Setup 'comb_3|altpll_component|auto_generated|pll1|clk[0]'
+Slack : -3.762
+TNS   : -3.762
+
+Type  : Fast 1200mV 0C Model Setup 'AccelClockDivider:acd|count[0]'
+Slack : -1.011
+TNS   : -12.430
+
+Type  : Fast 1200mV 0C Model Setup 'pll_inst|altpll_component|auto_generated|pll1|clk[1]'
+Slack : -0.979
+TNS   : -27.815
+
+Type  : Fast 1200mV 0C Model Hold 'pll_inst|altpll_component|auto_generated|pll1|clk[1]'
+Slack : 0.114
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'AccelClockDivider:acd|count[0]'
+Slack : 0.148
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Hold 'comb_3|altpll_component|auto_generated|pll1|clk[0]'
+Slack : 0.214
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'AccelClockDivider:acd|count[0]'
+Slack : -1.000
+TNS   : -20.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'MAX10_CLK1_50'
+Slack : 9.530
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'comb_3|altpll_component|auto_generated|pll1|clk[0]'
+Slack : 19.769
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'pll_inst|altpll_component|auto_generated|pll1|clk[1]'
+Slack : 249.771
+TNS   : 0.000
+
+------------------------------------------------------------

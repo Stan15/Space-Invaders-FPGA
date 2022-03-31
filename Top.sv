@@ -1,4 +1,4 @@
-`timescale 1ns / 1ps
+ `timescale 1ns / 1ps
 
 // image generator of a road and a sky 640x480 @ 60 fps
 
@@ -7,6 +7,8 @@ module Top(
 	
 	 //////////// 50MHz CLOCK //////////
    input 	MAX10_CLK1_50,
+	input 	ADC_CLK_10,
+   input 	MAX10_CLK2_50,
 	
 	////////////// VGA /////////////////
 	output VGA_HS,      		// horizontal sync
@@ -68,6 +70,66 @@ module Top(
 	);
 	//===========End of VGA Controller Logic===========
 
+	//======Accelerometer Logic===============
+	
+	//===== Declarations
+   localparam SPI_CLK_FREQ  = 200;  // SPI Clock (Hz)
+   localparam UPDATE_FREQ   = 1;    // Sampling frequency (Hz)
+
+   // clks and reset
+   wire reset_n;
+   wire clk, spi_clk, spi_clk_out;
+
+   // output data
+   wire data_update;
+   wire [15:0] data_x, data_y;
+
+	//===== Phase-locked Loop (PLL) instantiation. Code was copied from a module
+	//      produced by Quartus' IP Catalog tool.
+	pll pll_inst (
+		.inclk0 ( MAX10_CLK1_50 ),
+		.c0 ( clk ),                 // 25 MHz, phase   0 degrees
+		.c1 ( spi_clk ),             //  2 MHz, phase   0 degrees
+		.c2 ( spi_clk_out )          //  2 MHz, phase 270 degrees
+		);
+
+	//===== Instantiation of the spi_control module which provides the logic to 
+	//      interface to the accelerometer.
+	spi_control #(     // parameters
+			.SPI_CLK_FREQ   (SPI_CLK_FREQ),
+			.UPDATE_FREQ    (UPDATE_FREQ))
+		spi_ctrl (      // port connections
+			.reset_n    (reset_n),
+			.clk        (clk),
+			.spi_clk    (spi_clk),
+			.spi_clk_out(spi_clk_out),
+			.data_update(data_update),
+			.data_x     (data_x),
+			.data_y     (data_y),
+			.SPI_SDI    (GSENSOR_SDI),
+			.SPI_SDO    (GSENSOR_SDO),
+			.SPI_CSN    (GSENSOR_CS_N),
+			.SPI_CLK    (GSENSOR_SCLK),
+			.interrupt  (GSENSOR_INT)
+		);
+		
+		
+	//===== Main block
+	//      To make the module do something visible, the 16-bit data_x is 
+	//      displayed on four of the HEX displays in hexadecimal format.
+
+	wire slowclk;
+	reg [15:0] data_X, data_Y;
+	AccelClockDivider acd( spi_clk , slowclk);
+		
+	// Slows down accelerometer clock
+	always@( posedge slowclk) 
+	begin
+		data_X = data_x; 
+		data_Y = data_y;
+	end
+	
+	//======End of Accelerometer Logic===============
 	
 	//==========Spaceship Logic===================
 	localparam SPACESHIP_FILE = "spaceship.mem";
@@ -75,14 +137,39 @@ module Top(
 	localparam SPACESHIP_HEIGHT = 18;
 	
 	//-----spaceship position controller (replace code here with code for accelerometer controlling spaceship_x and spaceship_y value. for better modularity, the controller can be implemented in its own module)----
-	logic [SCREEN_CORDW-1:0] spaceship_x, spaceship_y;
-	always_ff @(negedge KEY[0]) begin
-		if (SW[0] && spaceship_x < H_RES) spaceship_x <= spaceship_x + 1;
-		else if (~SW[0] && spaceship_x > 0) spaceship_x <= spaceship_x - 1;
-		spaceship_y <= 300;
+	logic [SCREEN_CORDW-1:0] spaceship_x = 16'd50;
+	logic [SCREEN_CORDW-1:0] spaceship_y = 16'd240;
+	reg [7:0] spaceship_x_default = 8'd50; //for resetting the spaceship_x
+	reg [7:0] spaceship_y_default = 8'd240; //for resetting the spaceship_y
+	
+	// Pressing KEY0 freezes the accelerometer's output
+	assign reset_n = KEY[0];
+	
+	always_ff @(posedge slowclk) begin
+		
+		if(~reset_n)
+		begin
+			spaceship_x <= spaceship_x_default;
+			spaceship_y <= spaceship_y_default;
+		end
+		else
+		begin
+			if(data_X [15:12] >= 4'd7 && spaceship_x < H_RES) //Shifting to the right
+			begin
+				spaceship_x <= spaceship_x + 1  ;
+			end
+			else if(data_X [15:12] <= 4'd0 && spaceship_x > 0) //Shifting to the left
+			begin
+				spaceship_x = 0;
+			end
+			spaceship_y <= 240;
+		
+		end
 	end
+
 	TripleDigitDisplay(spaceship_x, HEX3, HEX4, HEX5); // display x and y coordinates of the spaceship
 	TripleDigitDisplay(spaceship_y, HEX0, HEX1, HEX2);
+	
 	//----------------------------------------
 	
 	// spaceship pixel data generator
@@ -103,7 +190,6 @@ module Top(
 		.drawing(spaceship_drawing)
 	);
 	//======End of Spaceship Logic===============
-	
 	
 	//==========Obstacle Logic===================
 	localparam OBSTACLE_FILE = "obstacle.mem";
@@ -206,4 +292,21 @@ module SevenSegDecoder(input[3:0] m, output[6:0] n);
 	assign n[5] = (~a&~b&~c&d)|(~a&~b&c&~d)|(~a&~b&c&d)|(~a&b&c&d)|(a&b&~c&d);
 	assign n[6] = (~a&~b&~c)|(~a&b&c&d)|(a&b&~c&~d);
 	
+endmodule
+
+module AccelClockDivider(cin, cout);			
+	input cin;
+	output cout;
+	reg[31:0] count = 32'd0;                // initializing a register count for 32 bits
+	parameter D = 32'd50000000;
+
+	always @( posedge cin)                   
+	begin
+		 count <= count + 32'd15;                
+		 if (count > D) begin                       
+			  count <= 32'd0;
+		end
+	end
+	assign cout = (count == 0) ? 1'b1 : 1'b0; // if count is < 50 mil, output 0, else 1
+
 endmodule
