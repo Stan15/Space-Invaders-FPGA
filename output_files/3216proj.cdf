@@ -4,7 +4,7 @@ JedecChain;
 	DefaultMfr(6E);
 
 	P ActionCode(Cfg)
-		Device PartName(10M50DAF484ES) Path("Z:/Downloads/Space-Invaders-FPGA-main/Space-Invaders-FPGA-main/output_files/") File("3216proj.sof") MfrSpec(OpMask(1));
+		Device PartName(10M50DAF484ES) Path("Z:/Downloads/Space-Invaders-FPGA-accelerometer/output_files/") File("3216proj.sof") MfrSpec(OpMask(1));
 
 ChainEnd;
 

@@ -1,5 +1,5 @@
 Flow report for 3216proj
-Wed Mar 30 21:12:58 2022
+Thu Mar 31 17:02:48 2022
 Quartus Prime Version 20.1.0 Build 711 06/05/2020 SJ Lite Edition
 
 
@@ -41,17 +41,17 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------------------------------------------------------+
 ; Flow Summary                                                                     ;
 +------------------------------------+---------------------------------------------+
-; Flow Status                        ; Successful - Wed Mar 30 21:12:47 2022       ;
+; Flow Status                        ; Successful - Thu Mar 31 17:02:35 2022       ;
 ; Quartus Prime Version              ; 20.1.0 Build 711 06/05/2020 SJ Lite Edition ;
 ; Revision Name                      ; 3216proj                                    ;
 ; Top-level Entity Name              ; Top                                         ;
 ; Family                             ; MAX 10                                      ;
 ; Device                             ; 10M50DAF484C6GES                            ;
 ; Timing Models                      ; Preliminary                                 ;
-; Total logic elements               ; 806 / 49,760 ( 2 % )                        ;
-;     Total combinational functions  ; 767 / 49,760 ( 2 % )                        ;
-;     Dedicated logic registers      ; 245 / 49,760 ( < 1 % )                      ;
-; Total registers                    ; 245                                         ;
+; Total logic elements               ; 1,178 / 49,760 ( 2 % )                      ;
+;     Total combinational functions  ; 1,129 / 49,760 ( 2 % )                      ;
+;     Dedicated logic registers      ; 279 / 49,760 ( < 1 % )                      ;
+; Total registers                    ; 279                                         ;
 ; Total pins                         ; 93 / 360 ( 26 % )                           ;
 ; Total virtual pins                 ; 0                                           ;
 ; Total memory bits                  ; 0 / 1,677,312 ( 0 % )                       ;
@@ -67,7 +67,7 @@ https://fpgasoftware.intel.com/eula.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 03/30/2022 21:12:00 ;
+; Start date & time ; 03/31/2022 17:01:42 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; 3216proj            ;
 +-------------------+---------------------+
@@ -78,7 +78,7 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------+----------------------------------------+---------------+-------------+------------+
 ; Assignment Name                     ; Value                                  ; Default Value ; Entity Name ; Section Id ;
 +-------------------------------------+----------------------------------------+---------------+-------------+------------+
-; COMPILER_SIGNATURE_ID               ; 202883597564765.164868912015220        ; --            ; --          ; --         ;
+; COMPILER_SIGNATURE_ID               ; 202883597669693.164876050108080        ; --            ; --          ; --         ;
 ; MAX_CORE_JUNCTION_TEMP              ; 85                                     ; --            ; --          ; --         ;
 ; MIN_CORE_JUNCTION_TEMP              ; 0                                      ; --            ; --          ; --         ;
 ; PARTITION_COLOR                     ; -- (Not supported for targeted family) ; --            ; Top         ; Top        ;
@@ -96,11 +96,11 @@ https://fpgasoftware.intel.com/eula.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:22     ; 1.0                     ; 4810 MB             ; 00:00:19                           ;
-; Fitter               ; 00:00:14     ; 1.1                     ; 5817 MB             ; 00:00:16                           ;
-; Assembler            ; 00:00:06     ; 1.0                     ; 4695 MB             ; 00:00:03                           ;
-; Timing Analyzer      ; 00:00:09     ; 1.1                     ; 4864 MB             ; 00:00:03                           ;
-; Total                ; 00:00:51     ; --                      ; --                  ; 00:00:41                           ;
+; Analysis & Synthesis ; 00:00:25     ; 1.0                     ; 4838 MB             ; 00:00:20                           ;
+; Fitter               ; 00:00:18     ; 1.2                     ; 5866 MB             ; 00:00:18                           ;
+; Assembler            ; 00:00:07     ; 1.0                     ; 4720 MB             ; 00:00:03                           ;
+; Timing Analyzer      ; 00:00:11     ; 1.2                     ; 4893 MB             ; 00:00:04                           ;
+; Total                ; 00:01:01     ; --                      ; --                  ; 00:00:45                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
@@ -109,10 +109,10 @@ https://fpgasoftware.intel.com/eula.
 +----------------------+------------------+------------+------------+----------------+
 ; Module Name          ; Machine Hostname ; OS Name    ; OS Version ; Processor type ;
 +----------------------+------------------+------------+------------+----------------+
-; Analysis & Synthesis ; gsp30-win        ; Windows 10 ; 10.0       ; x86_64         ;
-; Fitter               ; gsp30-win        ; Windows 10 ; 10.0       ; x86_64         ;
-; Assembler            ; gsp30-win        ; Windows 10 ; 10.0       ; x86_64         ;
-; Timing Analyzer      ; gsp30-win        ; Windows 10 ; 10.0       ; x86_64         ;
+; Analysis & Synthesis ; gsp27-win        ; Windows 10 ; 10.0       ; x86_64         ;
+; Fitter               ; gsp27-win        ; Windows 10 ; 10.0       ; x86_64         ;
+; Assembler            ; gsp27-win        ; Windows 10 ; 10.0       ; x86_64         ;
+; Timing Analyzer      ; gsp27-win        ; Windows 10 ; 10.0       ; x86_64         ;
 +----------------------+------------------+------------+------------+----------------+
 
 

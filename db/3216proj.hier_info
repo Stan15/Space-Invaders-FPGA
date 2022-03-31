@@ -2,80 +2,80 @@
 MAX10_CLK1_50 => MAX10_CLK1_50.IN1
 ADC_CLK_10 => ~NO_FANOUT~
 MAX10_CLK2_50 => ~NO_FANOUT~
-VGA_HS <= VGA_HS~reg0.DB_MAX_OUTPUT_PORT_TYPE
-VGA_VS <= VGA_VS~reg0.DB_MAX_OUTPUT_PORT_TYPE
-VGA_R[0] <= VGA_R[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-VGA_R[1] <= VGA_R[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-VGA_R[2] <= VGA_R[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-VGA_R[3] <= VGA_R[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-VGA_G[0] <= VGA_G[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-VGA_G[1] <= VGA_G[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-VGA_G[2] <= VGA_G[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-VGA_G[3] <= VGA_G[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-VGA_B[0] <= VGA_B[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-VGA_B[1] <= VGA_B[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-VGA_B[2] <= VGA_B[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-VGA_B[3] <= VGA_B[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-HEX0[0] <= TripleDigitDisplay:comb_252.dispUnit[0]
-HEX0[1] <= TripleDigitDisplay:comb_252.dispUnit[1]
-HEX0[2] <= TripleDigitDisplay:comb_252.dispUnit[2]
-HEX0[3] <= TripleDigitDisplay:comb_252.dispUnit[3]
-HEX0[4] <= TripleDigitDisplay:comb_252.dispUnit[4]
-HEX0[5] <= TripleDigitDisplay:comb_252.dispUnit[5]
-HEX0[6] <= TripleDigitDisplay:comb_252.dispUnit[6]
-HEX0[7] <= <GND>
-HEX1[0] <= TripleDigitDisplay:comb_252.dispTens[0]
-HEX1[1] <= TripleDigitDisplay:comb_252.dispTens[1]
-HEX1[2] <= TripleDigitDisplay:comb_252.dispTens[2]
-HEX1[3] <= TripleDigitDisplay:comb_252.dispTens[3]
-HEX1[4] <= TripleDigitDisplay:comb_252.dispTens[4]
-HEX1[5] <= TripleDigitDisplay:comb_252.dispTens[5]
-HEX1[6] <= TripleDigitDisplay:comb_252.dispTens[6]
-HEX1[7] <= <GND>
-HEX2[0] <= TripleDigitDisplay:comb_252.dispHundreds[0]
-HEX2[1] <= TripleDigitDisplay:comb_252.dispHundreds[1]
-HEX2[2] <= TripleDigitDisplay:comb_252.dispHundreds[2]
-HEX2[3] <= TripleDigitDisplay:comb_252.dispHundreds[3]
-HEX2[4] <= TripleDigitDisplay:comb_252.dispHundreds[4]
-HEX2[5] <= TripleDigitDisplay:comb_252.dispHundreds[5]
-HEX2[6] <= TripleDigitDisplay:comb_252.dispHundreds[6]
-HEX2[7] <= <GND>
-HEX3[0] <= TripleDigitDisplay:comb_248.dispUnit[0]
-HEX3[1] <= TripleDigitDisplay:comb_248.dispUnit[1]
-HEX3[2] <= TripleDigitDisplay:comb_248.dispUnit[2]
-HEX3[3] <= TripleDigitDisplay:comb_248.dispUnit[3]
-HEX3[4] <= TripleDigitDisplay:comb_248.dispUnit[4]
-HEX3[5] <= TripleDigitDisplay:comb_248.dispUnit[5]
-HEX3[6] <= TripleDigitDisplay:comb_248.dispUnit[6]
-HEX3[7] <= <GND>
-HEX4[0] <= TripleDigitDisplay:comb_248.dispTens[0]
-HEX4[1] <= TripleDigitDisplay:comb_248.dispTens[1]
-HEX4[2] <= TripleDigitDisplay:comb_248.dispTens[2]
-HEX4[3] <= TripleDigitDisplay:comb_248.dispTens[3]
-HEX4[4] <= TripleDigitDisplay:comb_248.dispTens[4]
-HEX4[5] <= TripleDigitDisplay:comb_248.dispTens[5]
-HEX4[6] <= TripleDigitDisplay:comb_248.dispTens[6]
-HEX4[7] <= <GND>
-HEX5[0] <= TripleDigitDisplay:comb_248.dispHundreds[0]
-HEX5[1] <= TripleDigitDisplay:comb_248.dispHundreds[1]
-HEX5[2] <= TripleDigitDisplay:comb_248.dispHundreds[2]
-HEX5[3] <= TripleDigitDisplay:comb_248.dispHundreds[3]
-HEX5[4] <= TripleDigitDisplay:comb_248.dispHundreds[4]
-HEX5[5] <= TripleDigitDisplay:comb_248.dispHundreds[5]
-HEX5[6] <= TripleDigitDisplay:comb_248.dispHundreds[6]
-HEX5[7] <= <GND>
+VGA_HS << VGA_HS~reg0.DB_MAX_OUTPUT_PORT_TYPE
+VGA_VS << VGA_VS~reg0.DB_MAX_OUTPUT_PORT_TYPE
+VGA_R[0] << VGA_R[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+VGA_R[1] << VGA_R[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+VGA_R[2] << VGA_R[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+VGA_R[3] << VGA_R[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+VGA_G[0] << VGA_G[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+VGA_G[1] << VGA_G[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+VGA_G[2] << VGA_G[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+VGA_G[3] << VGA_G[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+VGA_B[0] << VGA_B[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+VGA_B[1] << VGA_B[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+VGA_B[2] << VGA_B[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+VGA_B[3] << VGA_B[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+HEX0[0] << TripleDigitDisplay:comb_291.dispUnit[0]
+HEX0[1] << TripleDigitDisplay:comb_291.dispUnit[1]
+HEX0[2] << TripleDigitDisplay:comb_291.dispUnit[2]
+HEX0[3] << TripleDigitDisplay:comb_291.dispUnit[3]
+HEX0[4] << TripleDigitDisplay:comb_291.dispUnit[4]
+HEX0[5] << TripleDigitDisplay:comb_291.dispUnit[5]
+HEX0[6] << TripleDigitDisplay:comb_291.dispUnit[6]
+HEX0[7] << <GND>
+HEX1[0] << TripleDigitDisplay:comb_291.dispTens[0]
+HEX1[1] << TripleDigitDisplay:comb_291.dispTens[1]
+HEX1[2] << TripleDigitDisplay:comb_291.dispTens[2]
+HEX1[3] << TripleDigitDisplay:comb_291.dispTens[3]
+HEX1[4] << TripleDigitDisplay:comb_291.dispTens[4]
+HEX1[5] << TripleDigitDisplay:comb_291.dispTens[5]
+HEX1[6] << TripleDigitDisplay:comb_291.dispTens[6]
+HEX1[7] << <GND>
+HEX2[0] << TripleDigitDisplay:comb_291.dispHundreds[0]
+HEX2[1] << TripleDigitDisplay:comb_291.dispHundreds[1]
+HEX2[2] << TripleDigitDisplay:comb_291.dispHundreds[2]
+HEX2[3] << TripleDigitDisplay:comb_291.dispHundreds[3]
+HEX2[4] << TripleDigitDisplay:comb_291.dispHundreds[4]
+HEX2[5] << TripleDigitDisplay:comb_291.dispHundreds[5]
+HEX2[6] << TripleDigitDisplay:comb_291.dispHundreds[6]
+HEX2[7] << <GND>
+HEX3[0] << TripleDigitDisplay:comb_287.dispUnit[0]
+HEX3[1] << TripleDigitDisplay:comb_287.dispUnit[1]
+HEX3[2] << TripleDigitDisplay:comb_287.dispUnit[2]
+HEX3[3] << TripleDigitDisplay:comb_287.dispUnit[3]
+HEX3[4] << TripleDigitDisplay:comb_287.dispUnit[4]
+HEX3[5] << TripleDigitDisplay:comb_287.dispUnit[5]
+HEX3[6] << TripleDigitDisplay:comb_287.dispUnit[6]
+HEX3[7] << <GND>
+HEX4[0] << TripleDigitDisplay:comb_287.dispTens[0]
+HEX4[1] << TripleDigitDisplay:comb_287.dispTens[1]
+HEX4[2] << TripleDigitDisplay:comb_287.dispTens[2]
+HEX4[3] << TripleDigitDisplay:comb_287.dispTens[3]
+HEX4[4] << TripleDigitDisplay:comb_287.dispTens[4]
+HEX4[5] << TripleDigitDisplay:comb_287.dispTens[5]
+HEX4[6] << TripleDigitDisplay:comb_287.dispTens[6]
+HEX4[7] << <GND>
+HEX5[0] << TripleDigitDisplay:comb_287.dispHundreds[0]
+HEX5[1] << TripleDigitDisplay:comb_287.dispHundreds[1]
+HEX5[2] << TripleDigitDisplay:comb_287.dispHundreds[2]
+HEX5[3] << TripleDigitDisplay:comb_287.dispHundreds[3]
+HEX5[4] << TripleDigitDisplay:comb_287.dispHundreds[4]
+HEX5[5] << TripleDigitDisplay:comb_287.dispHundreds[5]
+HEX5[6] << TripleDigitDisplay:comb_287.dispHundreds[6]
+HEX5[7] << <GND>
 KEY[0] => reset_n.IN1
 KEY[1] => ~NO_FANOUT~
-LEDR[0] <= collision.DB_MAX_OUTPUT_PORT_TYPE
-LEDR[1] <= <GND>
-LEDR[2] <= <GND>
-LEDR[3] <= <GND>
-LEDR[4] <= <GND>
-LEDR[5] <= <GND>
-LEDR[6] <= <GND>
-LEDR[7] <= <GND>
-LEDR[8] <= <GND>
-LEDR[9] <= <GND>
+LEDR[0] << collision.DB_MAX_OUTPUT_PORT_TYPE
+LEDR[1] << <GND>
+LEDR[2] << <GND>
+LEDR[3] << <GND>
+LEDR[4] << <GND>
+LEDR[5] << <GND>
+LEDR[6] << <GND>
+LEDR[7] << <GND>
+LEDR[8] << <GND>
+LEDR[9] << <GND>
 SW[0] => ~NO_FANOUT~
 SW[1] => ~NO_FANOUT~
 SW[2] => ~NO_FANOUT~
@@ -86,10 +86,10 @@ SW[6] => ~NO_FANOUT~
 SW[7] => ~NO_FANOUT~
 SW[8] => ~NO_FANOUT~
 SW[9] => sprite:obstacle1.en
-GSENSOR_CS_N <= spi_control:spi_ctrl.SPI_CSN
+GSENSOR_CS_N << spi_control:spi_ctrl.SPI_CSN
 GSENSOR_INT[1] => GSENSOR_INT[1].IN1
 GSENSOR_INT[2] => GSENSOR_INT[2].IN1
-GSENSOR_SCLK <= spi_control:spi_ctrl.SPI_CLK
+GSENSOR_SCLK << spi_control:spi_ctrl.SPI_CLK
 GSENSOR_SDI <> spi_control:spi_ctrl.SPI_SDI
 GSENSOR_SDO <> spi_control:spi_ctrl.SPI_SDO
 
@@ -626,7 +626,7 @@ cin => count[31].CLK
 cout <= Equal0.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|Top|TripleDigitDisplay:comb_248
+|Top|TripleDigitDisplay:comb_287
 number[0] => Mod0.IN13
 number[0] => Mod1.IN16
 number[0] => Div1.IN16
@@ -680,7 +680,7 @@ dispHundreds[5] <= SevenSegDecoder:comb_8.port1
 dispHundreds[6] <= SevenSegDecoder:comb_8.port1
 
 
-|Top|TripleDigitDisplay:comb_248|SevenSegDecoder:comb_3
+|Top|TripleDigitDisplay:comb_287|SevenSegDecoder:comb_3
 m[0] => n.IN1
 m[0] => n.IN1
 m[0] => n.IN1
@@ -720,7 +720,7 @@ n[5] <= n.DB_MAX_OUTPUT_PORT_TYPE
 n[6] <= n.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|Top|TripleDigitDisplay:comb_248|SevenSegDecoder:comb_5
+|Top|TripleDigitDisplay:comb_287|SevenSegDecoder:comb_5
 m[0] => n.IN1
 m[0] => n.IN1
 m[0] => n.IN1
@@ -760,7 +760,7 @@ n[5] <= n.DB_MAX_OUTPUT_PORT_TYPE
 n[6] <= n.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|Top|TripleDigitDisplay:comb_248|SevenSegDecoder:comb_8
+|Top|TripleDigitDisplay:comb_287|SevenSegDecoder:comb_8
 m[0] => n.IN1
 m[0] => n.IN1
 m[0] => n.IN1
@@ -800,7 +800,7 @@ n[5] <= n.DB_MAX_OUTPUT_PORT_TYPE
 n[6] <= n.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|Top|TripleDigitDisplay:comb_252
+|Top|TripleDigitDisplay:comb_291
 number[0] => Mod0.IN13
 number[0] => Mod1.IN16
 number[0] => Div1.IN16
@@ -854,7 +854,7 @@ dispHundreds[5] <= SevenSegDecoder:comb_8.port1
 dispHundreds[6] <= SevenSegDecoder:comb_8.port1
 
 
-|Top|TripleDigitDisplay:comb_252|SevenSegDecoder:comb_3
+|Top|TripleDigitDisplay:comb_291|SevenSegDecoder:comb_3
 m[0] => n.IN1
 m[0] => n.IN1
 m[0] => n.IN1
@@ -894,7 +894,7 @@ n[5] <= n.DB_MAX_OUTPUT_PORT_TYPE
 n[6] <= n.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|Top|TripleDigitDisplay:comb_252|SevenSegDecoder:comb_5
+|Top|TripleDigitDisplay:comb_291|SevenSegDecoder:comb_5
 m[0] => n.IN1
 m[0] => n.IN1
 m[0] => n.IN1
@@ -934,7 +934,7 @@ n[5] <= n.DB_MAX_OUTPUT_PORT_TYPE
 n[6] <= n.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|Top|TripleDigitDisplay:comb_252|SevenSegDecoder:comb_8
+|Top|TripleDigitDisplay:comb_291|SevenSegDecoder:comb_8
 m[0] => n.IN1
 m[0] => n.IN1
 m[0] => n.IN1
@@ -2471,7 +2471,7 @@ drawing <= pix.DB_MAX_OUTPUT_PORT_TYPE
 done <= done~reg0.DB_MAX_OUTPUT_PORT_TYPE
 
 
-|Top|color_mapper:comb_278
+|Top|color_mapper:comb_317
 clk => color_value[0]~reg0.CLK
 clk => color_value[1]~reg0.CLK
 clk => color_value[2]~reg0.CLK

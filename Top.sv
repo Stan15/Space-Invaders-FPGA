@@ -137,10 +137,10 @@ module Top(
 	localparam SPACESHIP_HEIGHT = 18;
 	
 	//-----spaceship position controller (replace code here with code for accelerometer controlling spaceship_x and spaceship_y value. for better modularity, the controller can be implemented in its own module)----
-	logic [SCREEN_CORDW-1:0] spaceship_x = 16'd50;
+	logic [SCREEN_CORDW-1:0] spaceship_x = 16'd300;
 	logic [SCREEN_CORDW-1:0] spaceship_y = 16'd240;
-	reg [7:0] spaceship_x_default = 8'd50; //for resetting the spaceship_x
-	reg [7:0] spaceship_y_default = 8'd240; //for resetting the spaceship_y
+	reg [SCREEN_CORDW-1:0] spaceship_x_default = 16'd300; //for resetting the spaceship_x
+	reg [SCREEN_CORDW-1:0] spaceship_y_default = 16'd240; //for resetting the spaceship_y
 	
 	// Pressing KEY0 freezes the accelerometer's output
 	assign reset_n = KEY[0];
@@ -154,16 +154,25 @@ module Top(
 		end
 		else
 		begin
-			if(data_X [15:12] >= 4'd7 && spaceship_x < H_RES) //Shifting to the right
+			//spaceship_x direction
+			if(data_X [15:12] >= 4'd7 && (data_X[7:4]/10 == 4'd0) && spaceship_x < H_RES-40) //Shifting spaceship_x to the right
 			begin
-				spaceship_x <= spaceship_x + 1  ;
+				spaceship_x <= spaceship_x + 5;
 			end
-			else if(data_X [15:12] <= 4'd0 && spaceship_x > 0) //Shifting to the left
+			else if(data_X [15:12] <= 4'd0 && spaceship_x > 0) //Shifting spaceship_x to the left
 			begin
-				spaceship_x = 0;
+				spaceship_x <= spaceship_x - 5;
 			end
-			spaceship_y <= 240;
-		
+
+			//spaceship_y direction
+			if(data_Y [15:12] >= 4'd7 && (data_Y[7:4]/10 == 4'd0) && spaceship_y > 0) //Shifting spaceship_y to the up
+			begin
+				spaceship_y <= spaceship_y - 5;
+			end
+			else if(data_Y [15:12] <= 4'd0 && spaceship_y < V_RES-39) //Shifting spaceship_y to the down
+			begin
+				spaceship_y <= spaceship_y + 5;
+			end
 		end
 	end
 
@@ -231,6 +240,7 @@ module Top(
 		end
 	end
 	
+	
 	assign LEDR[0] = collision;
 	//===========End of Collision Detection==========
 	
@@ -297,12 +307,12 @@ endmodule
 module AccelClockDivider(cin, cout);			
 	input cin;
 	output cout;
-	reg[31:0] count = 32'd0;                // initializing a register count for 32 bits
-	parameter D = 32'd50000000;
+	reg[31:0] count = 32'd0; // initializing a register count for 32 bits
+	parameter D = 32'd25000000;
 
 	always @( posedge cin)                   
 	begin
-		 count <= count + 32'd15;                
+		 count <= count + 32'd100;                
 		 if (count > D) begin                       
 			  count <= 32'd0;
 		end
