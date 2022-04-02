@@ -142,11 +142,18 @@ module Top(
 	reg [SCREEN_CORDW-1:0] spaceship_x_default = 16'd300; //for resetting the spaceship_x
 	reg [SCREEN_CORDW-1:0] spaceship_y_default = 16'd240; //for resetting the spaceship_y
 	
+	//-----asteroid position controller-----
+	logic [SCREEN_CORDW-1:0] asteroid_x = 16'd70;
+	logic [SCREEN_CORDW-1:0] asteroid_y = 16'd270;
+	reg [SCREEN_CORDW-1:0] asteroid_x_default = 16'd70; //for resetting the asteroid_x
+	reg [SCREEN_CORDW-1:0] asteroid_y_default = 16'd270; //for resetting the asteroid_y
+	
 	// Pressing KEY0 freezes the accelerometer's output
 	assign reset_n = KEY[0];
 	
-	always_ff @(posedge slowclk) begin
+	always_ff @(posedge clk_pix) begin
 		
+		// SPACESHIP MOVEMENT
 		if(~reset_n)
 		begin
 			spaceship_x <= spaceship_x_default;
@@ -155,29 +162,45 @@ module Top(
 		else
 		begin
 			//spaceship_x direction
-			if(data_X [15:12] >= 4'd7 && (data_X[7:4]/10 == 4'd0) && spaceship_x < H_RES-40) //Shifting spaceship_x to the right
+			if(data_X [10:7] >= 1 && data_X [10:7] <= 3 && frame && spaceship_x < H_RES-40) //Shifting spaceship_x to the right
 			begin
-				spaceship_x <= spaceship_x + 5;
+				spaceship_x <= spaceship_x - 2;
 			end
-			else if(data_X [15:12] <= 4'd0 && spaceship_x > 0) //Shifting spaceship_x to the left
+			else if(data_X [10:7] >=12 && data_X [10:7] <= 14 && frame && spaceship_x > 0) //Shifting spaceship_x to the left
 			begin
-				spaceship_x <= spaceship_x - 5;
+				spaceship_x <= spaceship_x + 2;
 			end
 
 			//spaceship_y direction
-			if(data_Y [15:12] >= 4'd7 && (data_Y[7:4]/10 == 4'd0) && spaceship_y > 0) //Shifting spaceship_y to the up
+			if(data_Y [10:7] >= 1 && data_Y [10:7] <= 3  && frame && spaceship_y > 0) //Shifting spaceship_y to the up
 			begin
-				spaceship_y <= spaceship_y - 5;
+				spaceship_y <= spaceship_y + 2 ;
 			end
-			else if(data_Y [15:12] <= 4'd0 && spaceship_y < V_RES-39) //Shifting spaceship_y to the down
+			else if(data_Y [10:7] >= 12 && data_Y [10:7] <= 14 && frame && spaceship_y < V_RES-39) //Shifting spaceship_y to the down
 			begin
-				spaceship_y <= spaceship_y + 5;
+				spaceship_y <= spaceship_y - 2;
 			end
 		end
+		
+		//ASTEROID MOVEMENT
+		if(~reset_n)
+		begin
+			asteroid_x <= spaceship_x_default;
+			asteroid_y <= spaceship_y_default;
+		end
+		else
+		begin
+			//asteroid_x direction
+			if( frame && SW[9] ) // update on every refresh of the screen if obstacles are enabled on sw9
+				if( asteroid_y >= V_RES ) 	asteroid_y = 0;
+				else if( asteroid_x >= H_RES ) 	asteroid_x = 0;
+				else	begin							asteroid_y <= asteroid_y + 3; asteroid_x <= asteroid_x + 1; end
+		end
+		
 	end
 
-	TripleDigitDisplay(spaceship_x, HEX3, HEX4, HEX5); // display x and y coordinates of the spaceship
-	TripleDigitDisplay(spaceship_y, HEX0, HEX1, HEX2);
+	TripleDigitDisplay(data_Y[7:0], HEX3, HEX4, HEX5); // display x and y coordinates of the spaceship
+	TripleDigitDisplay(data_X[7:0], HEX0, HEX1, HEX2);
 	
 	//----------------------------------------
 	
@@ -220,7 +243,7 @@ module Top(
 		.clk_pix, .rst(0), .en(SW[9]),
 		.screen_line,
 		.screen_x, .screen_y,
-		.sprite_x(70), .sprite_y(270),
+		.sprite_x(asteroid_x), .sprite_y(asteroid_y),
 		.pixel(obstacle_1_pixel),
 		.drawing(obstacle_1_drawing)
 	);
@@ -278,8 +301,8 @@ module Top(
 	
 endmodule
 
-module TripleDigitDisplay (input[9:0] number, output[6:0] dispUnit, dispTens, dispHundreds);
-	wire [6:0]unit, tens;
+module TripleDigitDisplay (input[7:0] number, output[6:0] dispUnit, dispTens, dispHundreds);
+
 	SevenSegDecoder (number%10, dispUnit);
 	SevenSegDecoder ((number%100)/10, dispTens);
 	SevenSegDecoder (number/100, dispHundreds);
