@@ -231,35 +231,46 @@ module Top(
 	// i'm creating just one obstacle for testing purposes. we should figure out how to create
 	// multiple obstacles and make sure that they are spaced out. might require using generate blocks in some way.
 	logic [SCREEN_CORDW-1:0] obstacle_1_x, obstacle_1_y;
-	logic [3:0] obstacle_1_pixel;
-	logic obstacle_1_drawing;			// flag indicating if spaceship pixel should be drawn the current screen position.
-	sprite #(
-		.FILE(OBSTACLE_FILE),
-		.WIDTH(OBSTACLE_WIDTH),
-		.HEIGHT(OBSTACLE_HEIGHT),
-		.SCALE(10), 							// it is scaled by 4x its original size
-		.SCREEN_CORDW(SCREEN_CORDW)
-	) obstacle1(
-		.clk_pix, .rst(0), .en(SW[9]),
-		.screen_line,
-		.screen_x, .screen_y,
-		.sprite_x(asteroid_x), .sprite_y(asteroid_y),
-		.pixel(obstacle_1_pixel),
-		.drawing(obstacle_1_drawing)
-	);
+	logic [9:0] [3:0]obstacle_1_drawing;			// flag indicating if spaceship pixel should be drawn the current screen position.
+	logic [9:0] obstacle_1_pixel;
+	
+	genvar i;
+	generate
+		for( i=0; i<10; i=i+1)begin: asteroid				
+			sprite #(
+				.FILE(OBSTACLE_FILE),
+				.WIDTH(OBSTACLE_WIDTH),
+				.HEIGHT(OBSTACLE_HEIGHT),
+				.SCALE(10), 							// it is scaled by 4x its original size
+				.SCREEN_CORDW(SCREEN_CORDW)
+			) obstacle1(
+				.clk_pix, .rst(0), .en(SW[9]),
+				.screen_line,
+				.screen_x, .screen_y,
+				.sprite_x(asteroid_x+(50*i)), .sprite_y(asteroid_y+(30*i)),
+				.pixel(obstacle_1_pixel[i]),
+				.drawing(obstacle_1_drawing[i])
+			);		
+		end
+	endgenerate
+	
+	
 	//======End of Obstacle Logic=======================
 	
 	//============Collision Detection==============
 	logic collision; // signal to use to check if there's a collision
 	wire collision_in_frame;
+	integer j;
 	always @(posedge clk_pix) begin
 		if (frame) begin
 			// only update the collision bit at the end of each frame (after we've gone through all pixels checking for a collision)
 			collision <= collision_in_frame;
 			collision_in_frame <= 0;
 		end else begin
-			// as we move across the screen, check if there's a collision at the pixel we are currently at
-			collision_in_frame <= collision_in_frame || spaceship_drawing && obstacle_1_drawing;
+			// as we move across the screen, check if there's a collision at the pixel we are currently at							
+			for(j = 0; j < 10; j = j+1) begin
+				collision_in_frame <= collision_in_frame || spaceship_drawing && obstacle_1_drawing[j];			
+			end			
 		end
 	end
 	
@@ -270,7 +281,11 @@ module Top(
 	//===========Color Value Logic========================
 	wire [3:0] bg_pix = 15;
 	logic [3:0] screen_pix;
-	assign screen_pix = obstacle_1_drawing ? obstacle_1_pixel : (spaceship_drawing ? spaceship_pixel : bg_pix); // hierarchy of sprites to display.
+
+	reg [3:0]total_pixel;
+	integer k;
+	
+	assign screen_pix = spaceship_drawing? spaceship_pixel : total_pixel;  // hierarchy of sprites to display.
 	
 	// map pixel color code to actual red-green-blue values
 	logic [11:0] color_value;
@@ -278,6 +293,11 @@ module Top(
 	logic [3:0] red, green, blue;
 	always_comb begin
 		{red, green, blue} = color_value;
+		
+		total_pixel = bg_pix;
+		for(k = 0; k < 10; k=k+1) begin
+			total_pixel = obstacle_1_drawing[k] ? obstacle_1_pixel[k] : total_pixel;
+		end	
 	end
 	//==========End of Color Value Logic===================
 	
