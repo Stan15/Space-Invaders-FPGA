@@ -41,6 +41,7 @@ module Top(
    inout 		          		GSENSOR_SDI,
    inout 		          		GSENSOR_SDO
 );
+	parameter COLR_BITS = 12;
 	//===========VGA Controller Logic==========================
 	localparam H_RES=640;			// horizontal screen resolution
 	localparam V_RES=480;			// vertical screen resolution
@@ -205,14 +206,15 @@ module Top(
 	//----------------------------------------
 	
 	// spaceship pixel data generator
-	logic [3:0] spaceship_pixel;
+	logic [COLR_BITS-1:0] spaceship_pixel;
 	logic spaceship_drawing;			// flag indicating if spaceship pixel should be drawn the current screen position.
 	sprite #(
 		.FILE(SPACESHIP_FILE),
 		.WIDTH(SPACESHIP_WIDTH),
 		.HEIGHT(SPACESHIP_HEIGHT),
 		.SCALE(2), 							// it is scaled by 4x its original size
-		.SCREEN_CORDW(SCREEN_CORDW)
+		.SCREEN_CORDW(SCREEN_CORDW),
+		.COLR_BITS(COLR_BITS)
 	) spaceship(
 		.clk_pix, .rst(0), .en(1),
 		.screen_line,

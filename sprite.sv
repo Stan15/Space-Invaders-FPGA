@@ -3,7 +3,7 @@ module sprite #(
 	parameter WIDTH = 10,
 	parameter HEIGHT = 10,
 	parameter SCREEN_CORDW = 16, 	// # of bits used to store screen coordinates
-	parameter COLR_BITS = 4, 		// # of bits used to address color (there are 2^4=16 colors possible)
+	parameter COLR_BITS = 12, 		// # of bits used to address color (there are 2^4=16 colors possible)
 	parameter SCALE = 1
 ) (
 	input clk_pix, rst, en, screen_line,

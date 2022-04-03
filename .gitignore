@@ -1,4 +1,5 @@
-./incremental_db
-./db
-./output_files
-./*.bak
+incremental_db/
+db/
+output_files/
+*.bak
+*.swp
