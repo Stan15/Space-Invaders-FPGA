@@ -39,7 +39,6 @@ module Top(
    inout 		          		GSENSOR_SDI,
    inout 		          		GSENSOR_SDO
 );
-	parameter COLR_BITS = 12;
 	//===========VGA Controller Logic==========================
 	localparam H_RES=640;			// horizontal screen resolution
 	localparam V_RES=480;			// vertical screen resolution
@@ -82,20 +81,19 @@ module Top(
 		else if (~SW[0] && spaceship_x > 0) spaceship_x <= spaceship_x - 1;
 		spaceship_y <= 300;
 	end
-	TripleDigitDisplay(spaceship_x, HEX3, HEX4, HEX5); // display x and y coordinates of the spaceship to 7-seg display
+	TripleDigitDisplay(spaceship_x, HEX3, HEX4, HEX5); // display x and y coordinates of the spaceship
 	TripleDigitDisplay(spaceship_y, HEX0, HEX1, HEX2);
 	//----------------------------------------
 	
 	// spaceship pixel data generator
-	logic [COLR_BITS-1:0] spaceship_pixel;
+	logic [3:0] spaceship_pixel;
 	logic spaceship_drawing;			// flag indicating if spaceship pixel should be drawn the current screen position.
 	sprite #(
 		.FILE(SPACESHIP_FILE),
 		.WIDTH(SPACESHIP_WIDTH),
 		.HEIGHT(SPACESHIP_HEIGHT),
 		.SCALE(2), 							// it is scaled by 4x its original size
-		.SCREEN_CORDW(SCREEN_CORDW),
-		.COLR_BITS(COLR_BITS)
+		.SCREEN_CORDW(SCREEN_CORDW)
 	) spaceship(
 		.clk_pix, .rst(0), .en(1),
 		.screen_line,
@@ -115,7 +113,7 @@ module Top(
 	// i'm creating just one obstacle for testing purposes. we should figure out how to create
 	// multiple obstacles and make sure that they are spaced out. might require using generate blocks in some way.
 	logic [SCREEN_CORDW-1:0] obstacle_1_x, obstacle_1_y;
-	logic [COLR_BITS-1:0] obstacle_1_pixel;
+	logic [3:0] obstacle_1_pixel;
 	logic obstacle_1_drawing;			// flag indicating if spaceship pixel should be drawn the current screen position.
 	sprite #(
 		.FILE(OBSTACLE_FILE),
@@ -151,8 +149,8 @@ module Top(
 	//===========End of Collision Detection==========
 	
 	//===========Color Value Logic========================
-	wire [COLR_BITS-1:0] bg_pix = 15;
-	logic [COLR_BITS-1:0] screen_pix;
+	wire [3:0] bg_pix = 15;
+	logic [3:0] screen_pix;
 	assign screen_pix = obstacle_1_drawing ? obstacle_1_pixel : (spaceship_drawing ? spaceship_pixel : bg_pix); // hierarchy of sprites to display.
 	
 	// map pixel color code to actual red-green-blue values
