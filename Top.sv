@@ -11,11 +11,11 @@ module Top(
    input 	MAX10_CLK2_50,
 	
 	////////////// VGA /////////////////
-	output VGA_HS,      		// horizontal sync
-	output VGA_VS,	     		// vertical sync
-	output [3:0] VGA_R,
-	output [3:0] VGA_G,	
-	output [3:0] VGA_B,
+	output reg VGA_HS,      		// horizontal sync
+	output reg VGA_VS,	     		// vertical sync
+	output reg [3:0] VGA_R,
+	output reg [3:0] VGA_G,	
+	output reg [3:0] VGA_B,
 	
    //////////// 7SEG //////////
    output		     [7:0]		HEX0,
@@ -133,7 +133,7 @@ module Top(
 	//======End of Accelerometer Logic===============
 	
 	//==========Spaceship Logic===================
-	localparam SPACESHIP_FILE = "spaceship.mem";
+	localparam SPACESHIP_FILE = "./sprites/spaceship.mem";
 	localparam SPACESHIP_WIDTH = 17;
 	localparam SPACESHIP_HEIGHT = 18;
 	localparam SPACESHIP_SCALE = 2;
@@ -146,7 +146,7 @@ module Top(
 	// Pressing KEY0 freezes the accelerometer's output
 	assign reset_n = KEY[0];
 	
-	always_ff @(posedge clk_pix) begin
+	always_ff @(posedge clk_pix, negedge reset_n) begin
 		
 		// SPACESHIP MOVEMENT
 		if(~reset_n)
@@ -193,7 +193,7 @@ module Top(
 		.SCALE(SPACESHIP_SCALE), 							// it is scaled by 4x its original size
 		.SCREEN_CORDW(SCREEN_CORDW),
 		.COLR_BITS(COLR_BITS)
-	) spaceship(
+	) spaceship (
 		.clk_pix, .rst(0), .en(1),
 		.screen_line,
 		.screen_x, .screen_y,
@@ -203,6 +203,7 @@ module Top(
 	);
 	//======End of Spaceship Logic===============
 	
+	localparam ASTEROID_COUNT = 10;
 	//=======Bullet logic
 	localparam BULLET_SPEED = 2;
 	
@@ -213,7 +214,7 @@ module Top(
 		.COLR_BITS(COLR_BITS),
 		.SCREEN_CORDW(SCREEN_CORDW)
 	) (
-		.clk(clk_pix), .rst(|asteroid_shot), // reset when any of the asteroids are shot
+		.clk(clk_pix), .rst(reset_n || asteroid_shot), // reset when any of the asteroids are shot
 		.fire(KEY[1]), .frame, .screen_line,
 		.speed(BULLET_SPEED),
 		.screen_x, .screen_y,
@@ -223,21 +224,11 @@ module Top(
 	//=======End of bullet logic
 	
 	//==========Asteroid Logic===================
-	
-	localparam ASTEROID_FILE = "asteroid.mem";
-	localparam ASTEROID_WIDTH = 4;
-	localparam ASTEROID_HEIGHT = 4;
-	localparam ASTEROID_SCALE = 10;
-	
-	localparam ASTEROID_COUNT = 10;
 	localparam ASTEROID_SPEED = 1;
 	
 	logic [ASTEROID_COUNT-1:0] asteroid_enabled;
 	logic [ASTEROID_COUNT-1:0] asteroid_drawing;
 	logic [COLR_BITS-1:0] asteroid_pixels [ASTEROID_COUNT-1:0];
-	
-	logic reset_asteroids;
-	assign reset_asteroids = KEY[0];
 	
 	genvar i;
 	generate
@@ -250,7 +241,7 @@ module Top(
 				.SCREEN_CORDW(SCREEN_CORDW),
 				.COLR_BITS(COLR_BITS)
 			) (
-				.clk(clk_pix), .rst(reset_asteroid),
+				.clk(clk_pix), .rst(reset_n),
 				.frame, .screen_line,
 				.id(i),
 				.speed(ASTEROID_SPEED),
@@ -268,8 +259,8 @@ module Top(
 	
 	//============Collision Detection==============
 	logic collision; // signal to use to check if there's a collision between spaceship and asteroid
-	wire collision_in_frame;
-	wire [ASTEROID_COUNT-1:0] asteroid_shot_in_frame;
+	reg collision_in_frame;
+	reg [ASTEROID_COUNT-1:0] asteroid_shot_in_frame;
 	always @(posedge clk_pix) begin
 		if (frame) begin
 			// only update the collision bit at the end of each frame (after we've gone through all pixels checking for a collision)

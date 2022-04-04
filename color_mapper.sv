@@ -3,10 +3,10 @@ module color_mapper #(
 ) (
 	input clk, 
 	input [COLR_BITS-1:0] color_code, 
-	output [11:0] color_value
+	output reg [11:0] color_value
 );
-	localparam INIT_F = "color_map.mem";
-	localparam COLR_COUNT = COLR_BITS**2;
+	localparam INIT_F = "./sprites/color_map.mem";
+	localparam COLR_COUNT = 2**COLR_BITS;
 	
 	reg [11:0]memory[COLR_COUNT-1:0];
 	initial begin

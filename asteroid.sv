@@ -17,7 +17,7 @@ module asteroid #(
 	output [COLR_BITS-1:0] pixel
 );
 
-	localparam ASTEROID_FILE = "asteroid.mem";
+	localparam ASTEROID_FILE = "./sprites/asteroid.mem";
 	localparam ASTEROID_WIDTH = 4;
 	localparam ASTEROID_HEIGHT = 4;
 	localparam ASTEROID_SCALE = 10;
@@ -27,16 +27,16 @@ module asteroid #(
 	logic [15:0] seed_x, seed_y; // seeds for randomization of x and y coordinates
 	// to get a different seed for each asteroid, 
 	// i simply perform arbitrary operations on a base seed using the id
-	assign seed_x = (16'b0001001011011000 - id)*id ^ (16'd3392*id);
-	assign seed_y = (16'b1001010001111010 - id)*id ^ (16'd8768*id);
+	assign seed_x = (16'b0001001011011000 - id) ^ (16'd3392*id);
+	assign seed_y = (16'b1001010001111010 - id) ^ (16'd8768*id);
 	
 	logic [SCREEN_CORDW-1:0] rand_x, rand_y;
 	lfsr randomize_x(frame, rst, seed_x, rand_x);
 	lfsr randomize_y(frame, rst, seed_y, rand_y);
 
 	logic asteroid_x, asteroid_y;
-	always_ff @(posedge frame) begin
-		if (rst) begin
+	always_ff @(posedge frame, negedge rst) begin
+		if (~rst) begin
 			// randomize y-coord with window size equal to vertical resolution
 			asteroid_y <= -(rand_y % V_RES);
 			asteroid_x <= rand_x % H_RES;
@@ -58,8 +58,8 @@ module asteroid #(
 		.SCALE(ASTEROID_SCALE),
 		.SCREEN_CORDW(SCREEN_CORDW),
 		.COLR_BITS(COLR_BITS)
-	) obstacle1(
-		.clk_pix(clk), .rst, .en(enabled),
+	) asteroid (
+		.clk_pix(clk), .rst(0), .en(enabled),
 		.screen_line,
 		.screen_x, .screen_y,
 		.sprite_x(asteroid_x), .sprite_y(asteroid_y),

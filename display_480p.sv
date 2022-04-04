@@ -40,7 +40,7 @@ module display_480p #(
 
 	// generate horizontal and vertical sync with correct polarity
 	
-	wire true_hsync, true_vsync;
+	reg true_hsync, true_vsync;
 	assign hsync = H_POL ? true_hsync : ~true_hsync; // H_POL and V_POL are the polarity of the sync signals (i.e. whether they are 0 or 1 when they are asserted)
 	assign vsync = V_POL ? true_vsync : ~true_vsync;
 	always_ff @(posedge clk_pix) begin

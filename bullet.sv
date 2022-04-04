@@ -12,7 +12,7 @@ module bullet #(
 		output drawing,
 		output [COLR_BITS-1:0] pixel
 );
-	localparam BULLET_FILE = "bullet.mem";
+	localparam BULLET_FILE = "./sprites/bullet.mem";
 	localparam BULLET_WIDTH = 4;
 	localparam BULLET_HEIGHT = 4;
 	localparam BULLET_SCALE = 10;
@@ -69,7 +69,7 @@ module bullet #(
 		.SCREEN_CORDW(SCREEN_CORDW),
 		.COLR_BITS(COLR_BITS)
 	) bullet (
-		.clk_pix(clk), .rst, .en(bullet_active),
+		.clk_pix(clk), .rst(0), .en(bullet_active),
 		.screen_line,
 		.screen_x, .screen_y,
 		.sprite_x(bullet_x), .sprite_y(bullet_y),
