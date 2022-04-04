@@ -30,7 +30,7 @@ module sprite #(
 	//------------------------------------------------
 	
 	//-----------control what sprite pixel data to display based on the current screen coordinates
-	logic drawing_tmp;
+	logic in_region;
 	sprite_main #(
 		.WIDTH(WIDTH),
 		.HEIGHT(HEIGHT),
@@ -45,11 +45,11 @@ module sprite #(
 		.data_in(rom_data),
 		.pos(rom_addr),
 		.pix(pixel),
-		.drawing(drawing_tmp),
+		.drawing(in_region),
 		.done()
 	);
 	
-	assign drawing = drawing_tmp && pixel!=0; // it is only drawing when we are drawing a non-transparent pixel of the sprite
+	assign drawing = in_region && pixel!=0; // it is only drawing when we are drawing a non-transparent pixel of the sprite
 
 	//----------------------------------------------------
 	
@@ -81,6 +81,8 @@ module sprite_main #(
 	 
 	logic start;
 	assign start = (line && sy==spry);
+	logic pre_start;
+	assign pre_start = (line && sy < spry);
 
 	// position within sprite
 	logic [$clog2(WIDTH)-1:0]  ox;
@@ -162,7 +164,7 @@ module sprite_main #(
 			IDLE:       state_next = start ? START : IDLE;
 			START:      state_next = AWAIT_POS;
 			AWAIT_POS:  state_next = (sx == sprx-2) ? DRAW : AWAIT_POS;  // BRAM
-			DRAW:       state_next = !last_pixel ? DRAW :
+			DRAW:       state_next = pre_start ? IDLE : !last_pixel ? DRAW :	// pre_start used to prevent drawing when sprite overflows screen
 											(!last_line ? NEXT_LINE : DONE);
 			NEXT_LINE:  state_next = AWAIT_POS;
 			DONE:       state_next = IDLE;

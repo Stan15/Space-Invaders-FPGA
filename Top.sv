@@ -136,18 +136,12 @@ module Top(
 	localparam SPACESHIP_FILE = "spaceship.mem";
 	localparam SPACESHIP_WIDTH = 17;
 	localparam SPACESHIP_HEIGHT = 18;
+	localparam SPACESHIP_SCALE = 2;
 	
 	//-----spaceship position controller (replace code here with code for accelerometer controlling spaceship_x and spaceship_y value. for better modularity, the controller can be implemented in its own module)----
 	logic [SCREEN_CORDW-1:0] spaceship_x = 16'd300;
 	logic [SCREEN_CORDW-1:0] spaceship_y = 16'd240;
-	reg [SCREEN_CORDW-1:0] spaceship_x_default = 16'd300; //for resetting the spaceship_x
-	reg [SCREEN_CORDW-1:0] spaceship_y_default = 16'd240; //for resetting the spaceship_y
 	
-	//-----asteroid position controller-----
-	logic [SCREEN_CORDW-1:0] asteroid_x = 16'd70;
-	logic [SCREEN_CORDW-1:0] asteroid_y = 16'd270;
-	reg [SCREEN_CORDW-1:0] asteroid_x_default = 16'd70; //for resetting the asteroid_x
-	reg [SCREEN_CORDW-1:0] asteroid_y_default = 16'd270; //for resetting the asteroid_y
 	
 	// Pressing KEY0 freezes the accelerometer's output
 	assign reset_n = KEY[0];
@@ -157,8 +151,8 @@ module Top(
 		// SPACESHIP MOVEMENT
 		if(~reset_n)
 		begin
-			spaceship_x <= spaceship_x_default;
-			spaceship_y <= spaceship_y_default;
+			spaceship_x <= 16'd300;
+			spaceship_y <= 16'd240;
 		end
 		else
 		begin
@@ -182,22 +176,6 @@ module Top(
 				spaceship_y <= spaceship_y - 2;
 			end
 		end
-		
-		//ASTEROID MOVEMENT
-		if(~reset_n)
-		begin
-			asteroid_x <= spaceship_x_default;
-			asteroid_y <= spaceship_y_default;
-		end
-		else
-		begin
-			//asteroid_x direction
-			if( frame && SW[9] ) // update on every refresh of the screen if obstacles are enabled on sw9
-				if( asteroid_y >= V_RES ) 	asteroid_y = 0;
-				else if( asteroid_x >= H_RES ) 	asteroid_x = 0;
-				else	begin							asteroid_y <= asteroid_y + 3; asteroid_x <= asteroid_x + 1; end
-		end
-		
 	end
 
 	TripleDigitDisplay(data_Y[7:0], HEX3, HEX4, HEX5); // display x and y coordinates of the spaceship
@@ -207,12 +185,12 @@ module Top(
 	
 	// spaceship pixel data generator
 	logic [COLR_BITS-1:0] spaceship_pixel;
-	logic spaceship_drawing;			// flag indicating if spaceship pixel should be drawn the current screen position.
+	logic spaceship_drawing;			// flag indicating if spaceship pixel is to be drawn on the current screen position.
 	sprite #(
 		.FILE(SPACESHIP_FILE),
 		.WIDTH(SPACESHIP_WIDTH),
 		.HEIGHT(SPACESHIP_HEIGHT),
-		.SCALE(2), 							// it is scaled by 4x its original size
+		.SCALE(SPACESHIP_SCALE), 							// it is scaled by 4x its original size
 		.SCREEN_CORDW(SCREEN_CORDW),
 		.COLR_BITS(COLR_BITS)
 	) spaceship(
@@ -225,54 +203,85 @@ module Top(
 	);
 	//======End of Spaceship Logic===============
 	
-	//==========Obstacle Logic===================
-	localparam OBSTACLE_FILE = "obstacle.mem";
-	localparam OBSTACLE_WIDTH = 4;
-	localparam OBSTACLE_HEIGHT = 4;
+	//=======Bullet logic
+	localparam BULLET_SPEED = 2;
 	
-	// i'm creating just one obstacle for testing purposes. we should figure out how to create
-	// multiple obstacles and make sure that they are spaced out. might require using generate blocks in some way.
-	logic [SCREEN_CORDW-1:0] obstacle_1_x, obstacle_1_y;
-	logic [9:0] [3:0]obstacle_1_drawing;			// flag indicating if spaceship pixel should be drawn the current screen position.
-	logic [9:0] obstacle_1_pixel;
+	logic bullet_drawing;
+	logic [COLR_BITS-1:0] bullet_pix;
+	logic [ASTEROID_COUNT-1:0] asteroid_shot;
+	bullet #(
+		.COLR_BITS(COLR_BITS),
+		.SCREEN_CORDW(SCREEN_CORDW)
+	) (
+		.clk(clk_pix), .rst(|asteroid_shot), // reset when any of the asteroids are shot
+		.fire(KEY[1]), .frame, .screen_line,
+		.speed(BULLET_SPEED),
+		.screen_x, .screen_y,
+		.spaceship_x, .spaceship_y,
+		.drawing(bullet_drawing), .pixel(bullet_pix)
+	);
+	//=======End of bullet logic
+	
+	//==========Asteroid Logic===================
+	
+	localparam ASTEROID_FILE = "asteroid.mem";
+	localparam ASTEROID_WIDTH = 4;
+	localparam ASTEROID_HEIGHT = 4;
+	localparam ASTEROID_SCALE = 10;
+	
+	localparam ASTEROID_COUNT = 10;
+	localparam ASTEROID_SPEED = 1;
+	
+	logic [ASTEROID_COUNT-1:0] asteroid_enabled;
+	logic [ASTEROID_COUNT-1:0] asteroid_drawing;
+	logic [COLR_BITS-1:0] asteroid_pixels [ASTEROID_COUNT-1:0];
+	
+	logic reset_asteroids;
+	assign reset_asteroids = KEY[0];
 	
 	genvar i;
 	generate
-		for( i=0; i<10; i=i+1)begin: asteroid				
-			sprite #(
-				.FILE(OBSTACLE_FILE),
-				.WIDTH(OBSTACLE_WIDTH),
-				.HEIGHT(OBSTACLE_HEIGHT),
-				.SCALE(10), 							// it is scaled by 4x its original size
-				.SCREEN_CORDW(SCREEN_CORDW)
-			) obstacle1(
-				.clk_pix, .rst(0), .en(SW[9]),
-				.screen_line,
+		for(i=0; i<ASTEROID_COUNT; i=i+1)begin: asteroid
+			asteroid #(
+				.ASTEROID_COUNT(ASTEROID_COUNT),
+				.WINDOW_SIZE(3),
+				.H_RES(H_RES),
+				.V_RES(V_RES),
+				.SCREEN_CORDW(SCREEN_CORDW),
+				.COLR_BITS(COLR_BITS)
+			) (
+				.clk(clk_pix), .rst(reset_asteroid),
+				.frame, .screen_line,
+				.id(i),
+				.speed(ASTEROID_SPEED),
+				.shot(asteroid_shot[i]),
 				.screen_x, .screen_y,
-				.sprite_x(asteroid_x+(50*i)), .sprite_y(asteroid_y+(30*i)),
-				.pixel(obstacle_1_pixel[i]),
-				.drawing(obstacle_1_drawing[i])
-			);		
+				.enabled(asteroid_enabled[i]),
+				.drawing(asteroid_drawing[i]),
+				.pixel(asteroid_pixels[i])
+			);
 		end
 	endgenerate
 	
 	
-	//======End of Obstacle Logic=======================
+	//======End of Asteroid Logic=======================
 	
 	//============Collision Detection==============
-	logic collision; // signal to use to check if there's a collision
+	logic collision; // signal to use to check if there's a collision between spaceship and asteroid
 	wire collision_in_frame;
-	integer j;
+	wire [ASTEROID_COUNT-1:0] asteroid_shot_in_frame;
 	always @(posedge clk_pix) begin
 		if (frame) begin
 			// only update the collision bit at the end of each frame (after we've gone through all pixels checking for a collision)
 			collision <= collision_in_frame;
 			collision_in_frame <= 0;
+			
+			asteroid_shot <= asteroid_shot_in_frame;
+			asteroid_shot_in_frame <= {ASTEROID_COUNT{1'b0}};
 		end else begin
 			// as we move across the screen, check if there's a collision at the pixel we are currently at							
-			for(j = 0; j < 10; j = j+1) begin
-				collision_in_frame <= collision_in_frame || spaceship_drawing && obstacle_1_drawing[j];			
-			end			
+			collision_in_frame <= collision_in_frame || (spaceship_drawing && (|asteroid_drawing)); // there's a collision if spaceship is drawing and any one of the asteroids is drawing
+			asteroid_shot_in_frame <= asteroid_shot_in_frame | ({ASTEROID_COUNT{bullet_drawing}} & asteroid_drawing);
 		end
 	end
 	
@@ -282,24 +291,21 @@ module Top(
 	
 	//===========Color Value Logic========================
 	wire [3:0] bg_pix = 15;
-	logic [3:0] screen_pix;
-
-	reg [3:0]total_pixel;
-	integer k;
-	
-	assign screen_pix = spaceship_drawing? spaceship_pixel : total_pixel;  // hierarchy of sprites to display.
+	logic [3:0] screen_pix, asteroid_pix;
+	always_comb begin
+		asteroid_pix = 0;
+		for(integer k = 0; k < ASTEROID_COUNT; k=k+1) begin
+			asteroid_pix = asteroid_drawing[k] ? asteroid_pixels[k] : asteroid_pix;
+		end
+	end
+	assign screen_pix = spaceship_drawing ? spaceship_pixel : bullet_drawing ? bullet_pix : asteroid_pix ? asteroid_pix : bg_pix;  // hierarchy of sprites to display.
 	
 	// map pixel color code to actual red-green-blue values
 	logic [11:0] color_value;
-	color_mapper (.clk(clk_pix), .color_code(screen_pix), .color_value);
+	color_mapper #(.COLR_BITS(COLR_BITS)) (.clk(clk_pix), .color_code(screen_pix), .color_value);
 	logic [3:0] red, green, blue;
 	always_comb begin
 		{red, green, blue} = color_value;
-		
-		total_pixel = bg_pix;
-		for(k = 0; k < 10; k=k+1) begin
-			total_pixel = obstacle_1_drawing[k] ? obstacle_1_pixel[k] : total_pixel;
-		end	
 	end
 	//==========End of Color Value Logic===================
 	
