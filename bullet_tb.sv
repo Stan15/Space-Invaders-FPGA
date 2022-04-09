@@ -1,19 +1,21 @@
 module bullet_tb();
 	bit clk, rst, fire, frame, screen_line, drawing;
+	logic [3:0] bullet_state;
 	logic [7:0] speed;
 	assign speed = 8'd1;
-	logic signed [15:0] screen_x, screen_y, spaceship_x, spaceship_y;
-	assign screen_x = 16'd10;
-	assign screen_y = 16'd10;
+	logic signed [15:0] screen_x, screen_y, spaceship_x, spaceship_y, bullet_x, bullet_y;
+	assign spaceship_x = 16'd10;
+	assign spaceship_y = 16'd10;
 	logic [3:0] pixel;
 	
 	bullet blt (
-		.clk(clk), .rst(rst), // reset when any of the asteroids are shot
+		.clk(clk), .rst(1), // reset when any of the asteroids are shot
 		.fire(fire), .frame(frame), .screen_line(screen_line),
 		.speed(speed),
 		.screen_x, .screen_y,
 		.spaceship_x, .spaceship_y,
-		.drawing(drawing), .pixel(pixel)
+		.drawing(drawing), .pixel(pixel),
+		.bullet_x, .bullet_y, .bullet_state
 	);
 	
 //	property shoot_start;
@@ -27,20 +29,19 @@ module bullet_tb();
 	
 	
 //	assert property (movement) $display("movement works"); else $display("movement doesn't work");
-	
 	initial begin
 		fire = 0;
-		@(negedge frame);
+		
 		fire = 1;
 		@(negedge frame);
-		fire=0;
+		fire = 0;
 		
-		repeat (10) @(posedge frame);
+		repeat (150) @(posedge frame);
 		
-		@(negedge frame);
 		fire = 1;
 		@(negedge frame);
-		fire=0;
+		fire = 0;
+		
 		
 		$display("done");
 
@@ -53,7 +54,7 @@ module bullet_tb();
 				clk = ~clk;
 				frame <= ~frame;
 			end
-			$display($time,"num=%16b",blt.bullet_y);
+			$monitor("bullet_fired: %b\nbullet_x: %d\nbullet_y: %d\nbullet_state: %b\n drawing: %b\n\n", fire, bullet_x, bullet_y, bullet_state, drawing);
 		end
 	end
 endmodule

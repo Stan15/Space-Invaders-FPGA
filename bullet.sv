@@ -13,8 +13,8 @@ module bullet #(
 		input signed [SCREEN_CORDW-1:0] spaceship_x, spaceship_y,
 		output drawing,
 		output [COLR_BITS-1:0] pixel,
-		output signed [SCREEN_CORDW-1:0] bullet_x, bullet_y,
-		output bullet_state
+		output logic signed [SCREEN_CORDW-1:0] bullet_x, bullet_y,
+		output [3:0]bullet_state
 );
 	localparam BULLET_FILE = "./sprites/bullet.mem";
 	localparam BULLET_WIDTH = 4;
@@ -46,7 +46,7 @@ module bullet #(
 				bullet_y <= spaceship_y;
 			end
 			MOVING: begin
-				bullet_y <= spaceship_y;
+				bullet_y <= bullet_y - 1'b1;
 				bullet_x <= spaceship_x;
 			end
 		endcase
@@ -75,7 +75,7 @@ module bullet #(
 		.H_RES(H_RES),
 		.V_RES(V_RES)
 	) bullet (
-		.clk_pix(clk), .rst(0), .en(1),
+		.clk_pix(clk), .rst(0), .en(state==MOVING),
 		.screen_line,
 		.screen_x, .screen_y,
 		.sprite_x(bullet_x), .sprite_y(bullet_y),

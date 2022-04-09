@@ -11,24 +11,24 @@ cModel Technology
 Z0 dC:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/simulation/modelsim
 vAccelClockDivider
 Z1 DXx6 sv_std 3 std 0 22 VYECXdT12H8WgbUP_5Y6:3
-Z2 !s110 1649449971
+Z2 !s110 1649527865
 !i10b 1
-!s100 J_mNQ<E[TVkT7<U>SRQ^A0
+!s100 =ZHe:O9Uz5QSFLbD_c6Rk1
 Z3 !s11b Dg1SIo80bB@j0V0VzS_@n1
-I7lm[75d_6UJ:49mgS:REH2
+I`dz;IE44g`^O3P?gl=3j>1
 Z4 VDg1SIo80bB@j0V0VzS_@n1
 S1
 R0
-Z5 w1649447637
+Z5 w1649472519
 Z6 8C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/Top.sv
 Z7 FC:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/Top.sv
 !i122 28
-L0 352 16
+L0 355 16
 Z8 OV;L;2020.1;71
 r1
 !s85 0
 31
-Z9 !s108 1649449971.000000
+Z9 !s108 1649527865.000000
 !s107 C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/Top.sv|
 Z10 !s90 -reportprogress|300|-work|work|C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/Top.sv|
 !i113 1
@@ -37,24 +37,24 @@ Z12 tCvgOpt 0
 n@accel@clock@divider
 vasteroid
 R1
-Z13 !s110 1649449969
+Z13 !s110 1649527863
 !i10b 1
-!s100 i];eQ4ESK3RQf07BS<@_f2
+!s100 MH1;`<^8kMUUldm9@P_K>1
 R3
-I?;9G]FjIKGh9za`L7f>SO1
+IMmclmi;LQUni=>fHgld1Q2
 R4
 S1
 R0
-w1649444058
+Z14 w1649467488
 8C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/asteroid.sv
 FC:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/asteroid.sv
 !i122 14
-L0 1 82
+L0 1 83
 R8
 r1
 !s85 0
 31
-Z14 !s108 1649449969.000000
+Z15 !s108 1649527863.000000
 !s107 C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/asteroid.sv|
 !s90 -reportprogress|300|-work|work|C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/asteroid.sv|
 !i113 1
@@ -70,7 +70,7 @@ I;JD2[=ajT1IB3d;jm>Ez^1
 R4
 S1
 R0
-w1649443026
+R14
 8C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/asteroid_tb.sv
 FC:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/asteroid_tb.sv
 !i122 15
@@ -79,7 +79,7 @@ R8
 r1
 !s85 0
 31
-R14
+R15
 !s107 C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/asteroid_tb.sv|
 !s90 -reportprogress|300|-work|work|C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/asteroid_tb.sv|
 !i113 1
@@ -87,11 +87,11 @@ R11
 R12
 vbullet
 R1
-R13
+Z16 !s110 1649527864
 !i10b 1
-!s100 :Uz3ZS9z=<cX5_:i0X`5l3
+!s100 GUnQYLBk]DGiY1YFLGQgZ3
 R3
-IRQ7oS8lTPH`<gMd=[R0]h3
+Id_d8oE]aZOn=fz:AEnjLk2
 R4
 S1
 R0
@@ -99,12 +99,12 @@ R5
 8C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/bullet.sv
 FC:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/bullet.sv
 !i122 16
-L0 3 84
+L0 3 83
 R8
 r1
 !s85 0
 31
-R14
+Z17 !s108 1649527864.000000
 !s107 C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/bullet.sv|
 !s90 -reportprogress|300|-work|work|C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/bullet.sv|
 !i113 1
@@ -112,24 +112,24 @@ R11
 R12
 vbullet_tb
 R1
-Z15 !s110 1649449970
+R16
 !i10b 1
-!s100 ;mOSOe:U5F_I44Y[E?SJ53
+!s100 54D`>^B<3FZd1_[i3[^PT2
 R3
-I[UAK@jHbzCS>XNjBX7Rn32
+Ih;0zFcioXhaLJSO`jo=RF1
 R4
 S1
 R0
-w1649445810
+w1649475413
 8C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/bullet_tb.sv
 FC:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/bullet_tb.sv
 !i122 17
-L0 1 56
+Z18 L0 1 60
 R8
 r1
 !s85 0
 31
-R14
+R17
 !s107 C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/bullet_tb.sv|
 !s90 -reportprogress|300|-work|work|C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/bullet_tb.sv|
 !i113 1
@@ -137,7 +137,7 @@ R11
 R12
 vcolor_mapper
 R1
-R15
+R16
 !i10b 1
 !s100 z<W3=:_P941N8A5@FRCMP3
 R3
@@ -145,7 +145,7 @@ I4_MiE=8M8]2F=i8lOWIRk3
 R4
 S1
 R0
-w1649090287
+R14
 8C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/color_mapper.sv
 FC:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/color_mapper.sv
 !i122 18
@@ -154,7 +154,7 @@ R8
 r1
 !s85 0
 31
-Z16 !s108 1649449970.000000
+R17
 !s107 C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/color_mapper.sv|
 !s90 -reportprogress|300|-work|work|C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/color_mapper.sv|
 !i113 1
@@ -162,7 +162,7 @@ R11
 R12
 vdisplay_480p
 R1
-R15
+R16
 !i10b 1
 !s100 X4k5^9^^3eE2Fm;L?LojT2
 R3
@@ -170,7 +170,7 @@ I1:@fW=D14al:eV3A>Y0^61
 R4
 S1
 R0
-w1649343695
+R14
 8C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/display_480p.sv
 FC:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/display_480p.sv
 !i122 19
@@ -179,7 +179,7 @@ R8
 r1
 !s85 0
 31
-R16
+R17
 !s107 C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/display_480p.sv|
 !s90 -reportprogress|300|-work|work|C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/display_480p.sv|
 !i113 1
@@ -187,7 +187,7 @@ R11
 R12
 vdisplay_480p_tb
 R1
-R15
+R16
 !i10b 1
 !s100 EjhjJ7W=2DDCT6WABje1V1
 R3
@@ -195,7 +195,7 @@ Ij9mhhicS3V11FLSSH5Jk?0
 R4
 S1
 R0
-w1649071940
+R14
 8C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/display_480p_tb.sv
 FC:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/display_480p_tb.sv
 !i122 20
@@ -204,7 +204,7 @@ R8
 r1
 !s85 0
 31
-R16
+R17
 !s107 C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/display_480p_tb.sv|
 !s90 -reportprogress|300|-work|work|C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/display_480p_tb.sv|
 !i113 1
@@ -212,7 +212,7 @@ R11
 R12
 vip
 R1
-R15
+R16
 !i10b 1
 !s100 A?i:^j1T7n[L;O]Zg`Md:3
 R3
@@ -220,7 +220,7 @@ IVZam<MVZWk8U511:7cDmb0
 R4
 S1
 R0
-Z17 w1649014187
+Z19 w1649014187
 8C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/ip.sv
 FC:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/ip.sv
 !i122 21
@@ -229,21 +229,21 @@ R8
 r1
 !s85 0
 31
-R16
+R17
 !s107 C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/ip.sv|
 !s90 -reportprogress|300|-work|work|C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/ip.sv|
 !i113 1
 R11
 R12
 vip_altpll
-!s110 1649449946
+Z20 !s110 1649527428
 !i10b 1
 !s100 ?58WQC46R1e;g6YHb?kn`0
 R3
 I7a;QCEjL:QIbg5nLZKm<V2
 R4
 R0
-Z18 w1649014304
+Z21 w1649014304
 8C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/db/ip_altpll.v
 FC:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/db/ip_altpll.v
 !i122 1
@@ -252,16 +252,16 @@ R8
 r1
 !s85 0
 31
-!s108 1649449946.000000
+!s108 1649527427.000000
 !s107 C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/db/ip_altpll.v|
 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/db|C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/db/ip_altpll.v|
 !i113 1
-Z19 o-vlog01compat -work work
-Z20 !s92 -vlog01compat -work work {+incdir+C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/db}
+Z22 o-vlog01compat -work work
+Z23 !s92 -vlog01compat -work work {+incdir+C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/db}
 R12
 vlfsr
 R1
-R15
+R16
 !i10b 1
 !s100 W9c9n=m8SKUdA=HA^EeB_2
 R3
@@ -269,7 +269,7 @@ IDlJb8OmgBGmR<id`LzhW71
 R4
 S1
 R0
-w1649270178
+R14
 8C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/lfsr.sv
 FC:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/lfsr.sv
 !i122 22
@@ -278,21 +278,21 @@ R8
 r1
 !s85 0
 31
-R16
+R17
 !s107 C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/lfsr.sv|
 !s90 -reportprogress|300|-work|work|C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/lfsr.sv|
 !i113 1
 R11
 R12
 vpll
-R15
+R2
 !i10b 1
 !s100 dhAigBd`53`53idG2f^1m3
 R3
 IJj[<_9`PW`=hcdE167aFb2
 R4
 R0
-Z21 w1649040861
+R14
 8C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/pll.v
 FC:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/pll.v
 !i122 23
@@ -301,21 +301,21 @@ R8
 r1
 !s85 0
 31
-R16
+R17
 !s107 C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/pll.v|
 !s90 -reportprogress|300|-work|work|C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/pll.v|
 !i113 1
 R11
 R12
 vpll_altpll
-!s110 1649449947
+R20
 !i10b 1
 !s100 3WnEY[f35c3899B5J6MNM2
 R3
 I83Y1=`@G1En:mjXEAj0lH0
 R4
 R0
-R18
+R21
 8C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/db/pll_altpll.v
 FC:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/db/pll_altpll.v
 !i122 2
@@ -324,12 +324,12 @@ R8
 r1
 !s85 0
 31
-!s108 1649449947.000000
+!s108 1649527428.000000
 !s107 C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/db/pll_altpll.v|
 !s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/db|C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/db/pll_altpll.v|
 !i113 1
-R19
-R20
+R22
+R23
 R12
 vrom_sync
 R1
@@ -341,7 +341,7 @@ I9c9;?E[oLVC<@k>bnCTR62
 R4
 S1
 R0
-R17
+R19
 8C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/rom_sync.sv
 FC:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/rom_sync.sv
 !i122 24
@@ -360,9 +360,9 @@ vSevenSegDecoder
 R1
 R2
 !i10b 1
-!s100 l@N6XC?XIGXK^gYHY`XLJ1
+!s100 e]RlH2kGJSdojYI`BA_jP1
 R3
-IdY1X=6lWH4G?nf26aJYR]0
+I^e?U:LPXnQWo0kz71RRD53
 R4
 S1
 R0
@@ -370,13 +370,13 @@ R5
 R6
 R7
 !i122 28
-L0 333 18
+L0 336 18
 R8
 r1
 !s85 0
 31
 R9
-Z22 !s107 C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/Top.sv|
+Z24 !s107 C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/Top.sv|
 R10
 !i113 1
 R11
@@ -392,7 +392,7 @@ I3cQE?>cPUiBN@5KlgNIo`3
 R4
 S1
 R0
-R21
+R14
 8C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/spi_control.sv
 FC:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/spi_control.sv
 !i122 25
@@ -417,7 +417,7 @@ Idg8mb837g^DH>KN5jJ8OW3
 R4
 S1
 R0
-R21
+R14
 8C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/spi_serdes.sv
 FC:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/spi_serdes.sv
 !i122 26
@@ -436,24 +436,24 @@ vsprite
 R1
 R2
 !i10b 1
-!s100 HmMAQAe3UbhOPK=zeC@4Z2
+!s100 >?d6NViOTF7o7jj;j7U;T2
 R3
-I8Wm0T@8B^M11T79PoOl^d1
+IQlDmX08k2nB7B7Ek2HSLz2
 R4
 S1
 R0
-Z23 w1649345575
-Z24 8C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/sprite.sv
-Z25 FC:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/sprite.sv
+R14
+Z25 8C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/sprite.sv
+Z26 FC:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/sprite.sv
 !i122 27
-L0 1 60
+R18
 R8
 r1
 !s85 0
 31
 R9
-Z26 !s107 C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/sprite.sv|
-Z27 !s90 -reportprogress|300|-work|work|C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/sprite.sv|
+Z27 !s107 C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/sprite.sv|
+Z28 !s90 -reportprogress|300|-work|work|C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/sprite.sv|
 !i113 1
 R11
 R12
@@ -461,24 +461,24 @@ vsprite_main
 R1
 R2
 !i10b 1
-!s100 TMY]Madolkfi@0g2DHTEL3
+!s100 `5Bo7XSK_`nPLQ9dzIF022
 R3
-IRGVK]YEMR?[`B0mEj2Znj2
+ICgcoSLZA`JJFkHQhBEn@V2
 R4
 S1
 R0
-R23
-R24
+R14
 R25
+R26
 !i122 27
-L0 62 119
+L0 62 120
 R8
 r1
 !s85 0
 31
 R9
-R26
 R27
+R28
 !i113 1
 R11
 R12
@@ -486,9 +486,9 @@ vTop
 R1
 R2
 !i10b 1
-!s100 D?TYj5]aigjVzR]m6cWNE0
+!s100 UiP^bJkJa30o2ZV7mzC9E3
 R3
-I0RXDWiS[]FNKKVXX^zcZc2
+ID^`2P[O5d>Ka?<6jaX^0m2
 R4
 S1
 R0
@@ -496,13 +496,13 @@ R5
 R6
 R7
 !i122 28
-L0 6 319
+L0 6 322
 R8
 r1
 !s85 0
 31
 R9
-R22
+R24
 R10
 !i113 1
 R11
@@ -512,9 +512,9 @@ vTripleDigitDisplay
 R1
 R2
 !i10b 1
-!s100 ?ZVHRjWSh2=B7JU8@=O1j1
+!s100 QmD:V=0INb<YK4W>Ic><f3
 R3
-IUcb?1ldRc>@61`48Ma4I51
+I@hRao`CQnfL24KC5g7`N?3
 R4
 S1
 R0
@@ -522,13 +522,13 @@ R5
 R6
 R7
 !i122 28
-L0 326 6
+L0 329 6
 R8
 r1
 !s85 0
 31
 R9
-R22
+R24
 R10
 !i113 1
 R11
