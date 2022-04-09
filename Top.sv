@@ -297,9 +297,7 @@ module Top(
 		end
 	end
 	assign screen_pix = spaceship_drawing ? spaceship_pixel : bullet_drawing ? bullet_pix : (|asteroid_drawing) ? asteroid_pix : bg_pix;  // hierarchy of sprites to display.
-//	// map pixel color code to actual red-green-blue values
-//	logic [11:0] color_value;
-//	color_mapper #(.COLR_BITS(COLR_BITS)) (.clk(clk_pix), .color_code(screen_pix), .color_value);
+	
 	logic [3:0] red, green, blue;
 	always_comb begin
 		{red, green, blue} = screen_pix;
