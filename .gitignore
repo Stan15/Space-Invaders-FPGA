@@ -1,6 +1,6 @@
 incremental_db/
 db/
-output_files/
 simulation/
+output_files/
 *.bak
 *.swp
