@@ -138,42 +138,41 @@ module Top(
 	localparam SPACESHIP_HEIGHT = 18;
 	localparam SPACESHIP_SCALE = 2;
 	
+	localparam signed [7:0] SPACESHIP_SPEED = 7'd2;
+	
 	//-----spaceship position controller (replace code here with code for accelerometer controlling spaceship_x and spaceship_y value. for better modularity, the controller can be implemented in its own module)----
-	logic signed [SCREEN_CORDW-1:0] spaceship_x = 16'd300;
-	logic signed [SCREEN_CORDW-1:0] spaceship_y = 16'd240;
+	logic signed [SCREEN_CORDW-1:0] spaceship_x;
+	logic signed [SCREEN_CORDW-1:0] spaceship_y;
 	
 	
 	// Pressing KEY0 freezes the accelerometer's output
-	assign reset_n = KEY[0];
+	assign reset_n = SW[9];
 	
-	always_ff @(posedge clk_pix, negedge reset_n) begin
+	always_ff @(posedge frame, negedge reset_n) begin
 		
 		// SPACESHIP MOVEMENT
-		if(~reset_n)
-		begin
+		if(~reset_n) begin
 			spaceship_x <= 16'd300;
 			spaceship_y <= 16'd240;
-		end
-		else
-		begin
+		end else begin
 			//spaceship_x direction
-			if(data_X [10:7] >= 1 && data_X [10:7] <= 3 && frame && spaceship_x < H_RES-40) //Shifting spaceship_x to the right
+			if(~KEY[1] && SW[0] && spaceship_x > SPACESHIP_SPEED) //Shifting spaceship_x to the left
 			begin
-				spaceship_x <= spaceship_x - 2;
+				spaceship_x <= spaceship_x - SPACESHIP_SPEED;
 			end
-			else if(data_X [10:7] >=12 && data_X [10:7] <= 14 && frame && spaceship_x > 0) //Shifting spaceship_x to the left
+			else if(~KEY[0] && SW[0] && spaceship_x < (H_RES-SPACESHIP_SPEED)) //Shifting spaceship_x to the right
 			begin
-				spaceship_x <= spaceship_x + 2;
+				spaceship_x <= spaceship_x + SPACESHIP_SPEED;
 			end
 
 			//spaceship_y direction
-			if(data_Y [10:7] >= 1 && data_Y [10:7] <= 3  && frame && spaceship_y > 0) //Shifting spaceship_y to the up
+			if(~KEY[1] && ~SW[0] && spaceship_y < (V_RES-SPACESHIP_SPEED)) //Shifting spaceship_y to the down
 			begin
-				spaceship_y <= spaceship_y + 2 ;
+				spaceship_y <= spaceship_y + SPACESHIP_SPEED;
 			end
-			else if(data_Y [10:7] >= 12 && data_Y [10:7] <= 14 && frame && spaceship_y < V_RES-39) //Shifting spaceship_y to the down
+			else if(~KEY[0] && ~SW[0] && spaceship_x > SPACESHIP_SPEED) //Shifting spaceship_y to the up
 			begin
-				spaceship_y <= spaceship_y - 2;
+				spaceship_y <= spaceship_y - SPACESHIP_SPEED;
 			end
 		end
 	end
@@ -203,6 +202,10 @@ module Top(
 		.pixel(spaceship_pixel),
 		.drawing(spaceship_drawing)
 	);
+	
+	
+	TripleDigitDisplay(spaceship_x, HEX3, HEX4, HEX5); // display x and y coordinates of the spaceship
+	TripleDigitDisplay(spaceship_y, HEX0, HEX1, HEX2);
 	//======End of Spaceship Logic===============
 	
 	localparam ASTEROID_COUNT = 10;
@@ -212,7 +215,7 @@ module Top(
 	bit bullet_drawing, bullet_state;
 	bit fire_bullet;
 	logic signed[15:0]bullet_x, bullet_y;
-	assign fire_bullet = ~KEY[1];
+	assign fire_bullet = SW[1];
 	
 	logic [COLR_BITS-1:0] bullet_pix;
 	logic [ASTEROID_COUNT-1:0] asteroid_shot;
@@ -232,8 +235,6 @@ module Top(
 		.drawing(bullet_drawing), .pixel(bullet_pix), .bullet_x, .bullet_y, .bullet_state(bullet_state)
 	);
 	
-	TripleDigitDisplay(spaceship_x, HEX3, HEX4, HEX5); // display x and y coordinates of the spaceship
-	TripleDigitDisplay(spaceship_y, HEX0, HEX1, HEX2);
 	assign LEDR[3] = bullet_state;
 	//=======End of bullet logic
 	
