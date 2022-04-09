@@ -1,7 +1,14 @@
-module color_mapper(input clk, input [3:0] color_code, output [11:0] color_value);
-	localparam INIT_F = "color_map.mem";
+module color_mapper #(
+	parameter COLR_BITS
+) (
+	input clk, 
+	input [COLR_BITS-1:0] color_code, 
+	output reg [11:0] color_value
+);
+	localparam INIT_F = "./sprites/color_map.mem";
+	localparam COLR_COUNT = 2**COLR_BITS;
 	
-	reg [15:0]memory[15:0];
+	reg [11:0]memory[COLR_COUNT-1:0];
 	initial begin
 		if (INIT_F != 0) begin
 			$display("Creating rom_sync from init file '%s'.", INIT_F);

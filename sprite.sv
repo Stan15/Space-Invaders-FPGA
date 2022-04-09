@@ -4,9 +4,12 @@ module sprite #(
 	parameter HEIGHT = 10,
 	parameter SCREEN_CORDW = 16, 	// # of bits used to store screen coordinates
 	parameter COLR_BITS = 12, 		// # of bits used to address color (there are 2^4=16 colors possible)
-	parameter SCALE = 1
+	parameter SCALE = 1,
+	parameter H_RES = 640,
+	parameter V_RES = 480,
+	parameter TRANSPARENT_VAL = 0
 ) (
-	input clk_pix, rst, en, screen_line,
+	input clk_pix, rst, en, screen_line, frame,
 	input signed [SCREEN_CORDW-1:0] screen_x, screen_y,
 	input signed [SCREEN_CORDW-1:0] sprite_x, sprite_y,
 	output [COLR_BITS-1:0] pixel,
@@ -30,26 +33,28 @@ module sprite #(
 	//------------------------------------------------
 	
 	//-----------control what sprite pixel data to display based on the current screen coordinates
-	logic drawing_tmp;
+	logic in_region;
 	sprite_main #(
 		.WIDTH(WIDTH),
 		.HEIGHT(HEIGHT),
 		.SCALE_X(SCALE),
 		.SCALE_Y(SCALE),
-		.CORDW(SCREEN_CORDW)
+		.CORDW(SCREEN_CORDW),
+		.H_RES(H_RES),
+		.V_RES(V_RES)
 	) ship(
 		.clk(clk_pix), .rst, .en,
-		.line(screen_line),
+		.line(screen_line), .frame,
 		.sx(screen_x), .sy(screen_y),
 		.sprx(sprite_x), .spry(sprite_y),
 		.data_in(rom_data),
 		.pos(rom_addr),
 		.pix(pixel),
-		.drawing(drawing_tmp),
+		.drawing(in_region),
 		.done()
 	);
 	
-	assign drawing = drawing_tmp && pixel!=0; // it is only drawing when we are drawing a non-transparent pixel of the sprite
+	assign drawing = in_region && pixel!=TRANSPARENT_VAL; // it is only drawing when we are drawing a non-transparent pixel of the sprite
 
 	//----------------------------------------------------
 	
@@ -60,14 +65,17 @@ module sprite_main #(
     parameter HEIGHT=8,        // graphic height in pixels
     parameter SCALE_X=1,       // sprite width scale-factor
     parameter SCALE_Y=1,       // sprite height scale-factor
-    parameter COLR_BITS=4,     // bits per pixel (2^4=16 colours)
-    parameter CORDW=16,        // screen coordinate width in bits
+    parameter COLR_BITS=12,     // bits per pixel (2^4=16 colours)
+    parameter CORDW=16,        // screen coordinate width in bits,
+	 parameter H_RES=640,
+	 parameter V_RES=480,
     parameter ADDRW=WIDTH*HEIGHT          // width of graphic memory address bus
     ) (
     input  wire logic clk,                      // clock
     input  wire logic rst,                      // reset
 	 input  wire logic en,								// enable sprite
     input  wire logic line,                     // flag asserted when we start rendering new line in frame
+	 input  wire logic frame,
     input  wire logic signed [CORDW-1:0] sx,    // horizontal screen position
 	 input  wire logic signed [CORDW-1:0] sy,    // vertical screen position
     input  wire logic signed [CORDW-1:0] sprx,  // horizontal sprite position
@@ -81,6 +89,8 @@ module sprite_main #(
 	 
 	logic start;
 	assign start = (line && sy==spry);
+	logic pre_start;
+	assign pre_start = (line && sy < spry);
 
 	// position within sprite
 	logic [$clog2(WIDTH)-1:0]  ox;
@@ -134,7 +144,7 @@ module sprite_main #(
 			DONE: done <= 1;
 		endcase
 
-		if (rst) begin
+		if (rst || frame) begin
 			state <= IDLE;
 			ox <= 0;
 			oy <= 0;
@@ -151,8 +161,8 @@ module sprite_main #(
 	// create status signals
 	logic last_pixel, last_line;
 	always_comb begin
-		last_pixel = (ox == WIDTH-1  && cnt_x == SCALE_X-1);
-		last_line  = (oy == HEIGHT-1 && cnt_y == SCALE_Y-1);
+		last_pixel = ((ox == WIDTH-1)  && cnt_x == SCALE_X-1);
+		last_line  = ((oy == HEIGHT-1) && cnt_y == SCALE_Y-1);
 		drawing = (state == DRAW && en);
 	end
 
@@ -162,7 +172,7 @@ module sprite_main #(
 			IDLE:       state_next = start ? START : IDLE;
 			START:      state_next = AWAIT_POS;
 			AWAIT_POS:  state_next = (sx == sprx-2) ? DRAW : AWAIT_POS;  // BRAM
-			DRAW:       state_next = !last_pixel ? DRAW :
+			DRAW:       state_next = pre_start ? IDLE : !last_pixel ? DRAW :	// pre_start used to prevent drawing when sprite overflows screen
 											(!last_line ? NEXT_LINE : DONE);
 			NEXT_LINE:  state_next = AWAIT_POS;
 			DONE:       state_next = IDLE;
