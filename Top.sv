@@ -76,12 +76,39 @@ module Top(
 	localparam SPACESHIP_WIDTH = 17;
 	localparam SPACESHIP_HEIGHT = 18;
 	
+	localparam signed [7:0] SPACESHIP_SPEED = 1'd1;
+	logic reset_n;
+	assign reset_n	= SW[9];
+	
 	//-----spaceship position controller (replace code here with code for accelerometer controlling spaceship_x and spaceship_y value. for better modularity, the controller can be implemented in its own module)----
 	logic signed [SCREEN_CORDW-1:0] spaceship_x, spaceship_y;
-	always_ff @(negedge KEY[0]) begin
-		if (SW[0] && spaceship_x < H_RES) spaceship_x <= spaceship_x + 1;
-		else if (~SW[0] && spaceship_x > 0) spaceship_x <= spaceship_x - 1;
-		spaceship_y <= 300;
+	always_ff @(posedge frame, negedge reset_n) begin
+		
+		// SPACESHIP MOVEMENT
+		if(~reset_n) begin
+			spaceship_x <= 16'd300;
+			spaceship_y <= 16'd240;
+		end else begin
+			//spaceship_x direction
+			if(~KEY[1] && SW[0] && spaceship_x > SPACESHIP_SPEED) //Shifting spaceship_x to the left
+			begin
+				spaceship_x <= spaceship_x - SPACESHIP_SPEED;
+			end
+			else if(~KEY[0] && SW[0] && spaceship_x < (H_RES-SPACESHIP_SPEED)) //Shifting spaceship_x to the right
+			begin
+				spaceship_x <= spaceship_x + SPACESHIP_SPEED;
+			end
+
+			//spaceship_y direction
+			if(~KEY[1] && ~SW[0] && spaceship_y < (V_RES-SPACESHIP_SPEED)) //Shifting spaceship_y to the down
+			begin
+				spaceship_y <= spaceship_y + SPACESHIP_SPEED;
+			end
+			else if(~KEY[0] && ~SW[0] && spaceship_x > SPACESHIP_SPEED) //Shifting spaceship_y to the up
+			begin
+				spaceship_y <= spaceship_y - SPACESHIP_SPEED;
+			end
+		end
 	end
 	TripleDigitDisplay(spaceship_x, HEX3, HEX4, HEX5); // display x and y coordinates of the spaceship to 7-seg display
 	TripleDigitDisplay(spaceship_y, HEX0, HEX1, HEX2);
