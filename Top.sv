@@ -53,7 +53,7 @@ module Top(
 	ip (.areset(reset), .inclk0(MAX10_CLK1_50), .c0(clk_pix), .locked());
 
 	// go through the display pixel-by-pixel
-	logic [SCREEN_CORDW-1:0] screen_x, screen_y;
+	logic signed [SCREEN_CORDW-1:0] screen_x, screen_y;
 	logic hsync, vsync, de, frame, screen_line;
 	display_480p #(
 		.H_RES(H_RES),
@@ -139,8 +139,8 @@ module Top(
 	localparam SPACESHIP_SCALE = 2;
 	
 	//-----spaceship position controller (replace code here with code for accelerometer controlling spaceship_x and spaceship_y value. for better modularity, the controller can be implemented in its own module)----
-	logic [SCREEN_CORDW-1:0] spaceship_x = 16'd300;
-	logic [SCREEN_CORDW-1:0] spaceship_y = 16'd240;
+	logic signed [SCREEN_CORDW-1:0] spaceship_x = 16'd300;
+	logic signed [SCREEN_CORDW-1:0] spaceship_y = 16'd240;
 	
 	
 	// Pressing KEY0 freezes the accelerometer's output
@@ -178,8 +178,8 @@ module Top(
 		end
 	end
 
-	TripleDigitDisplay(data_Y[7:0], HEX3, HEX4, HEX5); // display x and y coordinates of the spaceship
-	TripleDigitDisplay(data_X[7:0], HEX0, HEX1, HEX2);
+//	TripleDigitDisplay(data_Y[7:0], HEX3, HEX4, HEX5); // display x and y coordinates of the spaceship
+//	TripleDigitDisplay(data_X[7:0], HEX0, HEX1, HEX2);
 	
 	//----------------------------------------
 	
@@ -192,7 +192,9 @@ module Top(
 		.HEIGHT(SPACESHIP_HEIGHT),
 		.SCALE(SPACESHIP_SCALE), 							// it is scaled by 4x its original size
 		.SCREEN_CORDW(SCREEN_CORDW),
-		.COLR_BITS(COLR_BITS)
+		.COLR_BITS(COLR_BITS),
+		.H_RES(H_RES),
+		.V_RES(V_RES)
 	) spaceship (
 		.clk_pix, .rst(0), .en(1),
 		.screen_line,
@@ -205,22 +207,34 @@ module Top(
 	
 	localparam ASTEROID_COUNT = 10;
 	//=======Bullet logic
-	localparam BULLET_SPEED = 2;
+	localparam BULLET_SPEED = 1;
 	
-	logic bullet_drawing;
+	bit bullet_drawing, bullet_state;
+	bit fire_bullet;
+	logic signed[15:0]bullet_x, bullet_y;
+	assign fire_bullet = ~KEY[1];
+	
 	logic [COLR_BITS-1:0] bullet_pix;
 	logic [ASTEROID_COUNT-1:0] asteroid_shot;
+	logic bullet_reset;
+	assign bullet_reset	= reset_n;// || ~asteroid_shot;
 	bullet #(
 		.COLR_BITS(COLR_BITS),
-		.SCREEN_CORDW(SCREEN_CORDW)
-	) (
-		.clk(clk_pix), .rst(reset_n || asteroid_shot), // reset when any of the asteroids are shot
-		.fire(KEY[1]), .frame, .screen_line,
+		.SCREEN_CORDW(SCREEN_CORDW),
+		.H_RES(H_RES),
+		.V_RES(V_RES)
+	) bullet (
+		.clk(clk_pix), .rst(bullet_reset), // reset when any of the asteroids are shot
+		.fire(fire_bullet), .frame, .screen_line,
 		.speed(BULLET_SPEED),
 		.screen_x, .screen_y,
 		.spaceship_x, .spaceship_y,
-		.drawing(bullet_drawing), .pixel(bullet_pix)
+		.drawing(bullet_drawing), .pixel(bullet_pix), .bullet_x, .bullet_y, .bullet_state(bullet_state)
 	);
+	
+	TripleDigitDisplay(spaceship_x, HEX3, HEX4, HEX5); // display x and y coordinates of the spaceship
+	TripleDigitDisplay(spaceship_y, HEX0, HEX1, HEX2);
+	assign LEDR[3] = bullet_state;
 	//=======End of bullet logic
 	
 	//==========Asteroid Logic===================
@@ -232,15 +246,15 @@ module Top(
 	
 	genvar i;
 	generate
-		for(i=0; i<ASTEROID_COUNT; i=i+1)begin: asteroid
+		for(i=0; i<ASTEROID_COUNT; i=i+1) begin: asteroid
 			asteroid #(
 				.ASTEROID_COUNT(ASTEROID_COUNT),
-				.WINDOW_SIZE(3),
+				.WINDOW_SIZE(2),
 				.H_RES(H_RES),
 				.V_RES(V_RES),
 				.SCREEN_CORDW(SCREEN_CORDW),
 				.COLR_BITS(COLR_BITS)
-			) (
+			) asteroid (
 				.clk(clk_pix), .rst(reset_n),
 				.frame, .screen_line,
 				.id(i),
@@ -253,7 +267,6 @@ module Top(
 			);
 		end
 	endgenerate
-	
 	
 	//======End of Asteroid Logic=======================
 	
@@ -272,7 +285,7 @@ module Top(
 		end else begin
 			// as we move across the screen, check if there's a collision at the pixel we are currently at							
 			collision_in_frame <= collision_in_frame || (spaceship_drawing && (|asteroid_drawing)); // there's a collision if spaceship is drawing and any one of the asteroids is drawing
-			asteroid_shot_in_frame <= asteroid_shot_in_frame | ({ASTEROID_COUNT{bullet_drawing}} & asteroid_drawing);
+			asteroid_shot_in_frame <= asteroid_shot_in_frame | (asteroid_drawing & {ASTEROID_COUNT{bullet_drawing}} & {ASTEROID_COUNT{de}}); // when both bullet and asteroid are drawing on visible part of screen
 		end
 	end
 	
@@ -290,7 +303,6 @@ module Top(
 		end
 	end
 	assign screen_pix = spaceship_drawing ? spaceship_pixel : bullet_drawing ? bullet_pix : asteroid_pix ? asteroid_pix : bg_pix;  // hierarchy of sprites to display.
-	
 	// map pixel color code to actual red-green-blue values
 	logic [11:0] color_value;
 	color_mapper #(.COLR_BITS(COLR_BITS)) (.clk(clk_pix), .color_code(screen_pix), .color_value);

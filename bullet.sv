@@ -2,57 +2,61 @@
 // bullet collision is handled externally and upon collision, the reset signal (rst) is asserted
 module bullet #(
 		parameter SCREEN_CORDW = 16,
-		parameter COLR_BITS = 4
+		parameter COLR_BITS = 4,
+		parameter H_RES = 640,
+		parameter V_RES = 480
 ) (
 		input clk, rst, 	
 		input fire, frame, screen_line,
 		input [7:0] speed,
-		input [SCREEN_CORDW-1:0] screen_x, screen_y,
-		input [SCREEN_CORDW-1:0] spaceship_x, spaceship_y,
+		input signed [SCREEN_CORDW-1:0] screen_x, screen_y,
+		input signed [SCREEN_CORDW-1:0] spaceship_x, spaceship_y,
 		output drawing,
-		output [COLR_BITS-1:0] pixel
+		output [COLR_BITS-1:0] pixel,
+		output signed [SCREEN_CORDW-1:0] bullet_x, bullet_y,
+		output bullet_state
 );
 	localparam BULLET_FILE = "./sprites/bullet.mem";
 	localparam BULLET_WIDTH = 4;
-	localparam BULLET_HEIGHT = 4;
+	localparam BULLET_HEIGHT = 3;
 	localparam BULLET_SCALE = 10;
+	localparam signed [SCREEN_CORDW-1:0] TRUE_HEIGHT = BULLET_HEIGHT*BULLET_SCALE;
 	
-	logic [SCREEN_CORDW-1:0] bullet_x, bullet_y;
-	
+//	logic signed [SCREEN_CORDW-1:0] bullet_x, bullet_y;
+	logic signed [7:0] spd;
+	assign spd = speed;
 	enum {
 		IDLE,
 		MOVING
 	} state, state_next;
-	
-	logic fired;
+	assign bullet_state = state;
+	bit fired;
 	always_ff @(posedge clk, posedge fire) begin
 		if (fire) fired <= state==IDLE ? 1 : 0;
 		else fired <= 0;
 	end
 	
-	always_ff @(posedge frame) begin
+	bit bullet_exited_screen;
+	always_ff @(posedge frame, negedge rst) begin
 		state <= state_next;
+		bullet_exited_screen <= bullet_y+TRUE_HEIGHT <= spd;
 		case (state)
 			IDLE: begin
-				bullet_x <= screen_x;
-				bullet_y <= screen_y;
+				bullet_x <= spaceship_x;
+				bullet_y <= spaceship_y;
 			end
 			MOVING: begin
-				bullet_y <= bullet_y - speed;
-				bullet_x <= screen_x;
+				bullet_y <= spaceship_y;
+				bullet_x <= spaceship_x;
 			end
 		endcase
 		
-		if (rst) begin
+		if (~rst) begin
 			state <= IDLE;
-			bullet_x <= screen_x;
-			bullet_y <= screen_y;
+			bullet_x <= spaceship_x;
+			bullet_y <= spaceship_y;
 		end
 	end
-	
-	logic bulet_exited_screen, bullet_active;
-	assign bullet_exited_screen = (bullet_y < -(BULLET_HEIGHT*BULLET_SCALE));
-	assign bullet_active = (state==IDLE || bullet_exited_screen);
 	
 	always_comb begin
 		case (state)
@@ -67,9 +71,11 @@ module bullet #(
 		.HEIGHT(BULLET_HEIGHT),
 		.SCALE(BULLET_SCALE), 							// it is scaled by 4x its original size
 		.SCREEN_CORDW(SCREEN_CORDW),
-		.COLR_BITS(COLR_BITS)
+		.COLR_BITS(COLR_BITS),
+		.H_RES(H_RES),
+		.V_RES(V_RES)
 	) bullet (
-		.clk_pix(clk), .rst(0), .en(bullet_active),
+		.clk_pix(clk), .rst(0), .en(1),
 		.screen_line,
 		.screen_x, .screen_y,
 		.sprite_x(bullet_x), .sprite_y(bullet_y),

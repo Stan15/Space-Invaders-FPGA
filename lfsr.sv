@@ -4,7 +4,7 @@ module lfsr #(
 ) (
 	input clk, rst,
 	input [LEN-1:0] seed,
-	output reg [LEN-1:0] out
+	output bit [LEN-1:0] out
 );
 	// outputs a new pseudo-random number at each positive edge of the clock using the provided seed.
 	always_ff @(posedge clk, negedge rst) begin

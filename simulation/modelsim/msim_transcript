@@ -12,138 +12,138 @@
 # 
 # vlog -vlog01compat -work work +incdir+C:/Users/stani/Documents/York\ University/Courses/2021-2022/Winter/EECS\ 3216\ -\ Digital\ Systems\ Engineering\ -\ Modelling,\ Implementation\ and\ Validation/Space-Invaders-FPGA {C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/pll.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 15:53:24 on Apr 04,2022
+# Start time: 16:32:26 on Apr 08,2022
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA" C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/pll.v 
 # -- Compiling module pll
 # 
 # Top level modules:
 # 	pll
-# End time: 15:53:24 on Apr 04,2022, Elapsed time: 0:00:00
+# End time: 16:32:26 on Apr 08,2022, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -vlog01compat -work work +incdir+C:/Users/stani/Documents/York\ University/Courses/2021-2022/Winter/EECS\ 3216\ -\ Digital\ Systems\ Engineering\ -\ Modelling,\ Implementation\ and\ Validation/Space-Invaders-FPGA/db {C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/db/ip_altpll.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 15:53:24 on Apr 04,2022
+# Start time: 16:32:26 on Apr 08,2022
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/db" C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/db/ip_altpll.v 
 # -- Compiling module ip_altpll
 # 
 # Top level modules:
 # 	ip_altpll
-# End time: 15:53:24 on Apr 04,2022, Elapsed time: 0:00:00
+# End time: 16:32:26 on Apr 08,2022, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -vlog01compat -work work +incdir+C:/Users/stani/Documents/York\ University/Courses/2021-2022/Winter/EECS\ 3216\ -\ Digital\ Systems\ Engineering\ -\ Modelling,\ Implementation\ and\ Validation/Space-Invaders-FPGA/db {C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/db/pll_altpll.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 15:53:24 on Apr 04,2022
+# Start time: 16:32:27 on Apr 08,2022
 # vlog -reportprogress 300 -vlog01compat -work work "+incdir+C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/db" C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/db/pll_altpll.v 
 # -- Compiling module pll_altpll
 # 
 # Top level modules:
 # 	pll_altpll
-# End time: 15:53:24 on Apr 04,2022, Elapsed time: 0:00:00
+# End time: 16:32:27 on Apr 08,2022, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -sv -work work +incdir+C:/Users/stani/Documents/York\ University/Courses/2021-2022/Winter/EECS\ 3216\ -\ Digital\ Systems\ Engineering\ -\ Modelling,\ Implementation\ and\ Validation/Space-Invaders-FPGA {C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/spi_control.sv}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 15:53:24 on Apr 04,2022
+# Start time: 16:32:27 on Apr 08,2022
 # vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA" C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/spi_control.sv 
 # -- Compiling module spi_control
 # 
 # Top level modules:
 # 	spi_control
-# End time: 15:53:25 on Apr 04,2022, Elapsed time: 0:00:01
+# End time: 16:32:27 on Apr 08,2022, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -sv -work work +incdir+C:/Users/stani/Documents/York\ University/Courses/2021-2022/Winter/EECS\ 3216\ -\ Digital\ Systems\ Engineering\ -\ Modelling,\ Implementation\ and\ Validation/Space-Invaders-FPGA {C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/spi_serdes.sv}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 15:53:25 on Apr 04,2022
+# Start time: 16:32:27 on Apr 08,2022
 # vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA" C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/spi_serdes.sv 
 # -- Compiling module spi_serdes
 # 
 # Top level modules:
 # 	spi_serdes
-# End time: 15:53:25 on Apr 04,2022, Elapsed time: 0:00:00
+# End time: 16:32:27 on Apr 08,2022, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -sv -work work +incdir+C:/Users/stani/Documents/York\ University/Courses/2021-2022/Winter/EECS\ 3216\ -\ Digital\ Systems\ Engineering\ -\ Modelling,\ Implementation\ and\ Validation/Space-Invaders-FPGA {C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/ip.sv}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 15:53:25 on Apr 04,2022
+# Start time: 16:32:27 on Apr 08,2022
 # vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA" C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/ip.sv 
 # -- Compiling module ip
 # 
 # Top level modules:
 # 	ip
-# End time: 15:53:25 on Apr 04,2022, Elapsed time: 0:00:00
+# End time: 16:32:27 on Apr 08,2022, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -sv -work work +incdir+C:/Users/stani/Documents/York\ University/Courses/2021-2022/Winter/EECS\ 3216\ -\ Digital\ Systems\ Engineering\ -\ Modelling,\ Implementation\ and\ Validation/Space-Invaders-FPGA {C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/display_480p.sv}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 15:53:25 on Apr 04,2022
+# Start time: 16:32:27 on Apr 08,2022
 # vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA" C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/display_480p.sv 
 # -- Compiling module display_480p
 # 
 # Top level modules:
 # 	display_480p
-# End time: 15:53:25 on Apr 04,2022, Elapsed time: 0:00:00
+# End time: 16:32:27 on Apr 08,2022, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -sv -work work +incdir+C:/Users/stani/Documents/York\ University/Courses/2021-2022/Winter/EECS\ 3216\ -\ Digital\ Systems\ Engineering\ -\ Modelling,\ Implementation\ and\ Validation/Space-Invaders-FPGA {C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/rom_sync.sv}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 15:53:26 on Apr 04,2022
+# Start time: 16:32:27 on Apr 08,2022
 # vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA" C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/rom_sync.sv 
 # -- Compiling module rom_sync
 # 
 # Top level modules:
 # 	rom_sync
-# End time: 15:53:26 on Apr 04,2022, Elapsed time: 0:00:00
+# End time: 16:32:27 on Apr 08,2022, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -sv -work work +incdir+C:/Users/stani/Documents/York\ University/Courses/2021-2022/Winter/EECS\ 3216\ -\ Digital\ Systems\ Engineering\ -\ Modelling,\ Implementation\ and\ Validation/Space-Invaders-FPGA {C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/sprite.sv}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 15:53:26 on Apr 04,2022
+# Start time: 16:32:28 on Apr 08,2022
 # vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA" C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/sprite.sv 
 # -- Compiling module sprite
 # -- Compiling module sprite_main
 # 
 # Top level modules:
 # 	sprite
-# End time: 15:53:26 on Apr 04,2022, Elapsed time: 0:00:00
+# End time: 16:32:28 on Apr 08,2022, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -sv -work work +incdir+C:/Users/stani/Documents/York\ University/Courses/2021-2022/Winter/EECS\ 3216\ -\ Digital\ Systems\ Engineering\ -\ Modelling,\ Implementation\ and\ Validation/Space-Invaders-FPGA {C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/color_mapper.sv}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 15:53:26 on Apr 04,2022
+# Start time: 16:32:28 on Apr 08,2022
 # vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA" C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/color_mapper.sv 
 # -- Compiling module color_mapper
 # 
 # Top level modules:
 # 	color_mapper
-# End time: 15:53:26 on Apr 04,2022, Elapsed time: 0:00:00
+# End time: 16:32:28 on Apr 08,2022, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -sv -work work +incdir+C:/Users/stani/Documents/York\ University/Courses/2021-2022/Winter/EECS\ 3216\ -\ Digital\ Systems\ Engineering\ -\ Modelling,\ Implementation\ and\ Validation/Space-Invaders-FPGA {C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/lfsr.sv}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 15:53:26 on Apr 04,2022
+# Start time: 16:32:28 on Apr 08,2022
 # vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA" C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/lfsr.sv 
 # -- Compiling module lfsr
 # 
 # Top level modules:
 # 	lfsr
-# End time: 15:53:27 on Apr 04,2022, Elapsed time: 0:00:01
+# End time: 16:32:28 on Apr 08,2022, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -sv -work work +incdir+C:/Users/stani/Documents/York\ University/Courses/2021-2022/Winter/EECS\ 3216\ -\ Digital\ Systems\ Engineering\ -\ Modelling,\ Implementation\ and\ Validation/Space-Invaders-FPGA {C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/bullet.sv}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 15:53:27 on Apr 04,2022
+# Start time: 16:32:28 on Apr 08,2022
 # vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA" C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/bullet.sv 
 # -- Compiling module bullet
 # 
 # Top level modules:
 # 	bullet
-# End time: 15:53:27 on Apr 04,2022, Elapsed time: 0:00:00
+# End time: 16:32:28 on Apr 08,2022, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -sv -work work +incdir+C:/Users/stani/Documents/York\ University/Courses/2021-2022/Winter/EECS\ 3216\ -\ Digital\ Systems\ Engineering\ -\ Modelling,\ Implementation\ and\ Validation/Space-Invaders-FPGA {C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/asteroid.sv}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 15:53:27 on Apr 04,2022
+# Start time: 16:32:28 on Apr 08,2022
 # vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA" C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/asteroid.sv 
 # -- Compiling module asteroid
 # 
 # Top level modules:
 # 	asteroid
-# End time: 15:53:27 on Apr 04,2022, Elapsed time: 0:00:00
+# End time: 16:32:28 on Apr 08,2022, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # vlog -sv -work work +incdir+C:/Users/stani/Documents/York\ University/Courses/2021-2022/Winter/EECS\ 3216\ -\ Digital\ Systems\ Engineering\ -\ Modelling,\ Implementation\ and\ Validation/Space-Invaders-FPGA {C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/Top.sv}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 15:53:27 on Apr 04,2022
+# Start time: 16:32:28 on Apr 08,2022
 # vlog -reportprogress 300 -sv -work work "+incdir+C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA" C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/Top.sv 
 # -- Compiling module Top
 # -- Compiling module TripleDigitDisplay
@@ -152,149 +152,159 @@
 # 
 # Top level modules:
 # 	Top
-# End time: 15:53:28 on Apr 04,2022, Elapsed time: 0:00:01
+# End time: 16:32:28 on Apr 08,2022, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 # 
 vlog -reportprogress 300 -work work {C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/asteroid.sv}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 15:53:42 on Apr 04,2022
+# Start time: 16:32:49 on Apr 08,2022
 # vlog -reportprogress 300 -work work C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/asteroid.sv 
 # -- Compiling module asteroid
 # 
 # Top level modules:
 # 	asteroid
-# End time: 15:53:42 on Apr 04,2022, Elapsed time: 0:00:00
+# End time: 16:32:49 on Apr 08,2022, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 vlog -reportprogress 300 -work work {C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/asteroid_tb.sv}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 15:53:42 on Apr 04,2022
+# Start time: 16:32:49 on Apr 08,2022
 # vlog -reportprogress 300 -work work C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/asteroid_tb.sv 
 # -- Compiling module asteroid_tb
 # 
 # Top level modules:
 # 	asteroid_tb
-# End time: 15:53:42 on Apr 04,2022, Elapsed time: 0:00:00
+# End time: 16:32:49 on Apr 08,2022, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 vlog -reportprogress 300 -work work {C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/block_sprite.sv}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 15:53:42 on Apr 04,2022
+# Start time: 16:32:49 on Apr 08,2022
 # vlog -reportprogress 300 -work work C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/block_sprite.sv 
-# End time: 15:53:43 on Apr 04,2022, Elapsed time: 0:00:01
+# End time: 16:32:49 on Apr 08,2022, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 vlog -reportprogress 300 -work work {C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/bullet.sv}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 15:53:43 on Apr 04,2022
+# Start time: 16:32:49 on Apr 08,2022
 # vlog -reportprogress 300 -work work C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/bullet.sv 
 # -- Compiling module bullet
 # 
 # Top level modules:
 # 	bullet
-# End time: 15:53:43 on Apr 04,2022, Elapsed time: 0:00:00
+# End time: 16:32:49 on Apr 08,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+vlog -reportprogress 300 -work work {C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/bullet_tb.sv}
+# Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+# Start time: 16:32:49 on Apr 08,2022
+# vlog -reportprogress 300 -work work C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/bullet_tb.sv 
+# -- Compiling module bullet_tb
+# 
+# Top level modules:
+# 	bullet_tb
+# End time: 16:32:50 on Apr 08,2022, Elapsed time: 0:00:01
 # Errors: 0, Warnings: 0
 vlog -reportprogress 300 -work work {C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/color_mapper.sv}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 15:53:43 on Apr 04,2022
+# Start time: 16:32:50 on Apr 08,2022
 # vlog -reportprogress 300 -work work C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/color_mapper.sv 
 # -- Compiling module color_mapper
 # 
 # Top level modules:
 # 	color_mapper
-# End time: 15:53:43 on Apr 04,2022, Elapsed time: 0:00:00
+# End time: 16:32:50 on Apr 08,2022, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 vlog -reportprogress 300 -work work {C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/display_480p.sv}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 15:53:43 on Apr 04,2022
+# Start time: 16:32:50 on Apr 08,2022
 # vlog -reportprogress 300 -work work C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/display_480p.sv 
 # -- Compiling module display_480p
 # 
 # Top level modules:
 # 	display_480p
-# End time: 15:53:43 on Apr 04,2022, Elapsed time: 0:00:00
+# End time: 16:32:50 on Apr 08,2022, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 vlog -reportprogress 300 -work work {C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/display_480p_tb.sv}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 15:53:44 on Apr 04,2022
+# Start time: 16:32:50 on Apr 08,2022
 # vlog -reportprogress 300 -work work C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/display_480p_tb.sv 
 # -- Compiling module display_480p_tb
 # 
 # Top level modules:
 # 	display_480p_tb
-# End time: 15:53:44 on Apr 04,2022, Elapsed time: 0:00:00
+# End time: 16:32:50 on Apr 08,2022, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 vlog -reportprogress 300 -work work {C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/ip.sv}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 15:53:44 on Apr 04,2022
+# Start time: 16:32:50 on Apr 08,2022
 # vlog -reportprogress 300 -work work C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/ip.sv 
 # -- Compiling module ip
 # 
 # Top level modules:
 # 	ip
-# End time: 15:53:44 on Apr 04,2022, Elapsed time: 0:00:00
+# End time: 16:32:50 on Apr 08,2022, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 vlog -reportprogress 300 -work work {C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/lfsr.sv}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 15:53:44 on Apr 04,2022
+# Start time: 16:32:50 on Apr 08,2022
 # vlog -reportprogress 300 -work work C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/lfsr.sv 
 # -- Compiling module lfsr
 # 
 # Top level modules:
 # 	lfsr
-# End time: 15:53:44 on Apr 04,2022, Elapsed time: 0:00:00
+# End time: 16:32:50 on Apr 08,2022, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 vlog -reportprogress 300 -work work {C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/pll.v}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 15:53:44 on Apr 04,2022
+# Start time: 16:32:50 on Apr 08,2022
 # vlog -reportprogress 300 -work work C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/pll.v 
 # -- Compiling module pll
 # 
 # Top level modules:
 # 	pll
-# End time: 15:53:44 on Apr 04,2022, Elapsed time: 0:00:00
+# End time: 16:32:50 on Apr 08,2022, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 vlog -reportprogress 300 -work work {C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/rom_sync.sv}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 15:53:45 on Apr 04,2022
+# Start time: 16:32:51 on Apr 08,2022
 # vlog -reportprogress 300 -work work C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/rom_sync.sv 
 # -- Compiling module rom_sync
 # 
 # Top level modules:
 # 	rom_sync
-# End time: 15:53:45 on Apr 04,2022, Elapsed time: 0:00:00
+# End time: 16:32:51 on Apr 08,2022, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 vlog -reportprogress 300 -work work {C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/spi_control.sv}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 15:53:45 on Apr 04,2022
+# Start time: 16:32:51 on Apr 08,2022
 # vlog -reportprogress 300 -work work C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/spi_control.sv 
 # -- Compiling module spi_control
 # 
 # Top level modules:
 # 	spi_control
-# End time: 15:53:45 on Apr 04,2022, Elapsed time: 0:00:00
+# End time: 16:32:51 on Apr 08,2022, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 vlog -reportprogress 300 -work work {C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/spi_serdes.sv}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 15:53:45 on Apr 04,2022
+# Start time: 16:32:51 on Apr 08,2022
 # vlog -reportprogress 300 -work work C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/spi_serdes.sv 
 # -- Compiling module spi_serdes
 # 
 # Top level modules:
 # 	spi_serdes
-# End time: 15:53:45 on Apr 04,2022, Elapsed time: 0:00:00
+# End time: 16:32:51 on Apr 08,2022, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 vlog -reportprogress 300 -work work {C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/sprite.sv}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 15:53:45 on Apr 04,2022
+# Start time: 16:32:51 on Apr 08,2022
 # vlog -reportprogress 300 -work work C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/sprite.sv 
 # -- Compiling module sprite
 # -- Compiling module sprite_main
 # 
 # Top level modules:
 # 	sprite
-# End time: 15:53:46 on Apr 04,2022, Elapsed time: 0:00:01
+# End time: 16:32:51 on Apr 08,2022, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
 vlog -reportprogress 300 -work work {C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/Top.sv}
 # Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
-# Start time: 15:53:46 on Apr 04,2022
+# Start time: 16:32:51 on Apr 08,2022
 # vlog -reportprogress 300 -work work C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/Top.sv 
 # -- Compiling module Top
 # -- Compiling module TripleDigitDisplay
@@ -303,37 +313,36 @@ vlog -reportprogress 300 -work work {C:/Users/stani/Documents/York University/Co
 # 
 # Top level modules:
 # 	Top
-# End time: 15:53:46 on Apr 04,2022, Elapsed time: 0:00:00
+# End time: 16:32:51 on Apr 08,2022, Elapsed time: 0:00:00
 # Errors: 0, Warnings: 0
-vsim work.asteroid_tb
-# vsim work.asteroid_tb 
-# Start time: 15:53:51 on Apr 04,2022
+vsim work.bullet_tb
+# vsim work.bullet_tb 
+# Start time: 16:33:23 on Apr 08,2022
 # Loading sv_std.std
-# Loading work.asteroid_tb
-# Loading work.lfsr
+# Loading work.bullet_tb
+# Loading work.bullet
+# Loading work.sprite
+# Loading work.rom_sync
+# Loading work.sprite_main
+# ** Warning: (vsim-3015) [PCDPC] - Port size (1) does not match connection size (32) for port 'rst'. The port definition is at: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/sprite.sv(11).
+#    Time: 0 ps  Iteration: 0  Instance: /bullet_tb/blt/bullet File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/bullet.sv Line: 78
+# ** Warning: (vsim-3015) [PCDPC] - Port size (12) does not match connection size (4) for port 'pos'. The port definition is at: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/sprite.sv(82).
+#    Time: 0 ps  Iteration: 0  Instance: /bullet_tb/blt/bullet/ship File: C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/sprite.sv Line: 44
 run
+# Creating rom_sync from init file './sprites/bullet.mem'.
+# ** Warning: (vsim-7) Failed to open readmem file "./sprites/bullet.mem" in read mode.
+# No such file or directory. (errno = ENOENT)    : C:/Users/stani/Documents/York University/Courses/2021-2022/Winter/EECS 3216 - Digital Systems Engineering - Modelling, Implementation and Validation/Space-Invaders-FPGA/rom_sync.sv(16)
+#    Time: 0 ps  Iteration: 0  Instance: /bullet_tb/blt/bullet/spaceship_mem
 #                   10num=xxxxxxxxxxxxxxxx
-#                   20num=xxxxxxxxxxxxxxxx
-#                   30num=1000110111001100
-#                   40num=1000110111001100
-#                   50num=1000110111001100
-#                   60num=0100011011100110
-#                   70num=0100011011100110
-#                   80num=0010001101110011
-#                   90num=0010001101110011
-#                  100num=1011000111010000
-step -over
-step -over
-step -over
-#                  110num=1011000111010000
-step -over
-step -over
-step -over
-step -over
-step -over
-# Next activity is in 10 ps.
-step -over
-step -over
-#                  120num=0101100011101000
-# End time: 15:56:05 on Apr 04,2022, Elapsed time: 0:02:14
-# Errors: 0, Warnings: 0
+#                   20num=0000000000001010
+#                   30num=0000000000001010
+#                   40num=0000000000001010
+#                   50num=0000000000001010
+#                   60num=0000000000001001
+#                   70num=0000000000001001
+#                   80num=0000000000001000
+# done
+#                   90num=0000000000001000
+#                  100num=0000000000000111
+# End time: 19:29:42 on Apr 08,2022, Elapsed time: 2:56:19
+# Errors: 0, Warnings: 3
