@@ -51,9 +51,10 @@ module Top(
 	ip (.areset(reset), .inclk0(MAX10_CLK1_50), .c0(clk_pix), .locked());
 
 	// go through the display pixel-by-pixel
-	logic [SCREEN_CORDW-1:0] screen_x, screen_y;
+	logic signed [SCREEN_CORDW-1:0] screen_x, screen_y;
 	logic hsync, vsync, de, frame, screen_line;
 	display_480p #(
+		.CORDW(SCREEN_CORDW),
 		.H_RES(H_RES),
 		.V_RES(V_RES)
 	) (
@@ -76,7 +77,7 @@ module Top(
 	localparam SPACESHIP_HEIGHT = 18;
 	
 	//-----spaceship position controller (replace code here with code for accelerometer controlling spaceship_x and spaceship_y value. for better modularity, the controller can be implemented in its own module)----
-	logic [SCREEN_CORDW-1:0] spaceship_x, spaceship_y;
+	logic signed [SCREEN_CORDW-1:0] spaceship_x, spaceship_y;
 	always_ff @(negedge KEY[0]) begin
 		if (SW[0] && spaceship_x < H_RES) spaceship_x <= spaceship_x + 1;
 		else if (~SW[0] && spaceship_x > 0) spaceship_x <= spaceship_x - 1;
@@ -114,7 +115,7 @@ module Top(
 	
 	// i'm creating just one obstacle for testing purposes. we should figure out how to create
 	// multiple obstacles and make sure that they are spaced out. might require using generate blocks in some way.
-	logic [SCREEN_CORDW-1:0] obstacle_1_x, obstacle_1_y;
+	logic signed [SCREEN_CORDW-1:0] obstacle_1_x, obstacle_1_y;
 	logic [COLR_BITS-1:0] obstacle_1_pixel;
 	logic obstacle_1_drawing;			// flag indicating if spaceship pixel should be drawn the current screen position.
 	sprite #(

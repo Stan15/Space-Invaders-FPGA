@@ -18,8 +18,8 @@ module display_480p #(
 	output logic de,							// data enable (low in blanking interval)
 	output logic frame,						// high at start of frame
 	output logic line,						// high at start of active line
-	output logic [CORDW-1:0] screen_x,	// horizontal screen position
-	output logic [CORDW-1:0] screen_y	// vertical screen position
+	output logic signed [CORDW-1:0] screen_x,	// horizontal screen position
+	output logic signed [CORDW-1:0] screen_y	// vertical screen position
 );
 
 	// horizontal timings

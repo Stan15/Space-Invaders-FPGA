@@ -7,8 +7,8 @@ module sprite #(
 	parameter SCALE = 1
 ) (
 	input clk_pix, rst, en, screen_line,
-	input [SCREEN_CORDW-1:0] screen_x, screen_y,
-	input [SCREEN_CORDW-1:0] sprite_x, sprite_y,
+	input signed [SCREEN_CORDW-1:0] screen_x, screen_y,
+	input signed [SCREEN_CORDW-1:0] sprite_x, sprite_y,
 	output [COLR_BITS-1:0] pixel,
 	output drawing
 );
