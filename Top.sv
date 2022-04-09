@@ -288,21 +288,21 @@ module Top(
 	//===========End of Collision Detection==========
 	
 	//===========Color Value Logic========================
-	wire [3:0] bg_pix = 15;
-	logic [3:0] screen_pix, asteroid_pix;
+	wire [COLR_BITS-1:0] bg_pix = 12'hFFF;
+	logic [COLR_BITS-1:0] screen_pix, asteroid_pix;
 	always_comb begin
 		asteroid_pix = 0;
 		for(integer k = 0; k < ASTEROID_COUNT; k=k+1) begin
 			asteroid_pix = asteroid_drawing[k] ? asteroid_pixels[k] : asteroid_pix;
 		end
 	end
-	assign screen_pix = spaceship_drawing ? spaceship_pixel : bullet_drawing ? bullet_pix : asteroid_pix ? asteroid_pix : bg_pix;  // hierarchy of sprites to display.
-	// map pixel color code to actual red-green-blue values
-	logic [11:0] color_value;
-	color_mapper #(.COLR_BITS(COLR_BITS)) (.clk(clk_pix), .color_code(screen_pix), .color_value);
+	assign screen_pix = spaceship_drawing ? spaceship_pixel : bullet_drawing ? bullet_pix : (|asteroid_drawing) ? asteroid_pix : bg_pix;  // hierarchy of sprites to display.
+//	// map pixel color code to actual red-green-blue values
+//	logic [11:0] color_value;
+//	color_mapper #(.COLR_BITS(COLR_BITS)) (.clk(clk_pix), .color_code(screen_pix), .color_value);
 	logic [3:0] red, green, blue;
 	always_comb begin
-		{red, green, blue} = color_value;
+		{red, green, blue} = screen_pix;
 	end
 	//==========End of Color Value Logic===================
 	

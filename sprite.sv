@@ -6,7 +6,8 @@ module sprite #(
 	parameter COLR_BITS = 12, 		// # of bits used to address color (there are 2^4=16 colors possible)
 	parameter SCALE = 1,
 	parameter H_RES = 640,
-	parameter V_RES = 480
+	parameter V_RES = 480,
+	parameter TRANSPARENT_VAL = 0
 ) (
 	input clk_pix, rst, en, screen_line, frame,
 	input signed [SCREEN_CORDW-1:0] screen_x, screen_y,
@@ -53,7 +54,7 @@ module sprite #(
 		.done()
 	);
 	
-	assign drawing = in_region && pixel!=0; // it is only drawing when we are drawing a non-transparent pixel of the sprite
+	assign drawing = in_region && pixel!=TRANSPARENT_VAL; // it is only drawing when we are drawing a non-transparent pixel of the sprite
 
 	//----------------------------------------------------
 	
@@ -64,7 +65,7 @@ module sprite_main #(
     parameter HEIGHT=8,        // graphic height in pixels
     parameter SCALE_X=1,       // sprite width scale-factor
     parameter SCALE_Y=1,       // sprite height scale-factor
-    parameter COLR_BITS=4,     // bits per pixel (2^4=16 colours)
+    parameter COLR_BITS=12,     // bits per pixel (2^4=16 colours)
     parameter CORDW=16,        // screen coordinate width in bits,
 	 parameter H_RES=640,
 	 parameter V_RES=480,
