@@ -31,7 +31,7 @@ module bullet #(
 	} state, state_next;
 	assign bullet_state = state;
 	bit fired;
-	always_ff @(posedge clk, posedge fire) begin
+	always_ff @(posedge frame) begin
 		if (fire) fired <= state==IDLE ? 1 : 0;
 		else fired <= 0;
 	end
@@ -46,8 +46,7 @@ module bullet #(
 				bullet_y <= spaceship_y;
 			end
 			MOVING: begin
-				bullet_y <= bullet_y - 1'b1;
-				bullet_x <= spaceship_x;
+				bullet_y <= bullet_y;
 			end
 		endcase
 		

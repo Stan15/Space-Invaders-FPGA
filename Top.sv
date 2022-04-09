@@ -151,21 +151,21 @@ module Top(
 			spaceship_y <= 16'd240;
 		end else begin
 			//spaceship_x direction
-			if(~KEY[1] && SW[0] && spaceship_x > SPACESHIP_SPEED) //Shifting spaceship_x to the left
+			if(data_X[10:7]>=1 && data_X[10:7]<=3 && spaceship_x > SPACESHIP_SPEED) //Shifting spaceship_x to the left
 			begin
 				spaceship_x <= spaceship_x - SPACESHIP_SPEED;
 			end
-			else if(~KEY[0] && SW[0] && (spaceship_x+(SPACESHIP_WIDTH*SPACESHIP_SCALE)) < (H_RES-SPACESHIP_SPEED)) //Shifting spaceship_x to the right
+			else if(data_X[10:7]>=12 && data_X[10:7]<=14 && (spaceship_x+(SPACESHIP_WIDTH*SPACESHIP_SCALE)) < (H_RES-SPACESHIP_SPEED)) //Shifting spaceship_x to the right
 			begin
 				spaceship_x <= spaceship_x + SPACESHIP_SPEED;
 			end
 
 			//spaceship_y direction
-			if(~KEY[1] && ~SW[0] && (spaceship_y+(SPACESHIP_HEIGHT*SPACESHIP_SCALE)) < (V_RES-SPACESHIP_SPEED)) //Shifting spaceship_y to the down
+			if(data_Y[10:7]>=1 && data_Y[10:7]<=3 && (spaceship_y+(SPACESHIP_HEIGHT*SPACESHIP_SCALE)) < (V_RES-SPACESHIP_SPEED)) //Shifting spaceship_y to the down
 			begin
 				spaceship_y <= spaceship_y + SPACESHIP_SPEED;
 			end
-			else if(~KEY[0] && ~SW[0] && spaceship_y > SPACESHIP_SPEED) //Shifting spaceship_y to the up
+			else if(data_Y[10:7]>=12&&data_Y[10:7]<=14 && spaceship_y > SPACESHIP_SPEED) //Shifting spaceship_y to the up
 			begin
 				spaceship_y <= spaceship_y - SPACESHIP_SPEED;
 			end
@@ -198,13 +198,13 @@ module Top(
 	
 	localparam ASTEROID_COUNT = 10;
 	//=======Bullet logic
-	localparam BULLET_SPEED = 1;
+	localparam logic signed [7:0] BULLET_SPEED = 1'b1;
 	
 	logic [ASTEROID_COUNT-1:0] asteroid_shot;
 	
 	bit bullet_drawing, bullet_state;
 	bit fire_bullet;
-	assign fire_bullet = SW[1];
+	assign fire_bullet = ~KEY[1];
 	
 	logic [COLR_BITS-1:0] bullet_pix;
 	logic bullet_reset;
@@ -228,7 +228,7 @@ module Top(
 	TripleDigitDisplay(bullet_x, HEX3, HEX4, HEX5); // display x and y coordinates of the spaceship to 7-seg display
 	TripleDigitDisplay(bullet_y, HEX0, HEX1, HEX2);
 	
-//	assign LEDR[3] = bullet_state;
+	assign LEDR[3] = bullet_state;
 	//=======End of bullet logic
 	
 	//==========Asteroid Logic===================
