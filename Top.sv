@@ -142,10 +142,6 @@ module Top(
 	localparam signed [7:0] SPACESHIP_SPEED = 1'd1;
 	assign reset_n	= SW[9];
 	
-	localparam signed [7:0] SPACESHIP_SPEED = 1'd1;
-	logic reset_n;
-	assign reset_n	= SW[9];
-	
 	//-----spaceship position controller (replace code here with code for accelerometer controlling spaceship_x and spaceship_y value. for better modularity, the controller can be implemented in its own module)----
 	logic signed [SCREEN_CORDW-1:0] spaceship_x, spaceship_y;
 	always_ff @(posedge frame, negedge reset_n) begin
@@ -191,7 +187,7 @@ module Top(
 		.H_RES(H_RES),
 		.V_RES(V_RES)
 	) spaceship (
-		.clk_pix, .rst(0), .en(1),
+		.clk_pix, .rst(0), .en(reset_n),
 		.screen_line,
 		.screen_x, .screen_y,
 		.sprite_x(spaceship_x), .sprite_y(spaceship_y),
@@ -207,22 +203,6 @@ module Top(
 	
 	logic [ASTEROID_COUNT-1:0] asteroid_shot;
 	
-<<<<<<< HEAD
-	// i'm creating just one obstacle for testing purposes. we should figure out how to create
-	// multiple obstacles and make sure that they are spaced out. might require using generate blocks in some way.
-	logic signed [SCREEN_CORDW-1:0] obstacle_1_x, obstacle_1_y;
-	logic [COLR_BITS-1:0] obstacle_1_pixel;
-	logic obstacle_1_drawing;			// flag indicating if spaceship pixel should be drawn the current screen position.
-	sprite #(
-		.FILE(OBSTACLE_FILE),
-		.WIDTH(OBSTACLE_WIDTH),
-		.HEIGHT(OBSTACLE_HEIGHT),
-		.SCALE(10), 							// it is scaled by 4x its original size
-		.SCREEN_CORDW(SCREEN_CORDW)
-	) obstacle1(
-		.clk_pix, .rst(0), .en(SW[9]),
-		.screen_line,
-=======
 	bit bullet_drawing, bullet_state;
 	bit fire_bullet;
 	assign fire_bullet = ~KEY[1];
@@ -241,7 +221,6 @@ module Top(
 		.clk(clk_pix), .rst(bullet_reset), // reset when any of the asteroids are shot
 		.fire(fire_bullet), .frame, .screen_line,
 		.speed(BULLET_SPEED),
->>>>>>> asteroidz
 		.screen_x, .screen_y,
 		.spaceship_x, .spaceship_y,
 		.drawing(bullet_drawing), .pixel(bullet_pix), .bullet_x, .bullet_y, .bullet_state(bullet_state)

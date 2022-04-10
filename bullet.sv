@@ -46,7 +46,7 @@ module bullet #(
 				bullet_y <= spaceship_y;
 			end
 			MOVING: begin
-				bullet_y <= bullet_y - 1'b1;
+				bullet_y <= bullet_y - spd;
 			end
 		endcase
 		
