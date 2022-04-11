@@ -7,7 +7,7 @@ module sprite #(
 	parameter SCALE = 1,
 	parameter H_RES = 640,
 	parameter V_RES = 480,
-	parameter TRANSPARENT_VAL = 0
+	parameter TRANSPARENT_VAL = 12'h888
 ) (
 	input clk_pix, rst, en, screen_line, frame,
 	input signed [SCREEN_CORDW-1:0] screen_x, screen_y,

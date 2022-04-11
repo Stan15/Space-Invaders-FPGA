@@ -9,6 +9,7 @@ module asteroid #(
 	input clk, rst,
 	input frame, screen_line,
 	input [$clog2(ASTEROID_COUNT)-1:0]id,
+	input [15:0]rand_factor,
 	input [7:0] speed,
 	input shot,
 	input signed [SCREEN_CORDW-1:0]screen_x, screen_y,
@@ -18,9 +19,9 @@ module asteroid #(
 );
 
 	localparam ASTEROID_FILE = "./sprites/asteroid.mem";
-	localparam ASTEROID_WIDTH = 4;
-	localparam ASTEROID_HEIGHT = 4;
-	localparam ASTEROID_SCALE = 20;
+	localparam ASTEROID_WIDTH = 32;
+	localparam ASTEROID_HEIGHT = 32;
+	localparam ASTEROID_SCALE = 1;
 	localparam logic signed [SCREEN_CORDW-1:0] TRUE_HEIGHT = ASTEROID_HEIGHT*ASTEROID_SCALE;
 	localparam logic signed [SCREEN_CORDW-1:0] TRUE_WIDTH = ASTEROID_WIDTH*ASTEROID_SCALE;
 	
@@ -30,8 +31,8 @@ module asteroid #(
 	
 	// seed for random coord generation should be different for each asteroid, and for each axis
 	logic [15:0] seed_x, seed_y;
-	assign seed_x = (16'b0001001011011000 - id) ^ (16'd3392*id);
-	assign seed_y = (16'b1001010001111010 - id) ^ (16'd8768*id);
+	assign seed_x = (16'b0001001011011000 - id) ^ ((16'd3392^rand_factor)*id);
+	assign seed_y = (16'b1001010001111010 - id) ^ ((16'd8768^rand_factor)*id);
 	
 	bit [SCREEN_CORDW-1:0] rand_x, rand_y;
 	bit lfsr_rst;

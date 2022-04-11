@@ -8,18 +8,18 @@ module bullet #(
 ) (
 		input clk, rst, 	
 		input fire, frame, screen_line,
-		input [7:0] speed,
+		input logic [7:0] speed,
 		input signed [SCREEN_CORDW-1:0] screen_x, screen_y,
 		input signed [SCREEN_CORDW-1:0] spaceship_x, spaceship_y,
 		output drawing,
 		output [COLR_BITS-1:0] pixel,
 		output logic signed [SCREEN_CORDW-1:0] bullet_x, bullet_y,
-		output [3:0]bullet_state
+		output [3:0] bullet_state
 );
-	localparam BULLET_FILE = "./sprites/bullet.mem";
-	localparam BULLET_WIDTH = 4;
-	localparam BULLET_HEIGHT = 3;
-	localparam BULLET_SCALE = 10;
+	localparam BULLET_FILE = "./sprites/forcefield.mem";
+	localparam BULLET_WIDTH = 39;
+	localparam BULLET_HEIGHT = 24;
+	localparam BULLET_SCALE = 1;
 	localparam signed [SCREEN_CORDW-1:0] TRUE_HEIGHT = BULLET_HEIGHT*BULLET_SCALE;
 	
 //	logic signed [SCREEN_CORDW-1:0] bullet_x, bullet_y;
@@ -31,7 +31,7 @@ module bullet #(
 	} state, state_next;
 	assign bullet_state = state;
 	bit fired;
-	always_ff @(posedge frame) begin
+	always_ff @(negedge frame) begin
 		if (fire) fired <= state==IDLE ? 1 : 0;
 		else fired <= 0;
 	end
@@ -46,18 +46,17 @@ module bullet #(
 				bullet_y <= spaceship_y;
 			end
 			MOVING: begin
-				bullet_y <= bullet_y - spd;
+				bullet_x <= spaceship_x;
+				bullet_y <= spaceship_y - TRUE_HEIGHT;
 			end
 		endcase
 		
 		if (~rst) begin
 			state <= IDLE;
-			bullet_x <= spaceship_x;
-			bullet_y <= spaceship_y;
 		end
 	end
 	
-	always_comb begin
+	always_ff @(negedge frame, posedge fired) begin
 		case (state)
 			IDLE:   state_next = fired ? MOVING : IDLE;
 			MOVING: state_next = bullet_exited_screen ? IDLE : MOVING;
@@ -74,7 +73,7 @@ module bullet #(
 		.H_RES(H_RES),
 		.V_RES(V_RES)
 	) bullet (
-		.clk_pix(clk), .rst(0), .en(state==MOVING),
+		.clk_pix(clk), .rst(0), .en(state==MOVING && rst),
 		.screen_line,
 		.screen_x, .screen_y,
 		.sprite_x(bullet_x), .sprite_y(bullet_y),

@@ -79,7 +79,8 @@ module Top(
    localparam UPDATE_FREQ   = 1;    // Sampling frequency (Hz)
 
    // clks and reset
-   wire reset_n;
+   wire reset_n, reset_bttn;
+	assign reset_bttn = KEY[0];
    wire clk, spi_clk, spi_clk_out;
 
    // output data
@@ -135,12 +136,11 @@ module Top(
 	
 	//==========Spaceship Logic===================
 	localparam SPACESHIP_FILE = "./sprites/spaceship.mem";
-	localparam SPACESHIP_WIDTH = 17;
-	localparam SPACESHIP_HEIGHT = 18;
-	localparam SPACESHIP_SCALE = 2;
+	localparam SPACESHIP_WIDTH = 39;
+	localparam SPACESHIP_HEIGHT = 36;
+	localparam SPACESHIP_SCALE = 1;
 	
 	localparam signed [7:0] SPACESHIP_SPEED = 1'd1;
-	assign reset_n	= SW[9];
 	
 	//-----spaceship position controller (replace code here with code for accelerometer controlling spaceship_x and spaceship_y value. for better modularity, the controller can be implemented in its own module)----
 	logic signed [SCREEN_CORDW-1:0] spaceship_x, spaceship_y;
@@ -197,39 +197,35 @@ module Top(
 	
 	//======End of Spaceship Logic===============
 	
-	localparam ASTEROID_COUNT = 10;
+	localparam ASTEROID_COUNT = 30;
 	//=======Bullet logic
-	localparam logic signed [7:0] BULLET_SPEED = 1'b1;
+	localparam logic [7:0] BULLET_SPEED = 8'd1;
 	
 	logic [ASTEROID_COUNT-1:0] asteroid_shot;
 	
-	bit bullet_drawing, bullet_state;
-	bit fire_bullet;
-	assign fire_bullet = ~KEY[1];
+	bit fire_forcefield;
+	assign fire_forcefield = ~KEY[1];
 	
-	logic [COLR_BITS-1:0] bullet_pix;
-	logic bullet_reset;
-	assign bullet_reset	= ~(~reset_n || asteroid_shot);
-	
-	logic signed[15:0]bullet_x, bullet_y;
-	bullet #(
+	logic forcefield_drawing, forcefield_available, impacted;
+	logic [COLR_BITS-1:0] forcefield_pix;
+	logic [2:0] ffstate;
+	forcefield #(
 		.COLR_BITS(COLR_BITS),
 		.SCREEN_CORDW(SCREEN_CORDW),
 		.H_RES(H_RES),
 		.V_RES(V_RES)
-	) bullet (
-		.clk(clk_pix), .rst(bullet_reset), // reset when any of the asteroids are shot
-		.fire(fire_bullet), .frame, .screen_line,
+	) forcefield (
+		.clk(clk_pix), .rst(reset_n), // reset when any of the asteroids are shot
+		.impact((|asteroid_shot)),
+		.fire(fire_forcefield), .frame, .screen_line,
 		.speed(BULLET_SPEED),
 		.screen_x, .screen_y,
 		.spaceship_x, .spaceship_y,
-		.drawing(bullet_drawing), .pixel(bullet_pix), .bullet_x, .bullet_y, .bullet_state(bullet_state)
+		.forcefield_available,
+		.drawing(forcefield_drawing), .pixel(forcefield_pix), .ffstate(ffstate), .impacted
 	);
 	
-	TripleDigitDisplay(bullet_x, HEX3, HEX4, HEX5); // display x and y coordinates of the spaceship to 7-seg display
-	TripleDigitDisplay(bullet_y, HEX0, HEX1, HEX2);
-	
-	assign LEDR[3] = bullet_state;
+	TripleDigitDisplay(ffstate, HEX0, HEX1, HEX2);
 	//=======End of bullet logic
 	
 	//==========Asteroid Logic===================
@@ -239,6 +235,7 @@ module Top(
 	logic [ASTEROID_COUNT-1:0] asteroid_drawing;
 	logic [COLR_BITS-1:0] asteroid_pixels [ASTEROID_COUNT-1:0];
 	
+	wire [15:0] rand_factor = data_x*data_y;
 	genvar i;
 	generate
 		for(i=0; i<ASTEROID_COUNT; i=i+1) begin: asteroid
@@ -253,6 +250,7 @@ module Top(
 				.clk(clk_pix), .rst(reset_n),
 				.frame, .screen_line,
 				.id(i),
+				.rand_factor(rand_factor),
 				.speed(ASTEROID_SPEED),
 				.shot(asteroid_shot[i]),
 				.screen_x, .screen_y,
@@ -280,7 +278,7 @@ module Top(
 		end else begin
 			// as we move across the screen, check if there's a collision at the pixel we are currently at							
 			collision_in_frame <= collision_in_frame || (spaceship_drawing && (|asteroid_drawing)); // there's a collision if spaceship is drawing and any one of the asteroids is drawing
-			asteroid_shot_in_frame <= asteroid_shot_in_frame | (asteroid_drawing & {ASTEROID_COUNT{bullet_drawing}} & {ASTEROID_COUNT{de}}); // when both bullet and asteroid are drawing on visible part of screen
+			asteroid_shot_in_frame <= asteroid_shot_in_frame | (asteroid_drawing & {ASTEROID_COUNT{forcefield_drawing}} & {ASTEROID_COUNT{de}}); // when both bullet and asteroid are drawing on visible part of screen
 		end
 	end
 	
@@ -288,8 +286,153 @@ module Top(
 	assign LEDR[0] = collision;
 	//===========End of Collision Detection==========
 	
+	//==========gameover Logic===================
+	localparam GAMEOVER_FILE = "sprites/gameover.mem";
+	localparam GAMEOVER_WIDTH = 64;
+	localparam GAMEOVER_HEIGHT = 48;
+	localparam GAMEOVER_SCALE = 10;
+	
+	//gameover position controller
+	logic [SCREEN_CORDW-1:0] gameover_x = 16'd0;
+	logic [SCREEN_CORDW-1:0] gameover_y = 16'd0;
+	
+	localparam GAMEOVER_TIMEOUT = 120; // gameover lasts for 120 frames - since framerate is 60fps, it lasts for 2 seconds
+	
+	
+	logic display_gameover;
+	assign reset_n = ~(~reset_bttn || display_gameover);
+	
+	logic [15:0] gameover_timer = 0;
+	assign display_gameover = gameover_timer > 0;
+	always_ff @(posedge frame) begin
+		gameover_timer = collision ? GAMEOVER_TIMEOUT : gameover_timer > 0 ? gameover_timer - 1 : 0;
+	end
+	
+	
+	//gameover pixel data generator
+	logic [COLR_BITS-1:0] gameover_pixel;
+	logic gameover_drawing;      // flag indicating if spaceship pixel should be drawn the current screen position.
+	sprite #(
+		.FILE(GAMEOVER_FILE),
+		.WIDTH(GAMEOVER_WIDTH),
+		.HEIGHT(GAMEOVER_HEIGHT),
+		.SCALE(GAMEOVER_SCALE), 							// it is scaled by 4x its original size
+		.SCREEN_CORDW(SCREEN_CORDW),
+		.COLR_BITS(COLR_BITS)
+	) gameover(
+		.clk_pix, .rst(0), .en(display_gameover),
+		.screen_line,
+		.screen_x, .screen_y,
+		.sprite_x(gameover_x), .sprite_y(gameover_y),
+		.pixel(gameover_pixel),
+		.drawing(gameover_drawing)
+	);
+
+	//======End of Gameover Logic=======================
+	
+	//==========Shield Logo Logic===================
+	localparam SHIELD_FILE = "sprites/shield.mem";
+	localparam SHIELD_WIDTH = 32;
+	localparam SHIELD_HEIGHT = 34;
+	localparam SHIELD_SCALE = 1;
+	
+	logic [SCREEN_CORDW-1:0] shield_x = H_RES - (SHIELD_WIDTH*SHIELD_SCALE) - 10;
+	logic [SCREEN_CORDW-1:0] shield_y = V_RES - (SHIELD_HEIGHT*SHIELD_SCALE) - 10;
+	
+	
+	logic [COLR_BITS-1:0] shield_pix;
+	logic shield_logo_drawing;
+	sprite #(
+		.FILE(SHIELD_FILE),
+		.WIDTH(SHIELD_WIDTH),
+		.HEIGHT(SHIELD_HEIGHT),
+		.SCALE(SHIELD_SCALE),
+		.SCREEN_CORDW(SCREEN_CORDW),
+		.COLR_BITS(COLR_BITS)
+	) shield (
+		.clk_pix, .rst(0), .en(forcefield_available),
+		.screen_line,
+		.screen_x, .screen_y,
+		.sprite_x(shield_x), .sprite_y(shield_y),
+		.pixel(shield_pix),
+		.drawing(shield_logo_drawing)
+	);
+
+	//======End of Gameover Logic=======================
+	
+	
+	//============Timer & scores ==========
+		
+	reg[31:0] count = 32'd0;                // initializing a register count for 32 bits
+	parameter D = 32'd50000000;
+	reg[7:0] cntdwnclk = 8'd60;    // initializing countdown clock from	60s to 0s
+	reg[7:0] prev_cntdwnclk = 8'd60;    // store prev coundown value before collision
+	parameter D1 = 8'd0;
+	reg[7:0] score =	8'd0; //stores current score
+	logic collision_detect; //indicates if there was ever a collision throughout the time of the game
+
+	always_ff @(posedge MAX10_CLK1_50) begin     
+		if (~display_gameover) score <=	8'd0;
+		count <= count + 32'd1;
+		if(~reset_bttn) 
+		begin
+			cntdwnclk <= 8'd60;				//reset countdown clock
+			prev_cntdwnclk <= 8'd60;
+			collision_detect <= 0;	
+		end
+		else //no reset
+		begin
+			if(collision)
+			begin
+				collision_detect <= 1;	
+				
+				//Set the score
+				if(prev_cntdwnclk >= 8'd50)       //within 10s	playtime results to  points based on time e.g 1s = 2 point
+					score <=  (60 - prev_cntdwnclk)*2;
+				else if(prev_cntdwnclk >= 8'd40)  //within 20s	10s playtime results to 50 points
+					 score <= 8'd50;
+				else if(prev_cntdwnclk >= 8'd30) //within 30s	playtime results to 100 points
+					 score <= 8'd100;
+				else if(prev_cntdwnclk > 8'd0) //[40s - 60s) playtime results to 150 points
+					  score <= 8'd150;
+				else
+					  score <= 8'd200; //60s	playtime means no collision within playtime hence	results to 100 points
+					  
+				cntdwnclk <= 8'd60;	//reset countdown clock 
+					  
+			
+				//code to delete all obstacles here
+				//here
+			
+			end
+			else //no collision
+			begin
+				if(count > D)
+				begin
+					count <= 32'd0;
+					cntdwnclk <= cntdwnclk - 8'd1; 
+					prev_cntdwnclk <= cntdwnclk;
+					
+					if(cntdwnclk <= D1)						
+					begin
+						cntdwnclk <=  8'd0;	//hold countdown clock at 0s until reset
+						if(collision_detect == 0)
+						begin
+							score <= 8'd200;
+						end
+					end
+				end //end of count
+			end//end of no collision
+		end//end of no reset
+	end
+
+	TripleDigitDisplay(score, HEX3, HEX4, HEX5);
+	
+	//===========End of Scores==========
+	
+	
 	//===========Color Value Logic========================
-	wire [COLR_BITS-1:0] bg_pix = 12'hFFF;
+	wire [COLR_BITS-1:0] bg_pix = 12'h000;
 	logic [COLR_BITS-1:0] screen_pix, asteroid_pix;
 	always_comb begin
 		asteroid_pix = 0;
@@ -297,7 +440,7 @@ module Top(
 			asteroid_pix = asteroid_drawing[k] ? asteroid_pixels[k] : asteroid_pix;
 		end
 	end
-	assign screen_pix = spaceship_drawing ? spaceship_pixel : bullet_drawing ? bullet_pix : (|asteroid_drawing) ? asteroid_pix : bg_pix;  // hierarchy of sprites to display.
+	assign screen_pix = gameover_drawing ? gameover_pixel : shield_logo_drawing ? shield_pix : forcefield_drawing ? forcefield_pix : spaceship_drawing ? spaceship_pixel : (|asteroid_drawing) ? asteroid_pix : bg_pix;  // hierarchy of sprites to display.
 	
 	logic [3:0] red, green, blue;
 	always_comb begin
